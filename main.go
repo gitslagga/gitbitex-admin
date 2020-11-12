@@ -44,25 +44,7 @@ func main() {
 	template.AddComp(echarts.NewChart())
 
 	cfg := config.ReadFromJson("./config.json")
-	cfg.CustomFootHtml = template.HTML(`<div style="display:none;">
-    <script type="text/javascript" src="https://s9.cnzz.com/z_stat.php?id=1278156902&web_id=1278156902"></script>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-103003647-2"></script>
-	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'UA-103003647-2');
-	</script>
-</div>`)
-	cfg.CustomHeadHtml = template.HTML(`<link rel="icon" type="image/png" sizes="32x32" href="//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-64x64.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-16x16.png">`)
 
-	cfg.Animation = config.PageAnimation{
-		Type:     "fadeInUp",
-		Duration: 0.9,
-	}
 	cfg.AddUpdateProcessFn(func(values form.Values) (values2 form.Values, e error) {
 		if values.Get("theme") == "adminlte" && values.Get("asset_url") == "//quick.go-admin.cn/demo/sword" {
 			values.Add("asset_url", "//quick.go-admin.cn/demo")
@@ -97,20 +79,19 @@ func main() {
 		}
 		return values, nil
 	})
-	//cfg.HideConfigCenterEntrance = true
 
 	if err := eng.AddConfig(cfg).
 		AddGenerators(tables.Generators).
 		AddGenerator("user", tables.GetUserTable).
 		//AddPlugins(filemanager.NewFileManagerWithConfig(filemanager.Config{
-		//	Path:          "/data/www/go-admin/fm_example",
+		//	Path:          "D:\\exchange\\gitbitex-admin\\vendor\\github.com\\GoAdminGroup\\filemanager",
 		//	AllowDelete:   false,
 		//	AllowUpload:   true,
 		//	AllowDownload: true,
 		//	AllowRename:   true,
 		//	AllowMove:     true,
 		//}), librarian.NewLibrarianWithConfig(librarian.Config{
-		//	Path:      "/data/www/go-admin/fm_example/markdown",
+		//	Path:      "D:\\exchange\\gitbitex-admin\\vendor\\github.com\\GoAdminGroup\\librarian",
 		//	BuildMenu: false,
 		//	Prefix:    "librarian",
 		//})).
@@ -165,7 +146,7 @@ func main() {
 	//})
 
 	srv := &http.Server{
-		Addr:    ":9033",
+		Addr:    ":8002",
 		Handler: r,
 	}
 

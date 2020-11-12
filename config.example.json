@@ -36,7 +36,7 @@
   "file_upload_engine": {
     "name": "local"
   },
-  "login_title": "GoAdmin",
+  "login_title": "GitbitexAdmin",
   "login_logo": "GitbitexAdmin",
   "auth_user_table": "goadmin_users",
   "go_mod_file_path": "./go.mod",
