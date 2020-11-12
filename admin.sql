@@ -642,7 +642,7 @@ VALUES
 	(63,'logger_rotate_compress','false',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
 	(64,'logger_encoder_encoding','',NULL,1,'2020-08-01 16:15:34','2020-08-01 16:15:34'),
 	(65,'filemanager_connection','default',NULL,0,'2020-08-01 16:17:12','2020-08-01 16:17:12'),
-	(66,'librarian_roots','{\"doc\":{\"Path\":\"/data/www/go-admin/fm_example/markdown\",\"Title\":\"GoAdmin文档\"}}',NULL,0,'2020-08-01 16:19:18','2020-08-01 16:19:18'),
+	(66,'librarian_roots','{\"doc\":{\"Path\":\"D:\exchange\gitbitex-admin\vendor\github.com\GoAdminGroup\librarian\",\"Title\":\"GoAdmin文档\"}}',NULL,0,'2020-08-01 16:19:18','2020-08-01 16:19:18'),
 	(67,'librarian_theme','github',NULL,0,'2020-08-01 16:19:18','2020-08-01 16:19:18');
 
 /*!40000 ALTER TABLE `goadmin_site` ENABLE KEYS */;

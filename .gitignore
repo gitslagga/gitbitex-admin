@@ -9,3 +9,6 @@ build
 login/assets/login/dist
 .DS_Store
 ecmall
+
+logs
+vendor

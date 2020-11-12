@@ -1,13 +1,13 @@
 package main
 
 import (
-	"github.com/GoAdminGroup/demo/tables"
 	"github.com/GoAdminGroup/go-admin/modules/config"
 	"github.com/GoAdminGroup/go-admin/tests"
 	"github.com/GoAdminGroup/go-admin/tests/common"
 	"github.com/GoAdminGroup/go-admin/tests/frameworks/gin"
 	"github.com/GoAdminGroup/go-admin/tests/web"
 	"github.com/gavv/httpexpect"
+	"github.com/gitslagga/gitbitex-admin/tables"
 	"net/http"
 	"testing"
 )

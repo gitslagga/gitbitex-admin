@@ -4,8 +4,8 @@
       "host": "127.0.0.1",
       "port": "3306",
       "user": "root",
-      "pwd": "root",
-      "name": "go_admin_demo",
+      "pwd": "123456",
+      "name": "spot_admin",
       "max_idle_con": 50,
       "max_open_con": 150,
       "driver": "mysql"
@@ -21,5 +21,24 @@
   "debug": true,
   "bootstrap_file_path": "./bootstrap.go",
   "no_limit_login_ip": true,
-  "theme": "sword"
+  "theme": "sword",
+
+  "app_id": "tokWOWWp4A41",
+  "title": "GitbitexAdmin",
+  "logo": "GitbitexAdmin",
+  "mini_logo": "GA",
+  "login_url": "/login",
+  "env": "local",
+  "info_log": "./logs/info.log",
+  "error_log": "./logs/error.log",
+  "access_log": "./logs/access.log",
+  "session_life_time": 7200,
+  "file_upload_engine": {
+    "name": "local"
+  },
+  "login_title": "GoAdmin",
+  "login_logo": "GitbitexAdmin",
+  "auth_user_table": "goadmin_users",
+  "go_mod_file_path": "./go.mod",
+  "asset_root_path": "./public/"
 }

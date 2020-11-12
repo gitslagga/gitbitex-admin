@@ -5,8 +5,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/GoAdminGroup/filemanager"
-	"github.com/GoAdminGroup/go-admin/plugins"
 	"log"
 	"net/http"
 	"os"
@@ -18,9 +16,6 @@ import (
 	_ "github.com/GoAdminGroup/themes/sword"
 
 	"github.com/GoAdminGroup/components/echarts"
-	"github.com/GoAdminGroup/demo/login"
-	"github.com/GoAdminGroup/demo/pages"
-	"github.com/GoAdminGroup/demo/tables"
 	ada "github.com/GoAdminGroup/go-admin/adapter/gin"
 	adminContext "github.com/GoAdminGroup/go-admin/context"
 	"github.com/GoAdminGroup/go-admin/engine"
@@ -30,6 +25,9 @@ import (
 	"github.com/GoAdminGroup/go-admin/template/chartjs"
 	"github.com/GoAdminGroup/go-admin/template/types"
 	"github.com/gin-gonic/gin"
+	"github.com/gitslagga/gitbitex-admin/login"
+	"github.com/gitslagga/gitbitex-admin/pages"
+	"github.com/gitslagga/gitbitex-admin/tables"
 )
 
 func main() {
@@ -45,10 +43,7 @@ func main() {
 	template.AddComp(chartjs.NewChart())
 	template.AddComp(echarts.NewChart())
 
-	rootPath := "/data/www/go-admin"
-	//rootPath = "."
-
-	cfg := config.ReadFromJson(rootPath + "/config.json")
+	cfg := config.ReadFromJson("./config.json")
 	cfg.CustomFootHtml = template.HTML(`<div style="display:none;">
     <script type="text/javascript" src="https://s9.cnzz.com/z_stat.php?id=1278156902&web_id=1278156902"></script>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
@@ -128,7 +123,7 @@ func main() {
 		panic(err)
 	}
 
-	r.Static("/uploads", rootPath+"/uploads")
+	r.Static("/uploads", "./uploads")
 
 	// you can custom your pages like:
 
@@ -161,13 +156,13 @@ func main() {
 		ctx.Redirect(http.StatusMovedPermanently, "/admin")
 	})
 
-	plug, _ := plugins.FindByName("filemanager")
-	plug.(*filemanager.FileManager).SetPathValidator(func(path string) error {
-		if path != "/data/www/go-admin/fm_example" {
-			return errors.New("没有权限")
-		}
-		return nil
-	})
+	//plug, _ := plugins.FindByName("filemanager")
+	//plug.(*filemanager.FileManager).SetPathValidator(func(path string) error {
+	//	if path != "/data/www/go-admin/fm_example" {
+	//		return errors.New("没有权限")
+	//	}
+	//	return nil
+	//})
 
 	srv := &http.Server{
 		Addr:    ":9033",
