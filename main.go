@@ -54,7 +54,6 @@ func main() {
 
 	if err := eng.AddConfig(cfg).
 		AddGenerators(tables.Generators).
-		AddGenerator("example_user", tables.GetExampleUserTable).
 		Use(r); err != nil {
 		panic(err)
 	}
@@ -62,7 +61,6 @@ func main() {
 	r.Static("/uploads", "./uploads")
 
 	// you can custom your pages like:
-
 	r.GET("/admin", ada.Content(func(ctx *gin.Context) (panel types.Panel, e error) {
 		if config.GetTheme() == "adminlte" {
 			return pages.GetDashBoardContent(ctx)
