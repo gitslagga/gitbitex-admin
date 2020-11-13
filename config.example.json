@@ -40,5 +40,11 @@
   "login_logo": "GitbitexAdmin",
   "auth_user_table": "goadmin_users",
   "go_mod_file_path": "./go.mod",
-  "asset_root_path": "./public/"
+  "asset_root_path": "./public/",
+
+  "hide_config_center_entrance": true,
+  "hide_app_info_entrance": false,
+  "hide_tool_entrance": true,
+  "hide_plugin_entrance": true,
+  "hide_visitor_user_center_entrance": true
 }

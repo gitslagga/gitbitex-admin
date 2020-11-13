@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"log"
@@ -46,36 +45,8 @@ func main() {
 	cfg := config.ReadFromJson("./config.json")
 
 	cfg.AddUpdateProcessFn(func(values form.Values) (values2 form.Values, e error) {
-		if values.Get("theme") == "adminlte" && values.Get("asset_url") == "//quick.go-admin.cn/demo/sword" {
-			values.Add("asset_url", "//quick.go-admin.cn/demo")
-		}
-		if values.Get("theme") == "sword" && values.Get("asset_url") == "//quick.go-admin.cn/demo" {
-			values.Add("asset_url", "//quick.go-admin.cn/demo/sword")
-		}
-		if values.Get("site_off") == "true" || values.Get("no_limit_login_ip") == "false" {
+		if values.Get("login_title") != "GO111MODULE" {
 			return nil, errors.New("不允许的操作")
-		}
-		if values.Get("login_title") != "GoAdmin" {
-			return nil, errors.New("不允许的操作")
-		}
-		if values.Get("custom_head_html") != string(cfg.CustomHeadHtml) {
-			return nil, errors.New("不允许的操作")
-		}
-		if values.Get("custom_foot_html") != string(cfg.CustomFootHtml) {
-			return nil, errors.New("不允许的操作")
-		}
-		if values.Get("footer_info") != "" || values.Get("login_logo") != string(cfg.LoginLogo) ||
-			values.Get("logo") != string(cfg.Logo) || values.Get("mini_logo") != string(cfg.MiniLogo) {
-			return nil, errors.New("不允许的操作")
-		}
-		if e := values.Get("extra"); e != "" {
-			var extra = make(map[string]interface{})
-			err := json.Unmarshal([]byte(e), &extra)
-			if err != nil && extra["login_theme"] != "" {
-				if comp, ok := loginComps[extra["login_theme"].(string)]; ok {
-					template.AddLoginComp(comp)
-				}
-			}
 		}
 		return values, nil
 	})
@@ -83,23 +54,6 @@ func main() {
 	if err := eng.AddConfig(cfg).
 		AddGenerators(tables.Generators).
 		AddGenerator("user", tables.GetUserTable).
-		//AddPlugins(filemanager.NewFileManagerWithConfig(filemanager.Config{
-		//	Path:          "D:\\exchange\\gitbitex-admin\\vendor\\github.com\\GoAdminGroup\\filemanager",
-		//	AllowDelete:   false,
-		//	AllowUpload:   true,
-		//	AllowDownload: true,
-		//	AllowRename:   true,
-		//	AllowMove:     true,
-		//}), librarian.NewLibrarianWithConfig(librarian.Config{
-		//	Path:      "D:\\exchange\\gitbitex-admin\\vendor\\github.com\\GoAdminGroup\\librarian",
-		//	BuildMenu: false,
-		//	Prefix:    "librarian",
-		//})).
-		//AddNavButtons("网站信息", "", action.PopUp("/website/info", "网站信息",
-		//	func(ctx *adminContext.Context) (success bool, msg string, data interface{}) {
-		//		return true, "ok", `<p>网站由 <a href="https://github.com/chenhg5">cg33<a/> 创造</p>`
-		//	})).
-		//AddNavButtons("用户管理", "", action.Jump("/admin/info/manager")).
 		Use(r); err != nil {
 		panic(err)
 	}
@@ -136,14 +90,6 @@ func main() {
 	r.GET("/", func(ctx *gin.Context) {
 		ctx.Redirect(http.StatusMovedPermanently, "/admin")
 	})
-
-	//plug, _ := plugins.FindByName("filemanager")
-	//plug.(*filemanager.FileManager).SetPathValidator(func(path string) error {
-	//	if path != "/data/www/go-admin/fm_example" {
-	//		return errors.New("没有权限")
-	//	}
-	//	return nil
-	//})
 
 	srv := &http.Server{
 		Addr:    ":8002",
