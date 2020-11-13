@@ -65,7 +65,7 @@ func GetProfileTable(ctx *context.Context) table.Table {
 		return panel
 	}, "/admin/popup/form"))
 
-	info.SetTable("profile").SetTitle("信息").SetDescription("信息")
+	info.SetTable("goadmin_e_profile").SetTitle("信息").SetDescription("信息")
 
 	formList := profile.GetForm()
 	formList.AddField("UUID", "uuid", db.Varchar, form.Text)
@@ -76,7 +76,7 @@ func GetProfileTable(ctx *context.Context) table.Table {
 	formList.AddField("完成进度", "finish_progress", db.Int, form.Number)
 	formList.AddField("通关", "pass", db.Tinyint, form.Number)
 
-	formList.SetTable("profile").SetTitle("信息").SetDescription("信息")
+	formList.SetTable("goadmin_e_profile").SetTitle("信息").SetDescription("信息")
 
 	return profile
 }

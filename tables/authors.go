@@ -33,7 +33,7 @@ func GetAuthorsTable(ctx *context.Context) (authorsTable table.Table) {
 
 	info.AddButton("文章列表", icon.Tv, action.PopUpWithIframe("/authors/list", "文章",
 		action.IframeData{Src: "/admin/info/posts"}, "900px", "560px"))
-	info.SetTable("authors").SetTitle("作者").SetDescription("作者")
+	info.SetTable("goadmin_e_authors").SetTitle("作者").SetDescription("作者")
 
 	formList := authorsTable.GetForm()
 	formList.AddField("ID", "id", db.Int, form.Default).FieldDisplayButCanNotEditWhenUpdate().FieldNotAllowAdd()
@@ -43,7 +43,7 @@ func GetAuthorsTable(ctx *context.Context) (authorsTable table.Table) {
 	formList.AddField("生日", "birthdate", db.Date, form.Text)
 	formList.AddField("加入时间", "added", db.Timestamp, form.Text)
 
-	formList.SetTable("authors").SetTitle("作者").SetDescription("作者")
+	formList.SetTable("goadmin_e_authors").SetTitle("作者").SetDescription("作者")
 
 	return
 }
