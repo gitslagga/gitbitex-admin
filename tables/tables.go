@@ -22,4 +22,10 @@ var Generators = map[string]table.Generator{
 	"example_author":   GetExampleAuthorTable,
 	"example_employee": GetExampleEmployeeTable,
 	"example_profile":  GetExampleProfileTable,
+
+	"g_address":       GetGAddressTable,
+	"g_account":       GetGAccountTable,
+	"g_account_asset": GetGAccountAssetTable,
+	"g_account_pool":  GetGAccountPoolTable,
+	"g_account_shop":  GetGAccountShopTable,
 }
