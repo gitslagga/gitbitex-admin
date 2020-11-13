@@ -18,7 +18,7 @@
   },
   "language": "cn",
   "index": "/",
-  "debug": true,
+  "debug": false,
   "bootstrap_file_path": "./bootstrap.go",
   "no_limit_login_ip": true,
   "theme": "sword",
@@ -47,4 +47,5 @@
   "hide_tool_entrance": true,
   "hide_plugin_entrance": true,
   "hide_visitor_user_center_entrance": true
+
 }

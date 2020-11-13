@@ -26,13 +26,6 @@ var List = map[string]string{"login/theme1": `{{define "login_theme1"}}
         <script src="{{link .CdnUrl .UrlPrefix "/assets/login/dist/respond.min.js"}}"></script>
         <![endif]-->
 
-        <link rel="icon" type="image/png" sizes="32x32"
-              href="//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96"
-              href="//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-64x64.png">
-        <link rel="icon" type="image/png" sizes="16x16"
-              href="//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-16x16.png">
-
     </head>
     <body>
 
@@ -61,7 +54,7 @@ var List = map[string]string{"login/theme1": `{{define "login_theme1"}}
         <div class="row" style="padding-top: 60px; clear: both;">
             <div class="col-md-12 text-center">
                 <p>
-                    <small>&copy; All Rights Reserved. GoAdmin</small>
+                    <small>&copy; All Rights Reserved. GitbitexAdmin</small>
                 </p>
             </div>
         </div>
@@ -73,17 +66,6 @@ var List = map[string]string{"login/theme1": `{{define "login_theme1"}}
 
     <script src="{{link .CdnUrl .UrlPrefix "/assets/login/dist/all.min.js"}}"></script>
 
-    <div style="display:none;">
-        <script type="text/javascript" src="https://s9.cnzz.com/z_stat.php?id=1278156902&web_id=1278156902"></script>
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-103003647-2"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'UA-103003647-2');
-        </script>
-    </div>
     <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
     <script>
 
