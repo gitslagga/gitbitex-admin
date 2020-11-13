@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"github.com/gitslagga/gitbitex-admin/models"
 	"log"
 	"net/http"
 	"os"
@@ -90,6 +91,8 @@ func main() {
 	r.GET("/", func(ctx *gin.Context) {
 		ctx.Redirect(http.StatusMovedPermanently, "/admin")
 	})
+
+	models.Init(eng.MysqlConnection())
 
 	srv := &http.Server{
 		Addr:    ":8002",

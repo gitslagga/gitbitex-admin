@@ -297,7 +297,7 @@ LOCK TABLES `goadmin_permissions` WRITE;
 INSERT INTO `goadmin_permissions` (`id`, `name`, `slug`, `http_method`, `http_path`, `created_at`, `updated_at`)
 VALUES
 	(1,'所有权限','*','','*','2019-09-10 00:00:00','2019-09-10 00:00:00'),
-	(2,'仪表盘','dashboard','GET','/','2019-09-10 00:00:00','2019-09-10 00:00:00'),
+	(2,'仪表盘','dashboard','GET','*','2019-09-10 00:00:00','2019-09-10 00:00:00'),
 	(3,'操作员编辑','operator_edit','GET,POST','/info/normal_manager/edit?id=2\r\n/edit/normal_manager?id=2','2019-09-10 00:00:00','2019-09-10 00:00:00');
 
 /*!40000 ALTER TABLE `goadmin_permissions` ENABLE KEYS */;
@@ -330,8 +330,7 @@ VALUES
 	(1,9,'2019-09-12 07:15:07','2019-09-12 07:15:07'),
 	(1,10,'2019-09-12 07:16:04','2019-09-12 07:16:04'),
 	(1,11,'2019-09-12 07:16:32','2019-09-12 07:16:32'),
-	(1,12,'2019-09-19 22:00:13','2019-09-19 22:00:13'),
-	(2,12,'2019-09-19 22:00:13','2019-09-19 22:00:13');
+	(1,12,'2019-09-19 22:00:13','2019-09-19 22:00:13');
 
 /*!40000 ALTER TABLE `goadmin_role_menu` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -582,7 +581,7 @@ LOCK TABLES `goadmin_users` WRITE;
 INSERT INTO `goadmin_users` (`id`, `username`, `password`, `name`, `avatar`, `remember_token`, `created_at`, `updated_at`)
 VALUES
 	(1,'admin','$2a$10$oIm/9A9fCwJ7G3u2rB4/FOngqIWN/pkGLIqpimUFQzg6HkLMrx/Ie','超级管理员','robot.gif','tlNcBVK9AvfYH7WEnwB1RKvocJu8FfRy4um3DJtwdHuJy0dwFsLOgAc0xUfh','2019-09-10 00:00:00','2019-09-10 00:00:00'),
-	(2,'operator','$2a$10$rVqkOzHjN2MdlEprRflb1eGP0oZXuSrbJLOmJagFsCd81YZm0bsh.','操作员','',NULL,'2019-09-10 00:00:00','2019-09-10 00:00:00');
+	(2,'operator','$2a$10$glAnFEd0xKzbsHvlIq8MOO/2JiS.oSbnwix5BnqBwJ5r4LoQJcFWW','操作员','',NULL,'2019-09-10 00:00:00','2019-09-10 00:00:00');
 
 /*!40000 ALTER TABLE `goadmin_users` ENABLE KEYS */;
 UNLOCK TABLES;
