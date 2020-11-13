@@ -95,7 +95,7 @@ func main() {
 	models.Init(eng.MysqlConnection())
 
 	srv := &http.Server{
-		Addr:    ":8002",
+		Addr:    ":9001",
 		Handler: r,
 	}
 
