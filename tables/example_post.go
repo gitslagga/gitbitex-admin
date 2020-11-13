@@ -13,7 +13,7 @@ import (
 )
 
 // GetPostsTable return the model of table posts.
-func GetPostsTable(ctx *context.Context) (postsTable table.Table) {
+func GetExamplePostsTable(ctx *context.Context) (postsTable table.Table) {
 
 	postsTable = table.NewDefaultTable(table.DefaultConfig().SetExportable(true))
 
@@ -37,18 +37,18 @@ func GetPostsTable(ctx *context.Context) (postsTable table.Table) {
 	info.AddField("AuthorFirstName", "first_name", db.Varchar).FieldJoin(types.Join{
 		Field:     "author_id",
 		JoinField: "id",
-		Table:     "goadmin_e_authors",
+		Table:     "example_author",
 	}).FieldHide()
 	info.AddField("AuthorLastName", "last_name", db.Varchar).FieldJoin(types.Join{
 		Field:     "author_id",
 		JoinField: "id",
-		Table:     "goadmin_e_authors",
+		Table:     "example_author",
 	}).FieldHide()
 	info.AddField("简介", "description", db.Varchar).FieldWidth(230)
 	info.AddField("内容", "content", db.Varchar).FieldEditAble(editType.Textarea).FieldWidth(230)
 	info.AddField("日期", "date", db.Varchar).FieldWidth(120)
 
-	info.SetTable("goadmin_e_posts").SetTitle("文章").SetDescription("文章")
+	info.SetTable("example_post").SetTitle("文章").SetDescription("文章")
 
 	formList := postsTable.GetForm()
 	formList.AddField("ID", "id", db.Int, form.Default).FieldDisplayButCanNotEditWhenUpdate().FieldNotAllowAdd()
@@ -81,7 +81,7 @@ func GetPostsTable(ctx *context.Context) (postsTable table.Table) {
 	})
 	formList.EnableAjax("成功", "失败")
 
-	formList.SetTable("goadmin_e_posts").SetTitle("文章").SetDescription("文章")
+	formList.SetTable("example_post").SetTitle("文章").SetDescription("文章")
 
 	return
 }

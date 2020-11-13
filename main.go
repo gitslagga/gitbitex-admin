@@ -54,7 +54,7 @@ func main() {
 
 	if err := eng.AddConfig(cfg).
 		AddGenerators(tables.Generators).
-		AddGenerator("user", tables.GetUserTable).
+		AddGenerator("example_user", tables.GetExampleUserTable).
 		Use(r); err != nil {
 		panic(err)
 	}

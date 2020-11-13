@@ -10,7 +10,7 @@ import (
 	template2 "html/template"
 )
 
-func GetEmployeeTable(ctx *context.Context) table.Table {
+func GetExampleEmployeeTable(ctx *context.Context) table.Table {
 
 	employeeTable := table.NewDefaultTable(table.DefaultConfigWithDriver("mysql"))
 
@@ -30,7 +30,7 @@ func GetEmployeeTable(ctx *context.Context) table.Table {
 
 	department := ctx.Query("department")
 
-	info.SetTable("goadmin_e_employee").SetTitle("雇员").SetDescription("雇员").
+	info.SetTable("example_employee").SetTitle("雇员").SetDescription("雇员").
 		SetWrapper(func(content template2.HTML) template2.HTML {
 			col1 := `<div style="margin-left:243px;">` + content + `</div>`
 
@@ -115,7 +115,7 @@ func GetEmployeeTable(ctx *context.Context) table.Table {
 	formList.AddField("手机", "phone", db.Varchar, form.Text)
 	formList.AddField("职位", "job", db.Varchar, form.Text)
 
-	formList.SetTable("goadmin_e_employee").SetTitle("雇员").SetDescription("雇员")
+	formList.SetTable("example_").SetTitle("雇员").SetDescription("雇员")
 
 	return employeeTable
 }

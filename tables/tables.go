@@ -17,8 +17,8 @@ import (
 // "authors" => http://localhost:9033/admin/info/authors
 //
 var Generators = map[string]table.Generator{
-	"posts":    GetPostsTable,
-	"authors":  GetAuthorsTable,
-	"employee": GetEmployeeTable,
-	"profile":  GetProfileTable,
+	"example_post":     GetExamplePostsTable,
+	"example_author":   GetExampleAuthorTable,
+	"example_employee": GetExampleEmployeeTable,
+	"example_profile":  GetExampleProfileTable,
 }

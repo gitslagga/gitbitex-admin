@@ -16,7 +16,7 @@ import (
 )
 
 // GetUserTable return the model of table user.
-func GetUserTable(ctx *context.Context) (userTable table.Table) {
+func GetExampleUserTable(ctx *context.Context) (userTable table.Table) {
 
 	userTable = table.NewDefaultTable(table.Config{
 		Driver:     db.DriverMysql,
@@ -100,7 +100,7 @@ func GetUserTable(ctx *context.Context) (userTable table.Table) {
 		{Value: "1", Text: "女"},
 	}, action.FieldFilter("gender"))
 
-	info.SetTable("goadmin_e_users").SetTitle("Users").SetDescription("Users")
+	info.SetTable("example_user").SetTitle("Users").SetDescription("Users")
 
 	formList := userTable.GetForm()
 	formList.AddField("ID", "id", db.Int, form.Default).FieldDisplayButCanNotEditWhenUpdate().FieldNotAllowAdd()
@@ -225,7 +225,7 @@ func GetUserTable(ctx *context.Context) (userTable table.Table) {
 		AddGroup("phone", "role", "created_at", "updated_at")).
 		SetTabHeaders("profile1", "profile2")
 
-	formList.SetTable("goadmin_e_users").SetTitle("Users").SetDescription("Users")
+	formList.SetTable("example_user").SetTitle("Users").SetDescription("Users")
 
 	formList.SetPostHook(func(values form2.Values) error {
 		fmt.Println("userTable.GetForm().PostHook", values)
