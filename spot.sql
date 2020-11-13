@@ -11,7 +11,7 @@
  Target Server Version : 80022
  File Encoding         : 65001
 
- Date: 13/11/2020 17:29:13
+ Date: 13/11/2020 22:04:46
 */
 
 SET NAMES utf8mb4;
@@ -243,6 +243,8 @@ CREATE TABLE `g_account`  (
 -- ----------------------------
 -- Records of g_account
 -- ----------------------------
+INSERT INTO `g_account` VALUES (1, '2020-11-13 18:40:27', '2020-11-13 18:40:27', 1, 'USDT', 0.0000000000000000, 0.0000000000000000);
+INSERT INTO `g_account` VALUES (2, '2020-11-13 18:40:27', '2020-11-13 18:40:27', 1, 'BITC', 0.0000000000000000, 0.0000000000000000);
 
 -- ----------------------------
 -- Table structure for g_account_asset
@@ -263,6 +265,10 @@ CREATE TABLE `g_account_asset`  (
 -- ----------------------------
 -- Records of g_account_asset
 -- ----------------------------
+INSERT INTO `g_account_asset` VALUES (1, '2020-11-13 18:40:27', '2020-11-13 18:40:27', 1, 'YTL', 0.0000000000000000, 0.0000000000000000);
+INSERT INTO `g_account_asset` VALUES (2, '2020-11-13 18:40:27', '2020-11-13 18:40:27', 1, 'BITC', 0.0000000000000000, 0.0000000000000000);
+INSERT INTO `g_account_asset` VALUES (3, '2020-11-13 18:40:27', '2020-11-13 18:40:27', 1, 'ENERGY', 0.0000000000000000, 0.0000000000000000);
+INSERT INTO `g_account_asset` VALUES (4, '2020-11-13 18:40:27', '2020-11-13 18:40:27', 1, 'USDT', 0.0000000000000000, 0.0000000000000000);
 
 -- ----------------------------
 -- Table structure for g_account_pool
@@ -283,6 +289,7 @@ CREATE TABLE `g_account_pool`  (
 -- ----------------------------
 -- Records of g_account_pool
 -- ----------------------------
+INSERT INTO `g_account_pool` VALUES (1, '2020-11-13 18:40:27', '2020-11-13 18:40:27', 1, 'BITC', 0.0000000000000000, 0.0000000000000000);
 
 -- ----------------------------
 -- Table structure for g_account_shop
@@ -303,6 +310,8 @@ CREATE TABLE `g_account_shop`  (
 -- ----------------------------
 -- Records of g_account_shop
 -- ----------------------------
+INSERT INTO `g_account_shop` VALUES (1, '2020-11-13 18:40:27', '2020-11-13 18:40:27', 1, 'BITC', 0.0000000000000000, 0.0000000000000000);
+INSERT INTO `g_account_shop` VALUES (2, '2020-11-13 18:40:27', '2020-11-13 18:40:27', 1, 'USDT', 0.0000000000000000, 0.0000000000000000);
 
 -- ----------------------------
 -- Table structure for g_address
@@ -330,6 +339,7 @@ CREATE TABLE `g_address`  (
 -- ----------------------------
 -- Records of g_address
 -- ----------------------------
+INSERT INTO `g_address` VALUES (1, '2020-11-13 18:40:27', '2020-11-13 18:40:27', 'alice', '25d55ad283aa400af464c76d713c07ad', '0x0144bf4f3fA4CA1E07aA2526933c169c3CbE721D', '6ff07ca1f68bfd8e82b53f46c542ccb25761d6afaa1d161a7f549d7cc17b8e17f11a965c0870c3105482c77ff07378eff9c2ace6336c02c3d9f9083abc1d5694', 'f23950d855d5f2dc4ed26ff78cf5a6c60c2c1dd535116fe46db468224aac208a', 'cage muffin ill clown fabric immense fatigue case method this draft hover firm jacket phrase', '', 0, 0, 0.0000000000000000, 0.0000000000000000);
 
 -- ----------------------------
 -- Table structure for g_bill
@@ -576,14 +586,26 @@ INSERT INTO `goadmin_menu` VALUES (4, 1, 1, 4, 'Permission', NULL, 'fa-ban', '',
 INSERT INTO `goadmin_menu` VALUES (5, 1, 1, 5, 'Menu', NULL, 'fa-bars', '', NULL, '/menu', '2019-09-10 00:00:00', '2019-09-10 00:00:00');
 INSERT INTO `goadmin_menu` VALUES (6, 1, 1, 6, 'Operation log', NULL, 'fa-history', '', NULL, '/info/op', '2019-09-10 00:00:00', '2019-09-10 00:00:00');
 INSERT INTO `goadmin_menu` VALUES (7, 0, 1, 1, 'Dashboard', NULL, 'fa-bar-chart', '', NULL, '/', '2019-09-10 00:00:00', '2019-09-10 00:00:00');
-INSERT INTO `goadmin_menu` VALUES (8, 0, 0, 7, '例子', '', 'fa-align-center', '', NULL, '', '2019-12-11 14:15:42', '2019-12-11 14:15:42');
-INSERT INTO `goadmin_menu` VALUES (9, 8, 0, 7, '用户', '', 'fa-user', '', NULL, '/info/example_user', '2019-09-12 07:15:07', '2020-11-13 17:09:30');
-INSERT INTO `goadmin_menu` VALUES (10, 8, 0, 8, '作者', '', 'fa-users', '', NULL, '/info/example_author', '2019-09-12 07:16:04', '2020-11-13 17:10:26');
-INSERT INTO `goadmin_menu` VALUES (11, 8, 0, 9, '文章', '', 'fa-file-powerpoint-o', '', NULL, '/info/example_post', '2019-09-12 07:16:32', '2020-11-13 17:10:39');
-INSERT INTO `goadmin_menu` VALUES (12, 8, 0, 7, '雇员', '', 'fa-sitemap', '', NULL, '/info/example_employee', '2019-09-12 07:15:07', '2020-11-13 17:09:39');
-INSERT INTO `goadmin_menu` VALUES (13, 8, 0, 7, '信息', '', 'fa-info', '', NULL, '/info/example_profile', '2019-09-12 07:15:07', '2020-11-13 17:10:11');
-INSERT INTO `goadmin_menu` VALUES (14, 0, 0, 10, '表单', '组件', 'fa-wpforms', '', NULL, '/form1', '2019-09-12 07:14:18', '2019-09-12 07:14:18');
-INSERT INTO `goadmin_menu` VALUES (15, 0, 0, 10, '表格', '', 'fa-table', '', NULL, '/table', '2019-12-11 14:15:42', '2019-12-11 14:15:42');
+INSERT INTO `goadmin_menu` VALUES (8, 0, 0, 17, '例子', '', 'fa-align-center', '', NULL, '', '2019-12-11 14:15:42', '2019-12-11 14:15:42');
+INSERT INTO `goadmin_menu` VALUES (9, 8, 0, 17, '用户', '', 'fa-user', '', NULL, '/info/example_user', '2019-09-12 07:15:07', '2020-11-13 17:09:30');
+INSERT INTO `goadmin_menu` VALUES (10, 8, 0, 20, '作者', '', 'fa-users', '', NULL, '/info/example_author', '2019-09-12 07:16:04', '2020-11-13 17:10:26');
+INSERT INTO `goadmin_menu` VALUES (11, 8, 0, 21, '文章', '', 'fa-file-powerpoint-o', '', NULL, '/info/example_post', '2019-09-12 07:16:32', '2020-11-13 17:10:39');
+INSERT INTO `goadmin_menu` VALUES (12, 8, 0, 18, '雇员', '', 'fa-sitemap', '', NULL, '/info/example_employee', '2019-09-12 07:15:07', '2020-11-13 17:09:39');
+INSERT INTO `goadmin_menu` VALUES (13, 8, 0, 19, '信息', '', 'fa-info', '', NULL, '/info/example_profile', '2019-09-12 07:15:07', '2020-11-13 17:10:11');
+INSERT INTO `goadmin_menu` VALUES (14, 0, 0, 22, '表单', '组件', 'fa-wpforms', '', NULL, '/form1', '2019-09-12 07:14:18', '2019-09-12 07:14:18');
+INSERT INTO `goadmin_menu` VALUES (15, 0, 0, 23, '表格', '', 'fa-table', '', NULL, '/table', '2019-12-11 14:15:42', '2019-12-11 14:15:42');
+INSERT INTO `goadmin_menu` VALUES (16, 0, 0, 7, '用户管理', '', 'fa-bars', '', NULL, '', '2020-11-13 10:44:08', '2020-11-13 19:19:36');
+INSERT INTO `goadmin_menu` VALUES (17, 16, 0, 8, '钱包地址', '', 'fa-snapchat-ghost', '', NULL, '/info/g_address', '2020-11-13 10:50:42', '2020-11-13 18:53:46');
+INSERT INTO `goadmin_menu` VALUES (18, 16, 0, 9, '资产账户', '', 'fa-bars', '', NULL, '/info/g_account_asset', '2020-11-13 11:15:04', '2020-11-13 11:15:04');
+INSERT INTO `goadmin_menu` VALUES (19, 16, 0, 10, '矿池账户', '', 'fa-bars', '', NULL, '/info/g_account_pool', '2020-11-13 11:15:39', '2020-11-13 11:15:39');
+INSERT INTO `goadmin_menu` VALUES (20, 16, 0, 11, '币币账户', '', 'fa-bars', '', NULL, '/info/g_account', '2020-11-13 11:16:12', '2020-11-13 11:16:12');
+INSERT INTO `goadmin_menu` VALUES (21, 16, 0, 12, '购物账户', '', 'fa-bars', '', NULL, '/info/g_account_shop', '2020-11-13 11:16:30', '2020-11-13 19:17:14');
+INSERT INTO `goadmin_menu` VALUES (22, 16, 0, 7, '配置管理', '', 'fa-bars', '', NULL, '/info/g_config', '2020-11-13 13:49:51', '2020-11-13 13:49:51');
+INSERT INTO `goadmin_menu` VALUES (23, 0, 0, 13, '币币交易', '', 'fa-bars', '', NULL, '', '2020-11-13 13:50:16', '2020-11-13 13:50:16');
+INSERT INTO `goadmin_menu` VALUES (24, 23, 0, 13, '交易对', '', 'fa-bars', '', NULL, '/info/g_product', '2020-11-13 13:50:51', '2020-11-13 13:50:51');
+INSERT INTO `goadmin_menu` VALUES (25, 23, 0, 14, '市场行情', '', 'fa-bars', '', NULL, '/info/g_tick', '2020-11-13 13:51:21', '2020-11-13 13:51:21');
+INSERT INTO `goadmin_menu` VALUES (26, 23, 0, 16, '交易订单', '', 'fa-bars', '', NULL, '/info/g_trade', '2020-11-13 13:52:19', '2020-11-13 13:52:19');
+INSERT INTO `goadmin_menu` VALUES (27, 23, 0, 15, '委托订单', '', 'fa-bars', '', NULL, '/info/g_order', '2020-11-13 13:52:44', '2020-11-13 13:52:44');
 
 -- ----------------------------
 -- Table structure for goadmin_operation_log
@@ -605,12 +627,6 @@ CREATE TABLE `goadmin_operation_log`  (
 -- ----------------------------
 -- Records of goadmin_operation_log
 -- ----------------------------
-INSERT INTO `goadmin_operation_log` VALUES (156, 1, '/admin/info/example_post', 'GET', '::1', '', '2020-11-13 09:14:01', '2020-11-13 09:14:01');
-INSERT INTO `goadmin_operation_log` VALUES (157, 1, '/admin/info/example_post', 'GET', '::1', '', '2020-11-13 09:14:07', '2020-11-13 09:14:07');
-INSERT INTO `goadmin_operation_log` VALUES (158, 1, '/admin/info/example_author', 'GET', '::1', '', '2020-11-13 09:14:07', '2020-11-13 09:14:07');
-INSERT INTO `goadmin_operation_log` VALUES (159, 1, '/admin/info/example_profile', 'GET', '::1', '', '2020-11-13 09:14:08', '2020-11-13 09:14:08');
-INSERT INTO `goadmin_operation_log` VALUES (160, 1, '/admin/info/example_employee', 'GET', '::1', '', '2020-11-13 09:14:09', '2020-11-13 09:14:09');
-INSERT INTO `goadmin_operation_log` VALUES (161, 1, '/admin/info/example_user', 'GET', '::1', '', '2020-11-13 09:14:09', '2020-11-13 09:14:09');
 
 -- ----------------------------
 -- Table structure for goadmin_permissions
@@ -659,6 +675,19 @@ INSERT INTO `goadmin_role_menu` VALUES (1, 9, '2020-11-13 09:09:30', '2020-11-13
 INSERT INTO `goadmin_role_menu` VALUES (1, 12, '2020-11-13 09:09:39', '2020-11-13 09:09:39');
 INSERT INTO `goadmin_role_menu` VALUES (1, 10, '2020-11-13 09:10:25', '2020-11-13 09:10:25');
 INSERT INTO `goadmin_role_menu` VALUES (1, 11, '2020-11-13 09:10:38', '2020-11-13 09:10:38');
+INSERT INTO `goadmin_role_menu` VALUES (1, 17, '2020-11-13 10:53:45', '2020-11-13 10:53:45');
+INSERT INTO `goadmin_role_menu` VALUES (1, 18, '2020-11-13 11:15:04', '2020-11-13 11:15:04');
+INSERT INTO `goadmin_role_menu` VALUES (1, 19, '2020-11-13 11:15:39', '2020-11-13 11:15:39');
+INSERT INTO `goadmin_role_menu` VALUES (1, 20, '2020-11-13 11:16:12', '2020-11-13 11:16:12');
+INSERT INTO `goadmin_role_menu` VALUES (1, 21, '2020-11-13 11:17:14', '2020-11-13 11:17:14');
+INSERT INTO `goadmin_role_menu` VALUES (1, 16, '2020-11-13 11:19:36', '2020-11-13 11:19:36');
+INSERT INTO `goadmin_role_menu` VALUES (2, 16, '2020-11-13 11:19:36', '2020-11-13 11:19:36');
+INSERT INTO `goadmin_role_menu` VALUES (1, 22, '2020-11-13 13:49:51', '2020-11-13 13:49:51');
+INSERT INTO `goadmin_role_menu` VALUES (1, 23, '2020-11-13 13:50:16', '2020-11-13 13:50:16');
+INSERT INTO `goadmin_role_menu` VALUES (1, 24, '2020-11-13 13:50:51', '2020-11-13 13:50:51');
+INSERT INTO `goadmin_role_menu` VALUES (1, 25, '2020-11-13 13:51:21', '2020-11-13 13:51:21');
+INSERT INTO `goadmin_role_menu` VALUES (1, 26, '2020-11-13 13:52:19', '2020-11-13 13:52:19');
+INSERT INTO `goadmin_role_menu` VALUES (1, 27, '2020-11-13 13:52:44', '2020-11-13 13:52:44');
 
 -- ----------------------------
 -- Table structure for goadmin_role_permissions
@@ -734,25 +763,30 @@ CREATE TABLE `goadmin_session`  (
 -- ----------------------------
 -- Records of goadmin_session
 -- ----------------------------
-INSERT INTO `goadmin_session` VALUES (13, 'c0e0d584-69cc-4b11-b14b-f3c291c9a4a8', '__csrf_token__', '2020-11-13 06:59:35', '2020-11-13 06:59:35');
-INSERT INTO `goadmin_session` VALUES (14, '4e648c95-e4ab-4971-9a26-6f5a5335bbd4', '__csrf_token__', '2020-11-13 06:59:41', '2020-11-13 06:59:41');
-INSERT INTO `goadmin_session` VALUES (17, 'ca5a9a0f-0c60-42a3-a08c-b3c61f546483', '{\"user_id\":1}', '2020-11-13 07:00:13', '2020-11-13 07:00:13');
-INSERT INTO `goadmin_session` VALUES (18, '92a09fcd-4f06-42b6-a84c-8c3421a90081', '__csrf_token__', '2020-11-13 07:57:25', '2020-11-13 07:57:25');
-INSERT INTO `goadmin_session` VALUES (21, '6fe366d6-b1f3-4fb2-afc5-900b31b72742', '__csrf_token__', '2020-11-13 08:08:45', '2020-11-13 08:08:45');
-INSERT INTO `goadmin_session` VALUES (22, '4844883c-9771-4cb6-ab10-33f28df4e409', '__csrf_token__', '2020-11-13 08:47:22', '2020-11-13 08:47:22');
-INSERT INTO `goadmin_session` VALUES (23, '28bf4400-af1b-4433-92b7-ea91f9f33f0e', '{\"user_id\":1}', '2020-11-13 09:07:52', '2020-11-13 09:07:52');
-INSERT INTO `goadmin_session` VALUES (24, '3e9b4111-8bc1-4834-8027-5171d93cca6f', '__csrf_token__', '2020-11-13 09:07:52', '2020-11-13 09:07:52');
-INSERT INTO `goadmin_session` VALUES (25, '1fee213f-a7fe-4bb1-8dbf-11e991a19b03', '__csrf_token__', '2020-11-13 09:07:55', '2020-11-13 09:07:55');
-INSERT INTO `goadmin_session` VALUES (26, '2fa81a4b-ba40-4940-bec9-325e21fb2959', '__csrf_token__', '2020-11-13 09:09:05', '2020-11-13 09:09:05');
-INSERT INTO `goadmin_session` VALUES (28, '6bf184c8-c2c0-4fa5-9e4a-7c46a7f13971', '__csrf_token__', '2020-11-13 09:09:30', '2020-11-13 09:09:30');
-INSERT INTO `goadmin_session` VALUES (30, '48c5d17e-64a4-48c2-abf3-2f702291d6e1', '__csrf_token__', '2020-11-13 09:09:39', '2020-11-13 09:09:39');
-INSERT INTO `goadmin_session` VALUES (31, '0719d763-4d18-4d83-ba62-48c96f9bc501', '__csrf_token__', '2020-11-13 09:09:50', '2020-11-13 09:09:50');
-INSERT INTO `goadmin_session` VALUES (32, '908b9d34-268b-4c34-a40d-d7f963769a39', '__csrf_token__', '2020-11-13 09:10:03', '2020-11-13 09:10:03');
-INSERT INTO `goadmin_session` VALUES (34, 'cfdaa187-5038-4168-badb-15726a5178b0', '__csrf_token__', '2020-11-13 09:10:10', '2020-11-13 09:10:10');
-INSERT INTO `goadmin_session` VALUES (36, '602c97a6-34e9-4a94-9ece-8b08d0025ed7', '__csrf_token__', '2020-11-13 09:10:19', '2020-11-13 09:10:19');
-INSERT INTO `goadmin_session` VALUES (38, '198318a3-3744-4200-a822-024c25bbac13', '__csrf_token__', '2020-11-13 09:10:25', '2020-11-13 09:10:25');
-INSERT INTO `goadmin_session` VALUES (40, 'd7c745e9-ec62-49a2-82e6-f31c5c4de84c', '__csrf_token__', '2020-11-13 09:10:38', '2020-11-13 09:10:38');
-INSERT INTO `goadmin_session` VALUES (41, '79e3d98e-ad42-446e-ab63-5ea0b4a99010', '__csrf_token__', '2020-11-13 09:10:40', '2020-11-13 09:10:40');
+INSERT INTO `goadmin_session` VALUES (73, '1319ff43-0a88-40eb-9a2b-ec582899804f', '{\"user_id\":1}', '2020-11-13 11:08:22', '2020-11-13 11:08:22');
+INSERT INTO `goadmin_session` VALUES (78, 'a643af27-3b3a-4b53-a3f9-eb7cdc20ad61', '__csrf_token__', '2020-11-13 11:16:30', '2020-11-13 11:16:30');
+INSERT INTO `goadmin_session` VALUES (79, '411c316a-bb4d-46e1-935b-1b3a6f97f4a4', '__csrf_token__', '2020-11-13 11:16:55', '2020-11-13 11:16:55');
+INSERT INTO `goadmin_session` VALUES (81, '010bdbf3-cd25-4b22-8ff7-fa28316c8577', '__csrf_token__', '2020-11-13 11:17:14', '2020-11-13 11:17:14');
+INSERT INTO `goadmin_session` VALUES (82, '772d8e0d-44f7-46b9-b365-4331c6e880f2', '__csrf_token__', '2020-11-13 11:17:23', '2020-11-13 11:17:23');
+INSERT INTO `goadmin_session` VALUES (83, 'ee212940-396c-44ba-8776-5fe85c87d1e4', '__csrf_token__', '2020-11-13 11:18:18', '2020-11-13 11:18:18');
+INSERT INTO `goadmin_session` VALUES (84, '3018753e-90a8-40e5-aa52-93d782b8d25d', '__csrf_token__', '2020-11-13 11:18:29', '2020-11-13 11:18:29');
+INSERT INTO `goadmin_session` VALUES (85, '3daab9b7-27e2-4e71-a156-347bf69f9f36', '__csrf_token__', '2020-11-13 11:18:45', '2020-11-13 11:18:45');
+INSERT INTO `goadmin_session` VALUES (86, '1e84a262-4143-4bab-80b5-e8140234f69a', '__csrf_token__', '2020-11-13 11:18:58', '2020-11-13 11:18:58');
+INSERT INTO `goadmin_session` VALUES (88, '6d6afc6a-12fd-4170-ac4a-f306930b108b', '__csrf_token__', '2020-11-13 11:19:22', '2020-11-13 11:19:22');
+INSERT INTO `goadmin_session` VALUES (90, '813239f5-320e-4dd8-a9d0-b3e7336169ba', '__csrf_token__', '2020-11-13 11:19:36', '2020-11-13 11:19:36');
+INSERT INTO `goadmin_session` VALUES (91, '60013144-515a-40f7-8a2e-ab52094cd958', '__csrf_token__', '2020-11-13 11:20:26', '2020-11-13 11:20:26');
+INSERT INTO `goadmin_session` VALUES (92, '47e7a254-ecc6-4893-868f-1f1f40c62b84', '__csrf_token__', '2020-11-13 11:20:30', '2020-11-13 11:20:30');
+INSERT INTO `goadmin_session` VALUES (93, '6765b411-93e1-4621-94f2-1f4fda07af4e', '__csrf_token__', '2020-11-13 11:20:32', '2020-11-13 11:20:32');
+INSERT INTO `goadmin_session` VALUES (94, 'cce50fe4-3f50-4e5e-aa0a-fca83485b51c', '__csrf_token__', '2020-11-13 11:20:34', '2020-11-13 11:20:34');
+INSERT INTO `goadmin_session` VALUES (95, '6ca5b65a-5c1d-48a2-bf7a-41b0eef9bc6c', '__csrf_token__', '2020-11-13 12:08:45', '2020-11-13 12:08:45');
+INSERT INTO `goadmin_session` VALUES (96, '1c6e559f-328b-40a5-95bd-fd583c25a0cc', '{\"user_id\":1}', '2020-11-13 13:24:07', '2020-11-13 13:24:07');
+INSERT INTO `goadmin_session` VALUES (99, '0053aa84-ea70-45d2-a57c-9a477bf59fe3', '__csrf_token__', '2020-11-13 13:50:16', '2020-11-13 13:50:16');
+INSERT INTO `goadmin_session` VALUES (104, 'eb3522d2-1cac-47e2-9ad6-8f9ee687653f', '__csrf_token__', '2020-11-13 13:52:44', '2020-11-13 13:52:44');
+INSERT INTO `goadmin_session` VALUES (105, 'b6636aa8-dff3-4097-ad30-d3154ed096d1', '__csrf_token__', '2020-11-13 13:52:57', '2020-11-13 13:52:57');
+INSERT INTO `goadmin_session` VALUES (106, '97b7c0d4-42b5-4104-8e9e-eb989cb730bc', '__csrf_token__', '2020-11-13 13:52:58', '2020-11-13 13:52:58');
+INSERT INTO `goadmin_session` VALUES (107, '9be52ac6-0150-4d71-8d6b-db42b5ef7d6c', '__csrf_token__', '2020-11-13 13:53:08', '2020-11-13 13:53:08');
+INSERT INTO `goadmin_session` VALUES (110, '684bd946-6019-42af-afdc-9fbd938610c1', '__csrf_token__', '2020-11-13 13:56:52', '2020-11-13 13:56:52');
+INSERT INTO `goadmin_session` VALUES (111, 'f5cc00d4-c428-4ebd-a016-42929a1e3818', '__csrf_token__', '2020-11-13 13:57:40', '2020-11-13 13:57:40');
 
 -- ----------------------------
 -- Table structure for goadmin_site
@@ -882,7 +916,7 @@ CREATE TABLE `goadmin_users`  (
 -- ----------------------------
 -- Records of goadmin_users
 -- ----------------------------
-INSERT INTO `goadmin_users` VALUES (1, 'admin', '$2a$10$4W/PzZSK/K5HTfMX6NcoB.z6/3Tzn0O2kkX6Yf2TE.Ag9RjphidQu', '超级管理员', 'robot.gif', 'tlNcBVK9AvfYH7WEnwB1RKvocJu8FfRy4um3DJtwdHuJy0dwFsLOgAc0xUfh', '2019-09-10 00:00:00', '2019-09-10 00:00:00');
+INSERT INTO `goadmin_users` VALUES (1, 'admin', '$2a$10$4FzxW.bVpeh1h.Jk5veQguf447f/5Fbl6dp.JZcWrFcDXpRcskcBO', '超级管理员', 'robot.gif', 'tlNcBVK9AvfYH7WEnwB1RKvocJu8FfRy4um3DJtwdHuJy0dwFsLOgAc0xUfh', '2019-09-10 00:00:00', '2019-09-10 00:00:00');
 INSERT INTO `goadmin_users` VALUES (2, 'operator', '$2a$10$glAnFEd0xKzbsHvlIq8MOO/2JiS.oSbnwix5BnqBwJ5r4LoQJcFWW', '操作员', '', NULL, '2019-09-10 00:00:00', '2020-11-13 14:59:52');
 
 SET FOREIGN_KEY_CHECKS = 1;
