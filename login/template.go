@@ -26,6 +26,13 @@ var List = map[string]string{"login/theme1": `{{define "login_theme1"}}
         <script src="{{link .CdnUrl .UrlPrefix "/assets/login/dist/respond.min.js"}}"></script>
         <![endif]-->
 
+        <link rel="icon" type="image/png" sizes="32x32"
+              href="//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96"
+              href="//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-64x64.png">
+        <link rel="icon" type="image/png" sizes="16x16"
+              href="//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-16x16.png">
+
     </head>
     <body>
 
@@ -54,7 +61,7 @@ var List = map[string]string{"login/theme1": `{{define "login_theme1"}}
         <div class="row" style="padding-top: 60px; clear: both;">
             <div class="col-md-12 text-center">
                 <p>
-                    <small>&copy; All Rights Reserved. GitbitexAdmin</small>
+                    <small>&copy; All Rights Reserved. GoAdmin</small>
                 </p>
             </div>
         </div>

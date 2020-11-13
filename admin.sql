@@ -464,7 +464,7 @@ INSERT INTO `goadmin_site` (`id`, `key`, `value`, `description`, `state`, `creat
 VALUES
 	(1,'info_log_off','false',NULL,1,'2020-04-08 02:35:56','2020-04-08 02:35:56'),
 	(2,'no_limit_login_ip','true',NULL,1,'2020-04-08 02:35:56','2020-04-08 02:35:56'),
-	(3,'custom_head_html','',NULL,1,'2020-04-08 02:35:56','2020-04-08 02:35:56'),
+	(3,'custom_head_html','<link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-32x32.png\">\n        <link rel=\"icon\" type=\"image/png\" sizes=\"96x96\" href=\"//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-64x64.png\">\n        <link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"//quick.go-admin.cn/official/assets/imgs/icons.ico/favicon-16x16.png\">',NULL,1,'2020-04-08 02:35:56','2020-04-08 02:35:56'),
 	(4,'domain','',NULL,1,'2020-04-08 02:35:56','2020-04-08 02:35:56'),
 	(5,'debug','false',NULL,1,'2020-04-08 02:35:56','2020-04-08 02:35:56'),
 	(6,'info_log_path','./logs/info.log',NULL,1,'2020-04-08 02:35:57','2020-04-08 02:35:57'),
