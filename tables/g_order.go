@@ -27,7 +27,6 @@ func GetGOrderTable(ctx *context.Context) (userTable table.Table) {
 		HideFilterArea().HideNewButton().HideDeleteButton().HideEditButton().HideDetailButton()
 	info.AddField("ID", "id", db.Bigint).FieldSortable()
 	info.AddField("交易对", "product_id", db.Varchar).FieldFilterable(types.FilterType{Operator: types.FilterOperatorLike})
-	//TODO
 	info.AddField("钱包地址", "address", db.Varchar).FieldJoin(types.Join{
 		Field:     "user_id",
 		JoinField: "id",
@@ -51,7 +50,7 @@ func GetGOrderTable(ctx *context.Context) (userTable table.Table) {
 	info.AddField("CreatedAt", "created_at", db.Timestamp).FieldFilterable(types.FilterType{FormType: form.DatetimeRange})
 	info.AddField("UpdatedAt", "updated_at", db.Timestamp)
 
-	info.SetTable("g_account").SetTitle("委托订单管理")
+	info.SetTable("g_order").SetTitle("委托订单管理")
 
 	return
 }
