@@ -39,12 +39,7 @@ func GetGMachineAddressTable(ctx *context.Context) (userTable table.Table) {
 
 	info.AddField("每日释放量", "number", db.Decimal)
 	info.AddField("总释放量", "total_number", db.Decimal)
-	info.AddField("剩余释放天数", "day", db.Int).FieldDisplay(func(model types.FieldModel) interface{} {
-		if model.Value == "0" {
-			return "men"
-		}
-		return model.Value
-	})
+	info.AddField("剩余释放天数", "day", db.Int)
 	info.AddField("总释放天数", "total_day", db.Int)
 
 	info.AddField("CreatedAt", "created_at", db.Timestamp).FieldFilterable(types.FilterType{FormType: form.DatetimeRange})
