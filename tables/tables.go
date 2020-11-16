@@ -34,4 +34,8 @@ var Generators = map[string]table.Generator{
 	"g_order":   GetGOrderTable,
 	"g_trade":   GetGTradeTable,
 	"g_tick":    GetGTickTable,
+
+	"g_machine":         GetGMachineTable,
+	"g_machine_address": GetGMachineAddressTable,
+	"g_machine_log":     GetGMachineLogTable,
 }

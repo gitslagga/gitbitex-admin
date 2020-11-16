@@ -1,16 +1,14 @@
 package tables
 
 import (
-	"fmt"
 	"github.com/GoAdminGroup/go-admin/context"
 	"github.com/GoAdminGroup/go-admin/modules/db"
-	form2 "github.com/GoAdminGroup/go-admin/plugins/admin/modules/form"
 	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/table"
 	"github.com/GoAdminGroup/go-admin/template/types"
 	"github.com/GoAdminGroup/go-admin/template/types/form"
 )
 
-func GetGConfigTable(ctx *context.Context) (userTable table.Table) {
+func GetGMachineTable(ctx *context.Context) (userTable table.Table) {
 
 	userTable = table.NewDefaultTable(table.Config{
 		Driver:     db.DriverMysql,
@@ -20,7 +18,7 @@ func GetGConfigTable(ctx *context.Context) (userTable table.Table) {
 		Exportable: true,
 		Connection: table.DefaultConnectionName,
 		PrimaryKey: table.PrimaryKey{
-			Type: db.Int,
+			Type: db.Bigint,
 			Name: table.DefaultPrimaryKeyName,
 		},
 	})
@@ -28,28 +26,33 @@ func GetGConfigTable(ctx *context.Context) (userTable table.Table) {
 	info := userTable.GetInfo().SetFilterFormLayout(form.LayoutTwoCol).
 		HideFilterArea().HideNewButton().HideDeleteButton()
 	info.AddField("ID", "id", db.Bigint).FieldSortable()
-	info.AddField("键值", "key", db.Varchar).FieldFilterable(types.FilterType{Operator: types.FilterOperatorLike})
-	info.AddField("数值", "value", db.Varchar).FieldFilterable(types.FilterType{Operator: types.FilterOperatorLike})
+	info.AddField("矿机名称", "name", db.Varchar).FieldFilterable(types.FilterType{Operator: types.FilterOperatorLike})
+	info.AddField("挖矿收益", "profit", db.Decimal).FieldFilterable(types.FilterType{Operator: types.FilterOperatorLike})
+	info.AddField("购买数量", "number", db.Decimal)
+	info.AddField("释放天数", "release", db.Int)
+	info.AddField("直推收益", "invite", db.Decimal)
+	info.AddField("活跃度", "active", db.Int)
+	info.AddField("可买数量", "buy_quantity", db.Int)
 
 	info.AddField("CreatedAt", "created_at", db.Timestamp).FieldFilterable(types.FilterType{FormType: form.DatetimeRange})
 	info.AddField("UpdatedAt", "updated_at", db.Timestamp)
 
-	info.SetTable("g_config").SetTitle("配置管理")
+	info.SetTable("g_machine").SetTitle("矿机管理")
 
 	formList := userTable.GetForm()
 	formList.AddField("ID", "id", db.Int, form.Default).FieldDisableWhenCreate()
-	formList.AddField("键值", "key", db.Varchar, form.Default)
-	formList.AddField("数值", "value", db.Varchar, form.Text)
+	formList.AddField("矿机名称", "name", db.Varchar, form.Default)
+	formList.AddField("挖矿收益", "profit", db.Decimal, form.Text)
+	formList.AddField("购买数量", "number", db.Decimal, form.Text)
+	formList.AddField("释放天数", "release", db.Int, form.Text)
+	formList.AddField("直推收益", "invite", db.Decimal, form.Text)
+	formList.AddField("活跃度", "active", db.Int, form.Text)
+	formList.AddField("可买数量", "buy_quantity", db.Int, form.Text)
 
 	formList.AddField("UpdatedAt", "updated_at", db.Timestamp, form.Default).FieldDisableWhenCreate()
 	formList.AddField("CreatedAt", "created_at", db.Timestamp, form.Default).FieldDisableWhenCreate()
 
-	formList.SetTable("g_config").SetTitle("修改配置")
-
-	formList.SetPostHook(func(values form2.Values) error {
-		fmt.Println("userTable.GetForm().PostHook", values)
-		return nil
-	})
+	formList.SetTable("g_machine").SetTitle("矿机修改")
 
 	return
 }
