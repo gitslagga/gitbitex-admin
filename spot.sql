@@ -11,7 +11,7 @@
  Target Server Version : 80022
  File Encoding         : 65001
 
- Date: 18/11/2020 14:57:09
+ Date: 18/11/2020 15:33:46
 */
 
 SET NAMES utf8mb4;
@@ -312,7 +312,7 @@ CREATE TABLE `g_account_pool`  (
 DROP TABLE IF EXISTS `g_account_scan`;
 CREATE TABLE `g_account_scan`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`) USING BTREE,
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -506,13 +506,13 @@ CREATE TABLE `g_machine`  (
 -- ----------------------------
 -- Records of g_machine
 -- ----------------------------
-INSERT INTO `g_machine` VALUES (1, 'I型', 0.15, 50, 45, 0, 0, 10 , '2020-11-13 09:03:53', '2020-11-13 09:03:53');
-INSERT INTO `g_machine` VALUES (2, 'I型', 0.15, 100, 45, 7, 1, 10 , '2020-11-13 09:03:53', '2020-11-13 09:03:53');
-INSERT INTO `g_machine` VALUES (3, 'I型', 0.20, 500, 45, 8, 10, 10 , '2020-11-13 09:03:53', '2020-11-13 09:03:53');
-INSERT INTO `g_machine` VALUES (4, 'I型', 0.25, 1000, 45, 9, 50, 10, '2020-11-13 09:03:53', '2020-11-13 09:03:53');
-INSERT INTO `g_machine` VALUES (5, 'I型', 0.30, 5000, 45, 10, 100, 10, '2020-11-13 09:03:53', '2020-11-13 09:03:53');
-INSERT INTO `g_machine` VALUES (6, 'I型', 0.35, 10000, 45, 12, 500 , 10, '2020-11-13 09:03:53', '2020-11-13 09:03:53');
-INSERT INTO `g_machine` VALUES (7, 'I型', 0.40, 50000, 45, 15, 1000, 10, '2020-11-13 09:03:53', '2020-11-13 09:03:53');
+INSERT INTO `g_machine` VALUES (1, 'I型', 0.1500000000000000, 50.0000000000000000, 45, 0.0000000000000000, 0, 10, '2020-11-13 09:03:53', '2020-11-13 09:03:53');
+INSERT INTO `g_machine` VALUES (2, 'II型', 0.1500000000000000, 100.0000000000000000, 45, 7.0000000000000000, 1, 10, '2020-11-13 09:03:53', '2020-11-18 07:33:30');
+INSERT INTO `g_machine` VALUES (3, 'III型', 0.2000000000000000, 500.0000000000000000, 45, 8.0000000000000000, 10, 10, '2020-11-13 09:03:53', '2020-11-18 07:33:35');
+INSERT INTO `g_machine` VALUES (4, 'IV型', 0.2500000000000000, 1000.0000000000000000, 45, 9.0000000000000000, 50, 10, '2020-11-13 09:03:53', '2020-11-18 07:33:41');
+INSERT INTO `g_machine` VALUES (5, 'V型', 0.3000000000000000, 5000.0000000000000000, 45, 10.0000000000000000, 100, 10, '2020-11-13 09:03:53', '2020-11-18 07:33:43');
+INSERT INTO `g_machine` VALUES (6, 'VI型', 0.3500000000000000, 10000.0000000000000000, 45, 12.0000000000000000, 500, 10, '2020-11-13 09:03:53', '2020-11-18 07:33:45');
+INSERT INTO `g_machine` VALUES (7, 'VII型', 0.4000000000000000, 50000.0000000000000000, 45, 15.0000000000000000, 1000, 10, '2020-11-13 09:03:53', '2020-11-18 07:33:49');
 
 -- ----------------------------
 -- Table structure for g_machine_address
@@ -757,6 +757,10 @@ CREATE TABLE `goadmin_operation_log`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `admin_operation_log_user_id_index`(`user_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of goadmin_operation_log
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for goadmin_permissions
