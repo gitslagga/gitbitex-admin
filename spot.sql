@@ -11,7 +11,7 @@
  Target Server Version : 80022
  File Encoding         : 65001
 
- Date: 13/11/2020 22:04:46
+ Date: 18/11/2020 14:57:09
 */
 
 SET NAMES utf8mb4;
@@ -243,8 +243,6 @@ CREATE TABLE `g_account`  (
 -- ----------------------------
 -- Records of g_account
 -- ----------------------------
-INSERT INTO `g_account` VALUES (1, '2020-11-13 18:40:27', '2020-11-13 18:40:27', 1, 'USDT', 0.0000000000000000, 0.0000000000000000);
-INSERT INTO `g_account` VALUES (2, '2020-11-13 18:40:27', '2020-11-13 18:40:27', 1, 'BITC', 0.0000000000000000, 0.0000000000000000);
 
 -- ----------------------------
 -- Table structure for g_account_asset
@@ -265,10 +263,28 @@ CREATE TABLE `g_account_asset`  (
 -- ----------------------------
 -- Records of g_account_asset
 -- ----------------------------
-INSERT INTO `g_account_asset` VALUES (1, '2020-11-13 18:40:27', '2020-11-13 18:40:27', 1, 'YTL', 0.0000000000000000, 0.0000000000000000);
-INSERT INTO `g_account_asset` VALUES (2, '2020-11-13 18:40:27', '2020-11-13 18:40:27', 1, 'BITC', 0.0000000000000000, 0.0000000000000000);
-INSERT INTO `g_account_asset` VALUES (3, '2020-11-13 18:40:27', '2020-11-13 18:40:27', 1, 'ENERGY', 0.0000000000000000, 0.0000000000000000);
-INSERT INTO `g_account_asset` VALUES (4, '2020-11-13 18:40:27', '2020-11-13 18:40:27', 1, 'USDT', 0.0000000000000000, 0.0000000000000000);
+
+-- ----------------------------
+-- Table structure for g_account_convert
+-- ----------------------------
+DROP TABLE IF EXISTS `g_account_convert`;
+CREATE TABLE `g_account_convert`  (
+  `id` bigint(0) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(0) UNSIGNED NOT NULL,
+  `number` decimal(32, 16) UNSIGNED NOT NULL COMMENT '兑换数量',
+  `price` decimal(32, 16) UNSIGNED NOT NULL COMMENT '兑换价格',
+  `fee` decimal(32, 16) UNSIGNED NOT NULL COMMENT '兑换手续费',
+  `amount` decimal(32, 16) UNSIGNED NOT NULL COMMENT '实际消耗的能量',
+  `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+  `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `idx_user_id`(`user_id`) USING BTREE,
+  INDEX `idx_created_at`(`created_at`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of g_account_convert
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for g_account_pool
@@ -289,7 +305,19 @@ CREATE TABLE `g_account_pool`  (
 -- ----------------------------
 -- Records of g_account_pool
 -- ----------------------------
-INSERT INTO `g_account_pool` VALUES (1, '2020-11-13 18:40:27', '2020-11-13 18:40:27', 1, 'BITC', 0.0000000000000000, 0.0000000000000000);
+
+-- ----------------------------
+-- Table structure for g_account_scan
+-- ----------------------------
+DROP TABLE IF EXISTS `g_account_scan`;
+CREATE TABLE `g_account_scan`  (
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`) USING BTREE,
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of g_account_scan
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for g_account_shop
@@ -310,8 +338,26 @@ CREATE TABLE `g_account_shop`  (
 -- ----------------------------
 -- Records of g_account_shop
 -- ----------------------------
-INSERT INTO `g_account_shop` VALUES (1, '2020-11-13 18:40:27', '2020-11-13 18:40:27', 1, 'BITC', 0.0000000000000000, 0.0000000000000000);
-INSERT INTO `g_account_shop` VALUES (2, '2020-11-13 18:40:27', '2020-11-13 18:40:27', 1, 'USDT', 0.0000000000000000, 0.0000000000000000);
+
+-- ----------------------------
+-- Table structure for g_account_transfer
+-- ----------------------------
+DROP TABLE IF EXISTS `g_account_transfer`;
+CREATE TABLE `g_account_transfer`  (
+  `id` bigint(0) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(0) UNSIGNED NOT NULL,
+  `from` int(0) NOT NULL COMMENT '1-资产账户，2-矿池账户，3-币币账户，4-商城账户',
+  `to` int(0) NOT NULL COMMENT '1-资产账户，2-矿池账户，3-币币账户，4-商城账户',
+  `currency` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '划转币种',
+  `number` decimal(32, 16) UNSIGNED NOT NULL COMMENT '兑换数量',
+  `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+  `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of g_account_transfer
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for g_address
@@ -328,18 +374,17 @@ CREATE TABLE `g_address`  (
   `private_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `mnemonic` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   `parent_ids` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
-  `invite_num` int(0) NOT NULL DEFAULT 0,
-  `active_num` int(0) NOT NULL DEFAULT 0,
-  `convert_fee` decimal(32, 16) NOT NULL,
-  `global_fee` decimal(32, 16) NOT NULL,
+  `invite_num` int(0) UNSIGNED NOT NULL DEFAULT 0,
+  `active_num` int(0) UNSIGNED NOT NULL DEFAULT 0,
+  `convert_fee` decimal(32, 16) UNSIGNED NOT NULL,
+  `global_fee` decimal(32, 16) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `idx_address`(`address`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '用户地址表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_address
 -- ----------------------------
-INSERT INTO `g_address` VALUES (1, '2020-11-13 18:40:27', '2020-11-13 18:40:27', 'alice', '25d55ad283aa400af464c76d713c07ad', '0x0144bf4f3fA4CA1E07aA2526933c169c3CbE721D', '6ff07ca1f68bfd8e82b53f46c542ccb25761d6afaa1d161a7f549d7cc17b8e17f11a965c0870c3105482c77ff07378eff9c2ace6336c02c3d9f9083abc1d5694', 'f23950d855d5f2dc4ed26ff78cf5a6c60c2c1dd535116fe46db468224aac208a', 'cage muffin ill clown fabric immense fatigue case method this draft hover firm jacket phrase', '', 0, 0, 0.0000000000000000, 0.0000000000000000);
 
 -- ----------------------------
 -- Table structure for g_bill
@@ -376,7 +421,7 @@ CREATE TABLE `g_config`  (
   `key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `value` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_config
@@ -396,6 +441,15 @@ INSERT INTO `g_config` VALUES (12, '2020-11-13 09:03:53', '2020-11-13 09:03:53',
 INSERT INTO `g_config` VALUES (13, '2020-11-13 09:03:53', '2020-11-13 09:03:53', '能量兑换手续费', '0.35');
 INSERT INTO `g_config` VALUES (14, '2020-11-13 09:03:53', '2020-11-13 09:03:53', '能量兑换手续费', '0.30');
 INSERT INTO `g_config` VALUES (15, '2020-11-13 09:03:53', '2020-11-13 09:03:53', '能量兑换手续费', '0.20');
+INSERT INTO `g_config` VALUES (16, '2020-11-13 09:03:53', '2020-11-13 09:03:53', 'YTL兑换USDT价格', '10');
+INSERT INTO `g_config` VALUES (17, '2020-11-13 09:03:53', '2020-11-13 09:03:53', '能量兑换USDT价格(已废弃)', '1');
+INSERT INTO `g_config` VALUES (18, '2020-11-13 09:03:53', '2020-11-13 09:03:53', 'BITE兑换USDT价格', '10');
+INSERT INTO `g_config` VALUES (19, '2020-11-13 09:03:53', '2020-11-13 09:03:53', 'USDT兑换CNY价格', '7');
+INSERT INTO `g_config` VALUES (20, '2020-11-13 09:03:53', '2020-11-13 09:03:53', 'USDT最小充币数量', '1');
+INSERT INTO `g_config` VALUES (21, '2020-11-13 09:03:53', '2020-11-13 09:03:53', 'USDT最小提币数量', '100');
+INSERT INTO `g_config` VALUES (22, '2020-11-13 09:03:53', '2020-11-13 09:03:53', 'USDT提币手续费', '0.05');
+INSERT INTO `g_config` VALUES (23, '2020-11-13 09:03:53', '2020-11-13 09:03:53', 'USDT归集地址', '0xA266e3226426Af7F30aE133FC0fDCDD761e69aAC');
+INSERT INTO `g_config` VALUES (24, '2020-11-13 09:03:53', '2020-11-13 09:03:53', 'USDT归集手续费地址', '0xA266e3226426Af7F30aE133FC0fDCDD761e69aAC');
 
 -- ----------------------------
 -- Table structure for g_fill
@@ -428,6 +482,82 @@ CREATE TABLE `g_fill`  (
 
 -- ----------------------------
 -- Records of g_fill
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for g_machine
+-- ----------------------------
+DROP TABLE IF EXISTS `g_machine`;
+CREATE TABLE `g_machine`  (
+  `id` bigint(0) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '矿机名称',
+  `profit` decimal(32, 16) UNSIGNED NOT NULL COMMENT '挖矿收益',
+  `number` decimal(32, 16) UNSIGNED NOT NULL COMMENT '购买数量',
+  `release` int(0) UNSIGNED NOT NULL COMMENT '释放天数',
+  `invite` decimal(32, 16) UNSIGNED NOT NULL COMMENT '直推收益',
+  `active` int(0) UNSIGNED NOT NULL COMMENT '活跃度',
+  `buy_quantity` int(0) UNSIGNED NOT NULL COMMENT '可买数量',
+  `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+  `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `idx_buy_quantity`(`buy_quantity`) USING BTREE COMMENT '获取可购买矿机列表'
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '矿机表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of g_machine
+-- ----------------------------
+INSERT INTO `g_machine` VALUES (1, 'I型', 0.15, 50, 45, 0, 0, 10 , '2020-11-13 09:03:53', '2020-11-13 09:03:53');
+INSERT INTO `g_machine` VALUES (2, 'I型', 0.15, 100, 45, 7, 1, 10 , '2020-11-13 09:03:53', '2020-11-13 09:03:53');
+INSERT INTO `g_machine` VALUES (3, 'I型', 0.20, 500, 45, 8, 10, 10 , '2020-11-13 09:03:53', '2020-11-13 09:03:53');
+INSERT INTO `g_machine` VALUES (4, 'I型', 0.25, 1000, 45, 9, 50, 10, '2020-11-13 09:03:53', '2020-11-13 09:03:53');
+INSERT INTO `g_machine` VALUES (5, 'I型', 0.30, 5000, 45, 10, 100, 10, '2020-11-13 09:03:53', '2020-11-13 09:03:53');
+INSERT INTO `g_machine` VALUES (6, 'I型', 0.35, 10000, 45, 12, 500 , 10, '2020-11-13 09:03:53', '2020-11-13 09:03:53');
+INSERT INTO `g_machine` VALUES (7, 'I型', 0.40, 50000, 45, 15, 1000, 10, '2020-11-13 09:03:53', '2020-11-13 09:03:53');
+
+-- ----------------------------
+-- Table structure for g_machine_address
+-- ----------------------------
+DROP TABLE IF EXISTS `g_machine_address`;
+CREATE TABLE `g_machine_address`  (
+  `id` bigint(0) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `machine_id` bigint(0) UNSIGNED NOT NULL COMMENT '矿机ID',
+  `user_id` bigint(0) UNSIGNED NOT NULL COMMENT '用户ID',
+  `number` decimal(32, 16) UNSIGNED NOT NULL COMMENT '每日释放量',
+  `total_number` decimal(32, 16) UNSIGNED NOT NULL COMMENT '总释放数量',
+  `day` int(0) UNSIGNED NOT NULL COMMENT '剩余释放天数: 0-已结束',
+  `total_day` int(0) NOT NULL COMMENT '总释放天数',
+  `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+  `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `idx_machine_id`(`machine_id`) USING BTREE,
+  INDEX `idx_user_id`(`user_id`) USING BTREE,
+  INDEX `idx_day`(`day`) USING BTREE COMMENT '筛选剩余天数大于零的进行释放'
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户矿机表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of g_machine_address
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for g_machine_log
+-- ----------------------------
+DROP TABLE IF EXISTS `g_machine_log`;
+CREATE TABLE `g_machine_log`  (
+  `id` bigint(0) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(0) UNSIGNED NOT NULL COMMENT '用户ID',
+  `machine_id` bigint(0) UNSIGNED NOT NULL COMMENT '矿机ID',
+  `machine_address_id` bigint(0) UNSIGNED NOT NULL COMMENT '用户矿机ID',
+  `number` decimal(32, 16) UNSIGNED NOT NULL COMMENT '释放数量',
+  `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+  `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `idx_machine_id`(`machine_id`) USING BTREE,
+  INDEX `idx_user_id`(`user_id`) USING BTREE,
+  INDEX `idx_machine_address_id`(`machine_address_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '挖矿日志表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of g_machine_log
 -- ----------------------------
 
 -- ----------------------------
@@ -479,12 +609,12 @@ CREATE TABLE `g_product`  (
   `quote_min_size` decimal(32, 16) NOT NULL,
   `quote_max_size` decimal(32, 16) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_product
 -- ----------------------------
-INSERT INTO `g_product` VALUES ('BITC-USDT', '2020-11-13 09:03:53', '2020-11-13 09:03:53', 'BITC', 'USDT', 0.0001000000000000, 100000.0000000000000000, 4, 2, 0.01, 0.0000000000000000, 0.0000000000000000);
+INSERT INTO `g_product` VALUES ('BITE-USDT', '2020-11-13 09:03:53', '2020-11-18 06:55:28', 'BITE', 'USDT', 0.0001000000000000, 100000.0000000000000000, 4, 2, 0.01, 0.0000000000000000, 0.0000000000000000);
 INSERT INTO `g_product` VALUES ('BTC-USDT', '2020-11-13 09:03:53', '2020-11-13 09:03:53', 'BTC', 'USDT', 0.0000010000000000, 10000000.0000000000000000, 6, 2, 0.01, 0.0000000000000000, 0.0000000000000000);
 
 -- ----------------------------
@@ -574,7 +704,7 @@ CREATE TABLE `goadmin_menu`  (
   `created_at` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   `updated_at` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 32 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of goadmin_menu
@@ -586,14 +716,14 @@ INSERT INTO `goadmin_menu` VALUES (4, 1, 1, 4, 'Permission', NULL, 'fa-ban', '',
 INSERT INTO `goadmin_menu` VALUES (5, 1, 1, 5, 'Menu', NULL, 'fa-bars', '', NULL, '/menu', '2019-09-10 00:00:00', '2019-09-10 00:00:00');
 INSERT INTO `goadmin_menu` VALUES (6, 1, 1, 6, 'Operation log', NULL, 'fa-history', '', NULL, '/info/op', '2019-09-10 00:00:00', '2019-09-10 00:00:00');
 INSERT INTO `goadmin_menu` VALUES (7, 0, 1, 1, 'Dashboard', NULL, 'fa-bar-chart', '', NULL, '/', '2019-09-10 00:00:00', '2019-09-10 00:00:00');
-INSERT INTO `goadmin_menu` VALUES (8, 0, 0, 17, '例子', '', 'fa-align-center', '', NULL, '', '2019-12-11 14:15:42', '2019-12-11 14:15:42');
-INSERT INTO `goadmin_menu` VALUES (9, 8, 0, 17, '用户', '', 'fa-user', '', NULL, '/info/example_user', '2019-09-12 07:15:07', '2020-11-13 17:09:30');
-INSERT INTO `goadmin_menu` VALUES (10, 8, 0, 20, '作者', '', 'fa-users', '', NULL, '/info/example_author', '2019-09-12 07:16:04', '2020-11-13 17:10:26');
-INSERT INTO `goadmin_menu` VALUES (11, 8, 0, 21, '文章', '', 'fa-file-powerpoint-o', '', NULL, '/info/example_post', '2019-09-12 07:16:32', '2020-11-13 17:10:39');
-INSERT INTO `goadmin_menu` VALUES (12, 8, 0, 18, '雇员', '', 'fa-sitemap', '', NULL, '/info/example_employee', '2019-09-12 07:15:07', '2020-11-13 17:09:39');
-INSERT INTO `goadmin_menu` VALUES (13, 8, 0, 19, '信息', '', 'fa-info', '', NULL, '/info/example_profile', '2019-09-12 07:15:07', '2020-11-13 17:10:11');
-INSERT INTO `goadmin_menu` VALUES (14, 0, 0, 22, '表单', '组件', 'fa-wpforms', '', NULL, '/form1', '2019-09-12 07:14:18', '2019-09-12 07:14:18');
-INSERT INTO `goadmin_menu` VALUES (15, 0, 0, 23, '表格', '', 'fa-table', '', NULL, '/table', '2019-12-11 14:15:42', '2019-12-11 14:15:42');
+INSERT INTO `goadmin_menu` VALUES (8, 0, 0, 20, '例子', '', 'fa-align-center', '', NULL, '', '2019-12-11 14:15:42', '2019-12-11 14:15:42');
+INSERT INTO `goadmin_menu` VALUES (9, 8, 0, 20, '用户', '', 'fa-user', '', NULL, '/info/example_user', '2019-09-12 07:15:07', '2020-11-13 17:09:30');
+INSERT INTO `goadmin_menu` VALUES (10, 8, 0, 23, '作者', '', 'fa-users', '', NULL, '/info/example_author', '2019-09-12 07:16:04', '2020-11-13 17:10:26');
+INSERT INTO `goadmin_menu` VALUES (11, 8, 0, 24, '文章', '', 'fa-file-powerpoint-o', '', NULL, '/info/example_post', '2019-09-12 07:16:32', '2020-11-13 17:10:39');
+INSERT INTO `goadmin_menu` VALUES (12, 8, 0, 21, '雇员', '', 'fa-sitemap', '', NULL, '/info/example_employee', '2019-09-12 07:15:07', '2020-11-13 17:09:39');
+INSERT INTO `goadmin_menu` VALUES (13, 8, 0, 22, '信息', '', 'fa-info', '', NULL, '/info/example_profile', '2019-09-12 07:15:07', '2020-11-13 17:10:11');
+INSERT INTO `goadmin_menu` VALUES (14, 0, 0, 25, '表单', '组件', 'fa-wpforms', '', NULL, '/form1', '2019-09-12 07:14:18', '2019-09-12 07:14:18');
+INSERT INTO `goadmin_menu` VALUES (15, 0, 0, 26, '表格', '', 'fa-table', '', NULL, '/table', '2019-12-11 14:15:42', '2019-12-11 14:15:42');
 INSERT INTO `goadmin_menu` VALUES (16, 0, 0, 7, '用户管理', '', 'fa-bars', '', NULL, '', '2020-11-13 10:44:08', '2020-11-13 19:19:36');
 INSERT INTO `goadmin_menu` VALUES (17, 16, 0, 8, '钱包地址', '', 'fa-snapchat-ghost', '', NULL, '/info/g_address', '2020-11-13 10:50:42', '2020-11-13 18:53:46');
 INSERT INTO `goadmin_menu` VALUES (18, 16, 0, 9, '资产账户', '', 'fa-bars', '', NULL, '/info/g_account_asset', '2020-11-13 11:15:04', '2020-11-13 11:15:04');
@@ -606,6 +736,10 @@ INSERT INTO `goadmin_menu` VALUES (24, 23, 0, 13, '交易对', '', 'fa-bars', ''
 INSERT INTO `goadmin_menu` VALUES (25, 23, 0, 14, '市场行情', '', 'fa-bars', '', NULL, '/info/g_tick', '2020-11-13 13:51:21', '2020-11-13 13:51:21');
 INSERT INTO `goadmin_menu` VALUES (26, 23, 0, 16, '交易订单', '', 'fa-bars', '', NULL, '/info/g_trade', '2020-11-13 13:52:19', '2020-11-13 13:52:19');
 INSERT INTO `goadmin_menu` VALUES (27, 23, 0, 15, '委托订单', '', 'fa-bars', '', NULL, '/info/g_order', '2020-11-13 13:52:44', '2020-11-13 13:52:44');
+INSERT INTO `goadmin_menu` VALUES (28, 0, 0, 17, '矿机管理', '', 'fa-bars', '', NULL, '', '2020-11-16 03:59:03', '2020-11-16 12:00:57');
+INSERT INTO `goadmin_menu` VALUES (29, 28, 0, 19, '挖矿日志', '', 'fa-bars', '', NULL, '/info/g_machine_log', '2020-11-16 04:00:06', '2020-11-16 04:00:06');
+INSERT INTO `goadmin_menu` VALUES (30, 28, 0, 18, '用户矿机', '', 'fa-bars', '', NULL, '/info/g_machine_address', '2020-11-16 04:00:32', '2020-11-16 04:00:32');
+INSERT INTO `goadmin_menu` VALUES (31, 28, 0, 17, '矿机列表', '', 'fa-bars', '', NULL, '/info/g_machine', '2020-11-16 04:00:56', '2020-11-16 04:00:56');
 
 -- ----------------------------
 -- Table structure for goadmin_operation_log
@@ -622,11 +756,7 @@ CREATE TABLE `goadmin_operation_log`  (
   `updated_at` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `admin_operation_log_user_id_index`(`user_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of goadmin_operation_log
--- ----------------------------
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for goadmin_permissions
@@ -688,6 +818,10 @@ INSERT INTO `goadmin_role_menu` VALUES (1, 24, '2020-11-13 13:50:51', '2020-11-1
 INSERT INTO `goadmin_role_menu` VALUES (1, 25, '2020-11-13 13:51:21', '2020-11-13 13:51:21');
 INSERT INTO `goadmin_role_menu` VALUES (1, 26, '2020-11-13 13:52:19', '2020-11-13 13:52:19');
 INSERT INTO `goadmin_role_menu` VALUES (1, 27, '2020-11-13 13:52:44', '2020-11-13 13:52:44');
+INSERT INTO `goadmin_role_menu` VALUES (1, 29, '2020-11-16 04:00:06', '2020-11-16 04:00:06');
+INSERT INTO `goadmin_role_menu` VALUES (1, 30, '2020-11-16 04:00:32', '2020-11-16 04:00:32');
+INSERT INTO `goadmin_role_menu` VALUES (1, 31, '2020-11-16 04:00:56', '2020-11-16 04:00:56');
+INSERT INTO `goadmin_role_menu` VALUES (1, 28, '2020-11-16 04:01:05', '2020-11-16 04:01:05');
 
 -- ----------------------------
 -- Table structure for goadmin_role_permissions
@@ -758,35 +892,12 @@ CREATE TABLE `goadmin_session`  (
   `created_at` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   `updated_at` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 155 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of goadmin_session
 -- ----------------------------
-INSERT INTO `goadmin_session` VALUES (73, '1319ff43-0a88-40eb-9a2b-ec582899804f', '{\"user_id\":1}', '2020-11-13 11:08:22', '2020-11-13 11:08:22');
-INSERT INTO `goadmin_session` VALUES (78, 'a643af27-3b3a-4b53-a3f9-eb7cdc20ad61', '__csrf_token__', '2020-11-13 11:16:30', '2020-11-13 11:16:30');
-INSERT INTO `goadmin_session` VALUES (79, '411c316a-bb4d-46e1-935b-1b3a6f97f4a4', '__csrf_token__', '2020-11-13 11:16:55', '2020-11-13 11:16:55');
-INSERT INTO `goadmin_session` VALUES (81, '010bdbf3-cd25-4b22-8ff7-fa28316c8577', '__csrf_token__', '2020-11-13 11:17:14', '2020-11-13 11:17:14');
-INSERT INTO `goadmin_session` VALUES (82, '772d8e0d-44f7-46b9-b365-4331c6e880f2', '__csrf_token__', '2020-11-13 11:17:23', '2020-11-13 11:17:23');
-INSERT INTO `goadmin_session` VALUES (83, 'ee212940-396c-44ba-8776-5fe85c87d1e4', '__csrf_token__', '2020-11-13 11:18:18', '2020-11-13 11:18:18');
-INSERT INTO `goadmin_session` VALUES (84, '3018753e-90a8-40e5-aa52-93d782b8d25d', '__csrf_token__', '2020-11-13 11:18:29', '2020-11-13 11:18:29');
-INSERT INTO `goadmin_session` VALUES (85, '3daab9b7-27e2-4e71-a156-347bf69f9f36', '__csrf_token__', '2020-11-13 11:18:45', '2020-11-13 11:18:45');
-INSERT INTO `goadmin_session` VALUES (86, '1e84a262-4143-4bab-80b5-e8140234f69a', '__csrf_token__', '2020-11-13 11:18:58', '2020-11-13 11:18:58');
-INSERT INTO `goadmin_session` VALUES (88, '6d6afc6a-12fd-4170-ac4a-f306930b108b', '__csrf_token__', '2020-11-13 11:19:22', '2020-11-13 11:19:22');
-INSERT INTO `goadmin_session` VALUES (90, '813239f5-320e-4dd8-a9d0-b3e7336169ba', '__csrf_token__', '2020-11-13 11:19:36', '2020-11-13 11:19:36');
-INSERT INTO `goadmin_session` VALUES (91, '60013144-515a-40f7-8a2e-ab52094cd958', '__csrf_token__', '2020-11-13 11:20:26', '2020-11-13 11:20:26');
-INSERT INTO `goadmin_session` VALUES (92, '47e7a254-ecc6-4893-868f-1f1f40c62b84', '__csrf_token__', '2020-11-13 11:20:30', '2020-11-13 11:20:30');
-INSERT INTO `goadmin_session` VALUES (93, '6765b411-93e1-4621-94f2-1f4fda07af4e', '__csrf_token__', '2020-11-13 11:20:32', '2020-11-13 11:20:32');
-INSERT INTO `goadmin_session` VALUES (94, 'cce50fe4-3f50-4e5e-aa0a-fca83485b51c', '__csrf_token__', '2020-11-13 11:20:34', '2020-11-13 11:20:34');
-INSERT INTO `goadmin_session` VALUES (95, '6ca5b65a-5c1d-48a2-bf7a-41b0eef9bc6c', '__csrf_token__', '2020-11-13 12:08:45', '2020-11-13 12:08:45');
-INSERT INTO `goadmin_session` VALUES (96, '1c6e559f-328b-40a5-95bd-fd583c25a0cc', '{\"user_id\":1}', '2020-11-13 13:24:07', '2020-11-13 13:24:07');
-INSERT INTO `goadmin_session` VALUES (99, '0053aa84-ea70-45d2-a57c-9a477bf59fe3', '__csrf_token__', '2020-11-13 13:50:16', '2020-11-13 13:50:16');
-INSERT INTO `goadmin_session` VALUES (104, 'eb3522d2-1cac-47e2-9ad6-8f9ee687653f', '__csrf_token__', '2020-11-13 13:52:44', '2020-11-13 13:52:44');
-INSERT INTO `goadmin_session` VALUES (105, 'b6636aa8-dff3-4097-ad30-d3154ed096d1', '__csrf_token__', '2020-11-13 13:52:57', '2020-11-13 13:52:57');
-INSERT INTO `goadmin_session` VALUES (106, '97b7c0d4-42b5-4104-8e9e-eb989cb730bc', '__csrf_token__', '2020-11-13 13:52:58', '2020-11-13 13:52:58');
-INSERT INTO `goadmin_session` VALUES (107, '9be52ac6-0150-4d71-8d6b-db42b5ef7d6c', '__csrf_token__', '2020-11-13 13:53:08', '2020-11-13 13:53:08');
-INSERT INTO `goadmin_session` VALUES (110, '684bd946-6019-42af-afdc-9fbd938610c1', '__csrf_token__', '2020-11-13 13:56:52', '2020-11-13 13:56:52');
-INSERT INTO `goadmin_session` VALUES (111, 'f5cc00d4-c428-4ebd-a016-42929a1e3818', '__csrf_token__', '2020-11-13 13:57:40', '2020-11-13 13:57:40');
+INSERT INTO `goadmin_session` VALUES (154, 'eb7625aa-2dbd-4c12-ba07-844ed7416f88', '{\"user_id\":1}', '2020-11-17 03:58:25', '2020-11-17 03:58:25');
 
 -- ----------------------------
 -- Table structure for goadmin_site
@@ -801,7 +912,7 @@ CREATE TABLE `goadmin_site`  (
   `created_at` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   `updated_at` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 70 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 75 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of goadmin_site
@@ -916,7 +1027,7 @@ CREATE TABLE `goadmin_users`  (
 -- ----------------------------
 -- Records of goadmin_users
 -- ----------------------------
-INSERT INTO `goadmin_users` VALUES (1, 'admin', '$2a$10$4FzxW.bVpeh1h.Jk5veQguf447f/5Fbl6dp.JZcWrFcDXpRcskcBO', '超级管理员', 'robot.gif', 'tlNcBVK9AvfYH7WEnwB1RKvocJu8FfRy4um3DJtwdHuJy0dwFsLOgAc0xUfh', '2019-09-10 00:00:00', '2019-09-10 00:00:00');
+INSERT INTO `goadmin_users` VALUES (1, 'admin', '$2a$10$F4v7kaz7L2H.d8M.QxGFieWZ4ihDeTjT.vg1A6LWuGRupkny18PuG', '超级管理员', 'robot.gif', 'tlNcBVK9AvfYH7WEnwB1RKvocJu8FfRy4um3DJtwdHuJy0dwFsLOgAc0xUfh', '2019-09-10 00:00:00', '2019-09-10 00:00:00');
 INSERT INTO `goadmin_users` VALUES (2, 'operator', '$2a$10$glAnFEd0xKzbsHvlIq8MOO/2JiS.oSbnwix5BnqBwJ5r4LoQJcFWW', '操作员', '', NULL, '2019-09-10 00:00:00', '2020-11-13 14:59:52');
 
 SET FOREIGN_KEY_CHECKS = 1;
