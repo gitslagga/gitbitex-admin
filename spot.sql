@@ -11,7 +11,7 @@
  Target Server Version : 80022
  File Encoding         : 65001
 
- Date: 21/11/2020 10:51:23
+ Date: 21/11/2020 17:15:05
 */
 
 SET NAMES utf8mb4;
@@ -265,31 +265,6 @@ CREATE TABLE `g_account_asset`  (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for g_account_config
--- ----------------------------
-DROP TABLE IF EXISTS `g_account_config`;
-CREATE TABLE `g_account_config`  (
-  `id` bigint(0) NOT NULL AUTO_INCREMENT,
-  `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
-  `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
-  `key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `value` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of g_account_config
--- ----------------------------
-INSERT INTO `g_account_config` VALUES (1, '2020-11-13 09:03:53', '2020-11-13 09:03:53', '激活转币数量', '0.1');
-INSERT INTO `g_account_config` VALUES (2, '2020-11-13 09:03:53', '2020-11-13 09:03:53', '认购奖励数量', '100000');
-INSERT INTO `g_account_config` VALUES (3, '2020-11-13 09:03:53', '2020-11-19 03:16:32', 'YTL兑换数量', '5000');
-INSERT INTO `g_account_config` VALUES (4, '2020-11-13 09:03:53', '2020-11-13 09:03:53', '持币收益数量', '8000');
-INSERT INTO `g_account_config` VALUES (5, '2020-11-13 09:03:53', '2020-11-13 09:03:53', '推广收益数量', '4000');
-INSERT INTO `g_account_config` VALUES (6, '2020-11-13 09:03:53', '2020-11-21 02:17:02', 'YTL兑换USDT价格', '10');
-INSERT INTO `g_account_config` VALUES (7, '2020-11-13 09:03:53', '2020-11-21 02:17:02', 'BITE兑换USDT价格', '10');
-INSERT INTO `g_account_config` VALUES (8, '2020-11-13 09:03:53', '2020-11-21 02:17:04', 'USDT兑换CNY价格', '7');
-
--- ----------------------------
 -- Table structure for g_account_pool
 -- ----------------------------
 DROP TABLE IF EXISTS `g_account_pool`;
@@ -395,6 +370,7 @@ CREATE TABLE `g_address`  (
   `convert_fee` decimal(32, 16) UNSIGNED NOT NULL COMMENT '兑换手续费',
   `global_fee` decimal(32, 16) UNSIGNED NOT NULL COMMENT '全球分红手续费',
   `machine_level_id` bigint(0) UNSIGNED NOT NULL DEFAULT 0 COMMENT '达人级别ID',
+  `status` int(0) UNSIGNED NOT NULL COMMENT '1-普通节点,2-生态节点,3-超级节点',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `idx_address`(`address`) USING BTREE,
   INDEX `idx_parent_id`(`parent_id`) USING BTREE,
@@ -441,7 +417,7 @@ CREATE TABLE `g_config`  (
   `key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `value` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_config
@@ -451,25 +427,43 @@ INSERT INTO `g_config` VALUES (2, '2020-11-13 09:03:53', '2020-11-13 09:03:53', 
 INSERT INTO `g_config` VALUES (3, '2020-11-13 09:03:53', '2020-11-19 03:16:32', 'YTL兑换数量', '5000');
 INSERT INTO `g_config` VALUES (4, '2020-11-13 09:03:53', '2020-11-13 09:03:53', '持币收益数量', '8000');
 INSERT INTO `g_config` VALUES (5, '2020-11-13 09:03:53', '2020-11-13 09:03:53', '推广收益数量', '4000');
-INSERT INTO `g_config` VALUES (6, '2020-11-13 09:03:53', '2020-11-13 09:03:53', '兑换邀请人数', '0');
-INSERT INTO `g_config` VALUES (7, '2020-11-13 09:03:53', '2020-11-13 09:03:53', '兑换邀请人数', '2');
-INSERT INTO `g_config` VALUES (8, '2020-11-13 09:03:53', '2020-11-13 09:03:53', '兑换邀请人数', '5');
-INSERT INTO `g_config` VALUES (9, '2020-11-13 09:03:53', '2020-11-13 09:03:53', '兑换邀请人数', '10');
-INSERT INTO `g_config` VALUES (10, '2020-11-13 09:03:53', '2020-11-13 09:03:53', '兑换邀请人数', '30');
-INSERT INTO `g_config` VALUES (11, '2020-11-13 09:03:53', '2020-11-19 03:16:42', 'YTL兑换手续费', '0.50');
-INSERT INTO `g_config` VALUES (12, '2020-11-13 09:03:53', '2020-11-19 03:16:46', 'YTL兑换手续费', '0.40');
-INSERT INTO `g_config` VALUES (13, '2020-11-13 09:03:53', '2020-11-19 03:16:48', 'YTL兑换手续费', '0.35');
-INSERT INTO `g_config` VALUES (14, '2020-11-13 09:03:53', '2020-11-19 03:16:50', 'YTL兑换手续费', '0.30');
-INSERT INTO `g_config` VALUES (15, '2020-11-13 09:03:53', '2020-11-19 03:16:52', 'YTL兑换手续费', '0.20');
-INSERT INTO `g_config` VALUES (16, '2020-11-13 09:03:53', '2020-11-13 09:03:53', 'YTL兑换USDT价格', '10');
-INSERT INTO `g_config` VALUES (17, '2020-11-13 09:03:53', '2020-11-13 09:03:53', '能量兑换USDT价格(已废弃)', '1');
-INSERT INTO `g_config` VALUES (18, '2020-11-13 09:03:53', '2020-11-13 09:03:53', 'BITE兑换USDT价格', '10');
-INSERT INTO `g_config` VALUES (19, '2020-11-13 09:03:53', '2020-11-13 09:03:53', 'USDT兑换CNY价格', '7');
-INSERT INTO `g_config` VALUES (20, '2020-11-13 09:03:53', '2020-11-13 09:03:53', 'USDT最小充币数量', '1');
-INSERT INTO `g_config` VALUES (21, '2020-11-13 09:03:53', '2020-11-13 09:03:53', 'USDT最小提币数量', '100');
-INSERT INTO `g_config` VALUES (22, '2020-11-13 09:03:53', '2020-11-13 09:03:53', 'USDT提币手续费', '0.05');
-INSERT INTO `g_config` VALUES (23, '2020-11-13 09:03:53', '2020-11-13 09:03:53', 'USDT归集地址', '0xA266e3226426Af7F30aE133FC0fDCDD761e69aAC');
-INSERT INTO `g_config` VALUES (24, '2020-11-13 09:03:53', '2020-11-13 09:03:53', 'USDT归集手续费地址', '0xA266e3226426Af7F30aE133FC0fDCDD761e69aAC');
+INSERT INTO `g_config` VALUES (6, '2020-11-13 09:03:53', '2020-11-21 02:17:02', 'YTL兑换USDT价格', '10');
+INSERT INTO `g_config` VALUES (7, '2020-11-13 09:03:53', '2020-11-21 02:17:02', 'BITE兑换USDT价格', '10');
+INSERT INTO `g_config` VALUES (8, '2020-11-13 09:03:53', '2020-11-21 02:17:04', 'USDT兑换CNY价格', '7');
+INSERT INTO `g_config` VALUES (9, '2020-11-21 03:39:57', '2020-11-21 03:40:46', 'YTL兑换BITE手续费', '0.05');
+INSERT INTO `g_config` VALUES (10, '2020-11-21 03:28:35', '2020-11-21 03:40:12', '扫一扫支付开始时间', '9');
+INSERT INTO `g_config` VALUES (11, '2020-11-21 03:28:48', '2020-11-21 03:40:09', '扫一扫支付结束时间', '18');
+INSERT INTO `g_config` VALUES (12, '2020-11-21 03:29:10', '2020-11-21 03:40:08', '扫一扫最低支付金额', '20');
+INSERT INTO `g_config` VALUES (13, '2020-11-21 03:29:18', '2020-11-21 03:40:08', '扫一扫最高支付金额', '100');
+INSERT INTO `g_config` VALUES (14, '2020-11-21 03:29:29', '2020-11-21 03:40:06', '扫一扫每日最高限额', '500');
+INSERT INTO `g_config` VALUES (15, '2020-11-21 03:55:10', '2020-11-21 03:55:21', '扫一扫平台收取手续费', '0.05');
+
+-- ----------------------------
+-- Table structure for g_currency
+-- ----------------------------
+DROP TABLE IF EXISTS `g_currency`;
+CREATE TABLE `g_currency`  (
+  `id` bigint(0) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+  `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
+  `coin` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '币种名称',
+  `decimals` int(0) UNSIGNED NOT NULL COMMENT '币种精度',
+  `min_deposit` decimal(32, 16) UNSIGNED NOT NULL COMMENT '最小充币数量',
+  `min_withdraw` decimal(32, 16) UNSIGNED NOT NULL COMMENT '最小提币数量',
+  `withdraw_fee` decimal(32, 16) UNSIGNED NOT NULL COMMENT '提币手续费',
+  `contract_address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '合约地址',
+  `collect_address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '归集地址',
+  `collect_fee_address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '归集手续费地址',
+  `status` int(0) UNSIGNED NOT NULL COMMENT '1-off,2-on',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `idx_status`(`status`) USING BTREE,
+  UNIQUE INDEX `idx_coin`(`coin`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of g_currency
+-- ----------------------------
+INSERT INTO `g_currency` VALUES (1, '2020-11-21 03:25:02', '2020-11-21 07:30:47', 'USDT', 6, 1.0000000000000000, 100.0000000000000000, 0.0500000000000000, '0xdac17f958d2ee523a2206206994597c13d831ec7', '0xA266e3226426Af7F30aE133FC0fDCDD761e69aAC', '0xA266e3226426Af7F30aE133FC0fDCDD761e69aAC', 2);
 
 -- ----------------------------
 -- Table structure for g_currency_collect
@@ -478,19 +472,19 @@ DROP TABLE IF EXISTS `g_currency_collect`;
 CREATE TABLE `g_currency_collect`  (
   `id` bigint(0) UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` bigint(0) UNSIGNED NOT NULL,
-  `token` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `txid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `from` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '转出地址',
-  `to` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '到账地址',
+  `coin` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `tx_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `from_address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '转出地址',
+  `to_address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '到账地址',
   `value` decimal(32, 16) NOT NULL,
-  `status` int(0) UNSIGNED NOT NULL COMMENT '1-转入主钱包,2-转出到冷钱包,3-转出手续费',
+  `status` int(0) UNSIGNED NOT NULL COMMENT '1-转入主钱包,2-转出到冷钱包',
   `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
   `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `idx_address`(`to`) USING BTREE,
   INDEX `idx_created_at`(`created_at`) USING BTREE,
-  UNIQUE INDEX `idx_txid`(`txid`) USING BTREE,
-  INDEX `idx_user_id`(`user_id`) USING BTREE
+  INDEX `idx_user_id`(`user_id`) USING BTREE,
+  INDEX `idx_to_address`(`to_address`) USING BTREE,
+  UNIQUE INDEX `idx_tx_id`(`tx_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -498,48 +492,27 @@ CREATE TABLE `g_currency_collect`  (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for g_currency_config
--- ----------------------------
-DROP TABLE IF EXISTS `g_currency_config`;
-CREATE TABLE `g_currency_config`  (
-  `id` bigint(0) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
-  `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
-  `key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `value` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of g_currency_config
--- ----------------------------
-INSERT INTO `g_currency_config` VALUES (1, '2020-11-13 09:03:53', '2020-11-21 02:19:29', 'USDT最小充币数量', '1');
-INSERT INTO `g_currency_config` VALUES (2, '2020-11-13 09:03:53', '2020-11-21 02:19:33', 'USDT最小提币数量', '100');
-INSERT INTO `g_currency_config` VALUES (3, '2020-11-13 09:03:53', '2020-11-21 02:19:34', 'USDT提币手续费', '0.05');
-INSERT INTO `g_currency_config` VALUES (4, '2020-11-13 09:03:53', '2020-11-21 02:19:35', 'USDT归集地址', '0xA266e3226426Af7F30aE133FC0fDCDD761e69aAC');
-INSERT INTO `g_currency_config` VALUES (5, '2020-11-13 09:03:53', '2020-11-21 02:19:37', 'USDT归集手续费地址', '0xA266e3226426Af7F30aE133FC0fDCDD761e69aAC');
-
--- ----------------------------
 -- Table structure for g_currency_deposit
 -- ----------------------------
 DROP TABLE IF EXISTS `g_currency_deposit`;
 CREATE TABLE `g_currency_deposit`  (
   `id` bigint(0) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `token` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `txid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `blocknum` bigint(0) NOT NULL,
+  `coin` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `tx_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `block_num` bigint(0) NOT NULL,
   `user_id` bigint(0) UNSIGNED NOT NULL,
   `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `value` decimal(32, 16) NOT NULL,
+  `actual` decimal(32, 16) UNSIGNED NOT NULL COMMENT '实际到账数量',
   `status` int(0) UNSIGNED NOT NULL COMMENT '1-未确认,2-已确认',
   `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
   `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `idx_blocknum`(`blocknum`) USING BTREE,
   INDEX `idx_status`(`status`) USING BTREE,
   INDEX `idx_created_at`(`created_at`) USING BTREE,
   INDEX `idx_user_id`(`user_id`) USING BTREE,
-  UNIQUE INDEX `idx_txid`(`txid`) USING BTREE
+  INDEX `idx_block_num`(`block_num`) USING BTREE,
+  UNIQUE INDEX `idx_tx_id`(`tx_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -552,19 +525,20 @@ CREATE TABLE `g_currency_deposit`  (
 DROP TABLE IF EXISTS `g_currency_withdraw`;
 CREATE TABLE `g_currency_withdraw`  (
   `id` bigint(0) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `token` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `txid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
-  `blocknum` bigint(0) NOT NULL,
+  `coin` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `tx_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
+  `block_num` bigint(0) NOT NULL,
   `user_id` bigint(0) UNSIGNED NOT NULL,
   `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `value` decimal(32, 16) NOT NULL,
+  `actual` decimal(32, 16) UNSIGNED NOT NULL COMMENT '实际到账数量',
   `status` tinyint(0) UNSIGNED NOT NULL DEFAULT 0 COMMENT '1-失败,2-成功,3-通过,4-不通过,5-取消',
   `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
   `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_created_at`(`created_at`) USING BTREE,
   INDEX `idx_user_id`(`user_id`) USING BTREE,
-  UNIQUE INDEX `idx_txid`(`txid`) USING BTREE
+  UNIQUE INDEX `idx_tx_id`(`tx_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -667,23 +641,22 @@ DROP TABLE IF EXISTS `g_machine_config`;
 CREATE TABLE `g_machine_config`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT,
   `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
-  `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '1-Normal,2-V1,3-V2,4-V3,5-V4,6-V5',
+  `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '1-V1,2-V2,3-V3,4-V4,5-V5',
   `candy_level` int(0) UNSIGNED NOT NULL COMMENT '糖果兑换等级',
   `invite_num` int(0) NOT NULL COMMENT '直推有效账户',
   `standard` bigint(0) UNSIGNED NOT NULL COMMENT '拥有什么矿机，才算有效账户',
   `convert_fee` decimal(32, 16) UNSIGNED NOT NULL COMMENT '兑换手续费',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_machine_config
 -- ----------------------------
-INSERT INTO `g_machine_config` VALUES (1, '2020-11-21 02:14:00', '2020-11-21 02:14:28', 0, 0, 0, 0.0500000000000000);
-INSERT INTO `g_machine_config` VALUES (2, '2020-11-20 11:32:22', '2020-11-21 02:14:23', 1, 5, 2, 0.4000000000000000);
-INSERT INTO `g_machine_config` VALUES (3, '2020-11-20 11:35:48', '2020-11-21 02:14:22', 2, 10, 2, 0.3500000000000000);
-INSERT INTO `g_machine_config` VALUES (4, '2020-11-20 11:36:04', '2020-11-21 02:14:21', 3, 15, 2, 0.3000000000000000);
-INSERT INTO `g_machine_config` VALUES (5, '2020-11-20 11:36:14', '2020-11-21 02:14:20', 4, 20, 2, 0.2500000000000000);
-INSERT INTO `g_machine_config` VALUES (6, '2020-11-20 11:36:22', '2020-11-21 02:14:19', 5, 25, 2, 0.2000000000000000);
+INSERT INTO `g_machine_config` VALUES (1, '2020-11-20 11:32:22', '2020-11-21 03:39:32', 1, 5, 2, 0.4000000000000000);
+INSERT INTO `g_machine_config` VALUES (2, '2020-11-20 11:35:48', '2020-11-21 03:39:32', 2, 10, 2, 0.3500000000000000);
+INSERT INTO `g_machine_config` VALUES (3, '2020-11-20 11:36:04', '2020-11-21 03:39:33', 3, 15, 2, 0.3000000000000000);
+INSERT INTO `g_machine_config` VALUES (4, '2020-11-20 11:36:14', '2020-11-21 03:39:33', 4, 20, 2, 0.2500000000000000);
+INSERT INTO `g_machine_config` VALUES (5, '2020-11-20 11:36:22', '2020-11-21 03:39:34', 5, 25, 2, 0.2000000000000000);
 
 -- ----------------------------
 -- Table structure for g_machine_convert
@@ -752,7 +725,7 @@ CREATE TABLE `g_machine_log`  (
   INDEX `idx_machine_id`(`machine_id`) USING BTREE,
   INDEX `idx_user_id`(`user_id`) USING BTREE,
   INDEX `idx_machine_address_id`(`machine_address_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '挖矿日志表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '挖矿日志表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_machine_log
