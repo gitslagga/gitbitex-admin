@@ -725,7 +725,7 @@ CREATE TABLE `g_machine_log`  (
   INDEX `idx_machine_id`(`machine_id`) USING BTREE,
   INDEX `idx_user_id`(`user_id`) USING BTREE,
   INDEX `idx_machine_address_id`(`machine_address_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '挖矿日志表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '挖矿日志表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_machine_log
