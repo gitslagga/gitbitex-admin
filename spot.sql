@@ -11,7 +11,7 @@
  Target Server Version : 80022
  File Encoding         : 65001
 
- Date: 21/11/2020 18:43:36
+ Date: 23/11/2020 17:55:09
 */
 
 SET NAMES utf8mb4;
@@ -30,7 +30,7 @@ CREATE TABLE `example_author`  (
   `added` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `email`(`email`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of example_author
@@ -78,7 +78,7 @@ CREATE TABLE `example_employee`  (
   `created_at` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   `updated_at` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of example_employee
@@ -100,7 +100,7 @@ CREATE TABLE `example_post`  (
   `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `date` date NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 30 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of example_post
@@ -151,7 +151,7 @@ CREATE TABLE `example_profile`  (
   `created_at` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   `updated_at` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of example_profile
@@ -174,7 +174,7 @@ CREATE TABLE `example_user`  (
   `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of example_user
@@ -210,7 +210,7 @@ CREATE TABLE `filemanager_setting`  (
   `created_at` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   `updated_at` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of filemanager_setting
@@ -238,7 +238,7 @@ CREATE TABLE `g_account`  (
   `available` decimal(32, 16) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `idx_uid_currency`(`user_id`, `currency`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_account
@@ -258,7 +258,7 @@ CREATE TABLE `g_account_asset`  (
   `available` decimal(32, 16) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `idx_uid_currency`(`user_id`, `currency`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_account_asset
@@ -278,7 +278,7 @@ CREATE TABLE `g_account_pool`  (
   `available` decimal(32, 16) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `idx_uid_currency`(`user_id`, `currency`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_account_pool
@@ -303,7 +303,7 @@ CREATE TABLE `g_account_scan`  (
   `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_user_id`(`user_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_account_scan
@@ -323,7 +323,7 @@ CREATE TABLE `g_account_shop`  (
   `available` decimal(32, 16) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `idx_uid_currency`(`user_id`, `currency`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_account_shop
@@ -343,7 +343,7 @@ CREATE TABLE `g_account_transfer`  (
   `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
   `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_account_transfer
@@ -370,13 +370,13 @@ CREATE TABLE `g_address`  (
   `convert_fee` decimal(32, 16) UNSIGNED NOT NULL COMMENT '兑换手续费',
   `global_fee` decimal(32, 16) UNSIGNED NOT NULL COMMENT '全球分红手续费',
   `machine_level_id` bigint(0) UNSIGNED NOT NULL DEFAULT 0 COMMENT '达人级别ID',
-  `status` int(0) UNSIGNED NOT NULL COMMENT '1-普通节点,2-生态节点,3-超级节点',
+  `status` int(0) UNSIGNED NOT NULL DEFAULT 0 COMMENT '1-普通节点,2-生态节点,3-超级节点',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `idx_address`(`address`) USING BTREE,
   INDEX `idx_parent_id`(`parent_id`) USING BTREE,
   INDEX `idx_active_num`(`active_num`) USING BTREE,
   INDEX `idx_machine_level_id`(`machine_level_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户地址表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户地址表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_address
@@ -428,7 +428,7 @@ CREATE TABLE `g_address_config`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `idx_coin`(`coin`) USING BTREE,
   INDEX `idx_status`(`status`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '币种配置表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_address_config
@@ -457,7 +457,7 @@ CREATE TABLE `g_address_deposit`  (
   INDEX `idx_created_at`(`created_at`) USING BTREE,
   INDEX `idx_user_id`(`user_id`) USING BTREE,
   INDEX `idx_block_num`(`block_num`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_address_deposit
@@ -483,7 +483,7 @@ CREATE TABLE `g_address_withdraw`  (
   UNIQUE INDEX `idx_tx_id`(`tx_id`) USING BTREE,
   INDEX `idx_created_at`(`created_at`) USING BTREE,
   INDEX `idx_user_id`(`user_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_address_withdraw
@@ -507,7 +507,7 @@ CREATE TABLE `g_bill`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_gsoci`(`user_id`, `currency`, `settled`, `id`) USING BTREE,
   INDEX `idx_s`(`settled`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_bill
@@ -524,7 +524,7 @@ CREATE TABLE `g_config`  (
   `key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `value` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '通用配置表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_config
@@ -572,7 +572,7 @@ CREATE TABLE `g_fill`  (
   UNIQUE INDEX `o_m`(`order_id`, `message_seq`) USING BTREE,
   INDEX `idx_gsoi`(`order_id`, `settled`, `id`) USING BTREE,
   INDEX `idx_si`(`settled`, `id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_fill
@@ -595,7 +595,7 @@ CREATE TABLE `g_machine`  (
   `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_buy_quantity`(`buy_quantity`) USING BTREE COMMENT '获取可购买矿机列表'
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '矿机表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '矿机表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_machine
@@ -628,7 +628,7 @@ CREATE TABLE `g_machine_address`  (
   INDEX `idx_user_id`(`user_id`) USING BTREE,
   INDEX `idx_day`(`day`) USING BTREE COMMENT '筛选剩余天数大于零的进行释放',
   INDEX `idx_is_buy`(`is_buy`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户矿机表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户矿机表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_machine_address
@@ -647,7 +647,7 @@ CREATE TABLE `g_machine_config`  (
   `standard` bigint(0) UNSIGNED NOT NULL COMMENT '拥有什么矿机，才算有效账户',
   `convert_fee` decimal(32, 16) UNSIGNED NOT NULL COMMENT '兑换手续费',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '达人级别表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_machine_config
@@ -675,7 +675,7 @@ CREATE TABLE `g_machine_convert`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_user_id`(`user_id`) USING BTREE,
   INDEX `idx_created_at`(`created_at`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_machine_convert
@@ -698,7 +698,7 @@ CREATE TABLE `g_machine_level`  (
   `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_machine_id`(`machine_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_machine_level
@@ -725,7 +725,7 @@ CREATE TABLE `g_machine_log`  (
   INDEX `idx_machine_id`(`machine_id`) USING BTREE,
   INDEX `idx_user_id`(`user_id`) USING BTREE,
   INDEX `idx_machine_address_id`(`machine_address_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '挖矿日志表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '挖矿日志表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_machine_log
@@ -756,7 +756,7 @@ CREATE TABLE `g_order`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_uspsi`(`user_id`, `product_id`, `status`, `side`, `id`) USING BTREE,
   INDEX `idx_uid_coid`(`user_id`, `client_oid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '下单记录表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_order
@@ -780,13 +780,12 @@ CREATE TABLE `g_product`  (
   `quote_min_size` decimal(32, 16) NOT NULL,
   `quote_max_size` decimal(32, 16) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '产品交易对表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_product
 -- ----------------------------
 INSERT INTO `g_product` VALUES ('BITE-USDT', '2020-11-13 09:03:53', '2020-11-18 06:55:28', 'BITE', 'USDT', 0.0001000000000000, 100000.0000000000000000, 4, 2, 0.01, 0.0000000000000000, 0.0000000000000000);
-INSERT INTO `g_product` VALUES ('BTC-USDT', '2020-11-13 09:03:53', '2020-11-13 09:03:53', 'BTC', 'USDT', 0.0000010000000000, 10000000.0000000000000000, 6, 2, 0.01, 0.0000000000000000, 0.0000000000000000);
 
 -- ----------------------------
 -- Table structure for g_tick
@@ -808,7 +807,7 @@ CREATE TABLE `g_tick`  (
   `log_seq` bigint(0) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `p_g_t`(`product_id`, `granularity`, `time`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '市场行情表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_tick
@@ -832,7 +831,7 @@ CREATE TABLE `g_trade`  (
   `log_offset` bigint(0) NOT NULL DEFAULT 0,
   `log_seq` bigint(0) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '成交记录表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_trade
@@ -851,7 +850,7 @@ CREATE TABLE `g_user`  (
   `password_hash` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `idx_email`(`email`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of g_user
@@ -876,7 +875,7 @@ CREATE TABLE `goadmin_menu`  (
   `created_at` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   `updated_at` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 32 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of goadmin_menu
@@ -928,7 +927,7 @@ CREATE TABLE `goadmin_operation_log`  (
   `updated_at` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `admin_operation_log_user_id_index`(`user_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of goadmin_operation_log
@@ -948,7 +947,7 @@ CREATE TABLE `goadmin_permissions`  (
   `updated_at` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `admin_permissions_name_unique`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of goadmin_permissions
@@ -1049,7 +1048,7 @@ CREATE TABLE `goadmin_roles`  (
   `updated_at` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `admin_roles_name_unique`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of goadmin_roles
@@ -1068,7 +1067,7 @@ CREATE TABLE `goadmin_session`  (
   `created_at` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   `updated_at` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 155 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of goadmin_session
@@ -1088,7 +1087,7 @@ CREATE TABLE `goadmin_site`  (
   `created_at` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   `updated_at` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 75 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of goadmin_site
@@ -1198,7 +1197,7 @@ CREATE TABLE `goadmin_users`  (
   `updated_at` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `admin_users_username_unique`(`username`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of goadmin_users
