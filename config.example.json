@@ -8,7 +8,11 @@
       "name": "spot",
       "max_idle_con": 50,
       "max_open_con": 150,
-      "driver": "mysql"
+      "driver": "mysql",
+      "params": {
+        "charset": "utf8mb4",
+        "loc": "Local"
+      }
     }
   },
   "prefix": "admin",
