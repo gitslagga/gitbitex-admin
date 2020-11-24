@@ -37,7 +37,7 @@ func GetGConfigTable(ctx *context.Context) (userTable table.Table) {
 	info.SetTable("g_config").SetTitle("配置管理")
 
 	formList := userTable.GetForm()
-	formList.AddField("ID", "id", db.Int, form.Default).FieldDisableWhenCreate()
+	formList.AddField("ID", "id", db.Bigint, form.Default).FieldDisableWhenCreate()
 	formList.AddField("键值", "key", db.Varchar, form.Default)
 	formList.AddField("数值", "value", db.Varchar, form.Text)
 

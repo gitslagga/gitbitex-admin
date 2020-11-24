@@ -88,7 +88,7 @@ func GetGAccountScanTable(ctx *context.Context) (userTable table.Table) {
 	info.SetTable("g_account_scan").SetTitle("扫一扫管理")
 
 	formList := userTable.GetForm()
-	formList.AddField("ID", "id", db.Int, form.Default).FieldDisableWhenCreate()
+	formList.AddField("ID", "id", db.Bigint, form.Default).FieldDisableWhenCreate()
 	formList.AddField("状态", "status", db.Int, form.Radio).
 		FieldOptions(types.FieldOptions{
 			{Text: "未支付", Value: "1"},

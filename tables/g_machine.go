@@ -40,7 +40,7 @@ func GetGMachineTable(ctx *context.Context) (userTable table.Table) {
 	info.SetTable("g_machine").SetTitle("矿机管理")
 
 	formList := userTable.GetForm()
-	formList.AddField("ID", "id", db.Int, form.Default).FieldDisableWhenCreate()
+	formList.AddField("ID", "id", db.Bigint, form.Default).FieldDisableWhenCreate()
 	formList.AddField("矿机名称", "name", db.Varchar, form.Default)
 	formList.AddField("挖矿收益", "profit", db.Decimal, form.Text)
 	formList.AddField("购买数量", "number", db.Decimal, form.Text)

@@ -50,7 +50,7 @@ func GetGAddressConfigTable(ctx *context.Context) (userTable table.Table) {
 	info.SetTable("g_address_config").SetTitle("币种管理")
 
 	formList := userTable.GetForm()
-	formList.AddField("ID", "id", db.Int, form.Default).FieldDisableWhenCreate()
+	formList.AddField("ID", "id", db.Bigint, form.Default).FieldDisableWhenCreate()
 
 	formList.AddField("币种", "coin", db.Varchar, form.Text)
 	formList.AddField("精度", "decimals", db.Int, form.Text)
