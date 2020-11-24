@@ -56,6 +56,7 @@ func main() {
 
 	if err := eng.AddConfig(cfg).
 		AddGenerators(tables.Generators).
+		ResolveMysqlConnection(tables.SetConn).
 		Use(r); err != nil {
 		panic(err)
 	}

@@ -8,8 +8,7 @@ import (
 	"github.com/GoAdminGroup/go-admin/template/types/form"
 )
 
-func GetGMachineAddressTable(ctx *context.Context) (userTable table.Table) {
-
+func GetGAddressCollectTable(ctx *context.Context) (userTable table.Table) {
 	userTable = table.NewDefaultTable(table.Config{
 		Driver:     db.DriverMysql,
 		CanAdd:     false,
@@ -26,33 +25,35 @@ func GetGMachineAddressTable(ctx *context.Context) (userTable table.Table) {
 	info := userTable.GetInfo().SetFilterFormLayout(form.LayoutTwoCol).
 		HideFilterArea().HideNewButton().HideDeleteButton().HideEditButton()
 	info.AddField("ID", "id", db.Bigint).FieldSortable()
-	info.AddField("矿机名称", "name", db.Varchar).FieldDisplay(func(value types.FieldModel) interface{} {
-		name, _ := value.Row["g_machine_goadmin_join_name"].(string)
-		return name
-	})
 	info.AddField("钱包地址", "address", db.Varchar).FieldDisplay(func(value types.FieldModel) interface{} {
 		address, _ := value.Row["g_address_goadmin_join_address"].(string)
 		return address
 	}).FieldWidth(200)
-	info.AddField("矿机名称", "name", db.Varchar).FieldJoin(types.Join{
-		Field:     "machine_id",
-		JoinField: "id",
-		Table:     "g_machine",
-	}).FieldFilterable(types.FilterType{Operator: types.FilterOperatorLike}).FieldHide()
 	info.AddField("钱包地址", "address", db.Varchar).FieldJoin(types.Join{
 		Field:     "user_id",
 		JoinField: "id",
 		Table:     "g_address",
 	}).FieldFilterable(types.FilterType{Operator: types.FilterOperatorLike}).FieldHide()
 
-	info.AddField("每日释放量", "number", db.Decimal)
-	info.AddField("总释放量", "total_number", db.Decimal)
-	info.AddField("剩余释放天数", "day", db.Int)
-	info.AddField("总释放天数", "total_day", db.Int)
+	info.AddField("币种", "coin", db.Varchar)
+	info.AddField("交易ID", "tx_id", db.Varchar).FieldWidth(200)
+	info.AddField("From地址", "from_address", db.Varchar).FieldWidth(200)
+	info.AddField("To地址", "to_address", db.Varchar).FieldWidth(200)
+	info.AddField("归集数量", "value", db.Decimal)
+	info.AddField("归集类型", "status", db.Int).FieldDisplay(func(model types.FieldModel) interface{} {
+		if model.Value == "1" {
+			return "转入主钱包"
+		}
+		if model.Value == "2" {
+			return "转出到冷钱包"
+		}
+		return "未知"
+	})
 
 	info.AddField("CreatedAt", "created_at", db.Timestamp).FieldFilterable(types.FilterType{FormType: form.DatetimeRange})
 	info.AddField("UpdatedAt", "updated_at", db.Timestamp)
-	info.SetTable("g_machine_address").SetTitle("用户矿机管理")
+
+	info.SetTable("g_address_collect").SetTitle("归集管理")
 
 	return
 }

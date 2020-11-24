@@ -476,7 +476,7 @@ CREATE TABLE `g_address_withdraw`  (
   `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `value` decimal(32, 8) NOT NULL,
   `actual` decimal(32, 8) UNSIGNED NOT NULL COMMENT '实际到账数量',
-  `status` tinyint(0) UNSIGNED NOT NULL DEFAULT 0 COMMENT '1-失败,2-成功,3-通过,4-不通过,5-取消',
+  `status` int(0) UNSIGNED NOT NULL DEFAULT 0 COMMENT '1-审核中,2-成功,3-通过,4-不通过,5-取消',
   `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
   `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
