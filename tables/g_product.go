@@ -26,19 +26,15 @@ func GetGProductTable(ctx *context.Context) (userTable table.Table) {
 	info := userTable.GetInfo().SetFilterFormLayout(form.LayoutTwoCol).
 		HideFilterArea().HideNewButton().HideDeleteButton().HideEditButton()
 	info.AddField("ID", "id", db.Varchar).FieldSortable()
-	info.AddField("基本币种", "base_currency", db.Varchar).FieldFilterable(types.FilterType{Operator: types.FilterOperatorLike})
-	info.AddField("交易币种", "quote_currency", db.Varchar).FieldFilterable(types.FilterType{Operator: types.FilterOperatorLike})
-
-	info.AddField("基本币种最小", "base_min_size", db.Decimal)
-	info.AddField("基本币种最大", "base_max_size", db.Decimal)
-
-	info.AddField("基本币种精度", "base_scale", db.Int)
-	info.AddField("交易币种精度", "quote_scale", db.Int)
-
-	info.AddField("交易币种自增", "quote_increment", db.Double)
+	info.AddField("交易币种", "base_currency", db.Varchar).FieldFilterable(types.FilterType{Operator: types.FilterOperatorLike})
+	info.AddField("基准币种", "quote_currency", db.Varchar).FieldFilterable(types.FilterType{Operator: types.FilterOperatorLike})
 
 	info.AddField("交易币种最小", "base_min_size", db.Decimal)
 	info.AddField("交易币种最大", "base_max_size", db.Decimal)
+
+	info.AddField("交易币种精度", "base_scale", db.Int)
+	info.AddField("基准币种精度", "quote_scale", db.Int)
+	info.AddField("基准币种自增", "quote_increment", db.Double)
 
 	info.AddField("CreatedAt", "created_at", db.Timestamp).FieldFilterable(types.FilterType{FormType: form.DatetimeRange})
 	info.AddField("UpdatedAt", "updated_at", db.Timestamp)

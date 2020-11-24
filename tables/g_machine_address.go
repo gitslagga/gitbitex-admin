@@ -1,6 +1,7 @@
 package tables
 
 import (
+	"fmt"
 	"github.com/GoAdminGroup/go-admin/context"
 	"github.com/GoAdminGroup/go-admin/modules/db"
 	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/table"
@@ -26,16 +27,25 @@ func GetGMachineAddressTable(ctx *context.Context) (userTable table.Table) {
 	info := userTable.GetInfo().SetFilterFormLayout(form.LayoutTwoCol).
 		HideFilterArea().HideNewButton().HideDeleteButton().HideEditButton()
 	info.AddField("ID", "id", db.Bigint).FieldSortable()
+	info.AddField("矿机名称", "name", db.Varchar).FieldDisplay(func(value types.FieldModel) interface{} {
+		name, _ := value.Row["g_machine_goadmin_join_name"].(string)
+		fmt.Println(name)
+		return name
+	})
+	info.AddField("钱包地址", "address", db.Varchar).FieldDisplay(func(value types.FieldModel) interface{} {
+		address, _ := value.Row["g_address_goadmin_join_address"].(string)
+		return address
+	}).FieldWidth(200)
 	info.AddField("矿机名称", "name", db.Varchar).FieldJoin(types.Join{
 		Field:     "machine_id",
 		JoinField: "id",
 		Table:     "g_machine",
-	}).FieldFilterable(types.FilterType{Operator: types.FilterOperatorLike})
+	}).FieldFilterable(types.FilterType{Operator: types.FilterOperatorLike}).FieldHide()
 	info.AddField("钱包地址", "address", db.Varchar).FieldJoin(types.Join{
 		Field:     "user_id",
 		JoinField: "id",
 		Table:     "g_address",
-	}).FieldWidth(200).FieldFilterable(types.FilterType{Operator: types.FilterOperatorLike})
+	}).FieldFilterable(types.FilterType{Operator: types.FilterOperatorLike}).FieldHide()
 
 	info.AddField("每日释放量", "number", db.Decimal)
 	info.AddField("总释放量", "total_number", db.Decimal)

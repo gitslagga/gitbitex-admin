@@ -24,7 +24,7 @@ func GetGTickTable(ctx *context.Context) (userTable table.Table) {
 	})
 
 	info := userTable.GetInfo().SetFilterFormLayout(form.LayoutTwoCol).
-		HideFilterArea().HideNewButton().HideDeleteButton().HideEditButton().HideDetailButton()
+		HideFilterArea().HideNewButton().HideDeleteButton().HideEditButton()
 	info.AddField("ID", "id", db.Bigint).FieldSortable()
 	info.AddField("交易对", "product_id", db.Varchar).FieldFilterable(types.FilterType{Operator: types.FilterOperatorLike})
 	info.AddField("行情粒度", "granularity", db.Bigint)
