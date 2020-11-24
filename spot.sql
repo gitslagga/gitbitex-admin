@@ -644,7 +644,6 @@ CREATE TABLE `g_machine_config`  (
   `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '1-V1,2-V2,3-V3,4-V4,5-V5',
   `candy_level` int(0) UNSIGNED NOT NULL COMMENT '糖果兑换等级',
   `invite_num` int(0) NOT NULL COMMENT '直推有效账户',
-  `standard` bigint(0) UNSIGNED NOT NULL COMMENT '拥有什么矿机，才算有效账户',
   `convert_fee` decimal(32, 8) UNSIGNED NOT NULL COMMENT '兑换手续费',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '达人级别表' ROW_FORMAT = Dynamic;
