@@ -1,6 +1,7 @@
 package tables
 
 import (
+	"fmt"
 	template2 "html/template"
 
 	"github.com/GoAdminGroup/go-admin/context"
@@ -30,8 +31,9 @@ func GetExamplePostsTable(ctx *context.Context) (postsTable table.Table) {
 			GetContent()
 	})
 	info.AddField("作者姓名", "name", db.Varchar).FieldDisplay(func(value types.FieldModel) interface{} {
-		first, _ := value.Row["authors_goadmin_join_first_name"].(string)
-		last, _ := value.Row["authors_goadmin_join_last_name"].(string)
+		fmt.Println(value)
+		first, _ := value.Row["example_author_goadmin_join_first_name"].(string)
+		last, _ := value.Row["example_author_goadmin_join_last_name"].(string)
 		return first + " " + last
 	})
 	info.AddField("AuthorFirstName", "first_name", db.Varchar).FieldJoin(types.Join{
