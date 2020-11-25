@@ -11,7 +11,7 @@
  Target Server Version : 80022
  File Encoding         : 65001
 
- Date: 23/11/2020 17:55:09
+ Date: 25/11/2020 14:58:22
 */
 
 SET NAMES utf8mb4;
@@ -433,7 +433,7 @@ CREATE TABLE `g_address_config`  (
 -- ----------------------------
 -- Records of g_address_config
 -- ----------------------------
-INSERT INTO `g_address_config` VALUES (1, '2020-11-21 03:25:02', '2020-11-21 07:30:47', 'USDT', 6, 1.0000000000000000, 100.0000000000000000, 0.0500000000000000, '0xdac17f958d2ee523a2206206994597c13d831ec7', '0xA266e3226426Af7F30aE133FC0fDCDD761e69aAC', '0xA266e3226426Af7F30aE133FC0fDCDD761e69aAC', 2);
+INSERT INTO `g_address_config` VALUES (1, '2020-11-21 03:25:02', '2020-11-25 14:47:41', 'USDT', 6, 1.00000000, 100.00000000, 0.05000000, '0xdac17f958d2ee523a2206206994597c13d831ec7', '0xA266e3226426Af7F30aE133FC0fDCDD761e69aAC', '0xA266e3226426Af7F30aE133FC0fDCDD761e69aAC', 2);
 
 -- ----------------------------
 -- Table structure for g_address_deposit
@@ -600,13 +600,13 @@ CREATE TABLE `g_machine`  (
 -- ----------------------------
 -- Records of g_machine
 -- ----------------------------
-INSERT INTO `g_machine` VALUES (1, 'I型', 0.1500000000000000, 50.0000000000000000, 50, 0.0000000000000000, 0, 0, '2020-11-13 09:03:53', '2020-11-18 08:56:40');
-INSERT INTO `g_machine` VALUES (2, 'II型', 0.1500000000000000, 100.0000000000000000, 40, 0.0500000000000000, 10, 4, '2020-11-13 09:03:53', '2020-11-18 09:17:13');
-INSERT INTO `g_machine` VALUES (3, 'III型', 0.2000000000000000, 500.0000000000000000, 40, 0.0700000000000000, 50, 3, '2020-11-13 09:03:53', '2020-11-18 09:17:17');
-INSERT INTO `g_machine` VALUES (4, 'IV型', 0.2500000000000000, 2000.0000000000000000, 40, 0.0800000000000000, 200, 2, '2020-11-13 09:03:53', '2020-11-18 09:17:19');
-INSERT INTO `g_machine` VALUES (5, 'V型', 0.3000000000000000, 5000.0000000000000000, 40, 0.1000000000000000, 500, 1, '2020-11-13 09:03:53', '2020-11-18 09:17:21');
-INSERT INTO `g_machine` VALUES (6, 'VI型', 0.3500000000000000, 10000.0000000000000000, 40, 0.1200000000000000, 1000, 1, '2020-11-13 09:03:53', '2020-11-18 09:17:23');
-INSERT INTO `g_machine` VALUES (7, 'VII型', 0.4000000000000000, 50000.0000000000000000, 40, 0.1500000000000000, 5000, 1, '2020-11-13 09:03:53', '2020-11-18 09:17:25');
+INSERT INTO `g_machine` VALUES (1, 'I型', 0.15000000, 50.00000000, 50, 0.00000000, 0, 0, '2020-11-13 09:03:53', '2020-11-18 08:56:40');
+INSERT INTO `g_machine` VALUES (2, 'II型', 0.15000000, 100.00000000, 40, 0.05000000, 10, 4, '2020-11-13 09:03:53', '2020-11-18 09:17:13');
+INSERT INTO `g_machine` VALUES (3, 'III型', 0.20000000, 500.00000000, 40, 0.07000000, 50, 3, '2020-11-13 09:03:53', '2020-11-18 09:17:17');
+INSERT INTO `g_machine` VALUES (4, 'IV型', 0.25000000, 2000.00000000, 40, 0.08000000, 200, 2, '2020-11-13 09:03:53', '2020-11-18 09:17:19');
+INSERT INTO `g_machine` VALUES (5, 'V型', 0.30000000, 5000.00000000, 40, 0.10000000, 500, 1, '2020-11-13 09:03:53', '2020-11-18 09:17:21');
+INSERT INTO `g_machine` VALUES (6, 'VI型', 0.35000000, 10000.00000000, 40, 0.12000000, 1000, 1, '2020-11-13 09:03:53', '2020-11-18 09:17:23');
+INSERT INTO `g_machine` VALUES (7, 'VII型', 0.40000000, 50000.00000000, 40, 0.15000000, 5000, 1, '2020-11-13 09:03:53', '2020-11-18 09:17:25');
 
 -- ----------------------------
 -- Table structure for g_machine_address
@@ -651,11 +651,11 @@ CREATE TABLE `g_machine_config`  (
 -- ----------------------------
 -- Records of g_machine_config
 -- ----------------------------
-INSERT INTO `g_machine_config` VALUES (1, '2020-11-20 11:32:22', '2020-11-21 03:39:32', 1, 5, 2, 0.4000000000000000);
-INSERT INTO `g_machine_config` VALUES (2, '2020-11-20 11:35:48', '2020-11-21 03:39:32', 2, 10, 2, 0.3500000000000000);
-INSERT INTO `g_machine_config` VALUES (3, '2020-11-20 11:36:04', '2020-11-21 03:39:33', 3, 15, 2, 0.3000000000000000);
-INSERT INTO `g_machine_config` VALUES (4, '2020-11-20 11:36:14', '2020-11-21 03:39:33', 4, 20, 2, 0.2500000000000000);
-INSERT INTO `g_machine_config` VALUES (5, '2020-11-20 11:36:22', '2020-11-21 03:39:34', 5, 25, 2, 0.2000000000000000);
+INSERT INTO `g_machine_config` VALUES (1, '2020-11-20 11:32:22', '2020-11-21 03:39:32', 1, 5, 0.40000000);
+INSERT INTO `g_machine_config` VALUES (2, '2020-11-20 11:35:48', '2020-11-21 03:39:32', 2, 10, 0.35000000);
+INSERT INTO `g_machine_config` VALUES (3, '2020-11-20 11:36:04', '2020-11-21 03:39:33', 3, 15, 0.30000000);
+INSERT INTO `g_machine_config` VALUES (4, '2020-11-20 11:36:14', '2020-11-21 03:39:33', 4, 20, 0.25000000);
+INSERT INTO `g_machine_config` VALUES (5, '2020-11-20 11:36:22', '2020-11-21 03:39:34', 5, 25, 0.20000000);
 
 -- ----------------------------
 -- Table structure for g_machine_convert
@@ -702,11 +702,11 @@ CREATE TABLE `g_machine_level`  (
 -- ----------------------------
 -- Records of g_machine_level
 -- ----------------------------
-INSERT INTO `g_machine_level` VALUES (1, 1, 2, 10, 500, 100, 0.2000000000000000, 2, '2020-11-19 07:12:38', '2020-11-19 07:12:38');
-INSERT INTO `g_machine_level` VALUES (2, 2, 2, 20, 2000, 500, 0.1500000000000000, 3, '2020-11-19 07:13:07', '2020-11-19 07:13:07');
-INSERT INTO `g_machine_level` VALUES (3, 3, 2, 30, 10000, 2500, 0.1000000000000000, 4, '2020-11-19 07:18:02', '2020-11-19 07:18:02');
-INSERT INTO `g_machine_level` VALUES (4, 4, 2, 40, 50000, 10000, 0.0500000000000000, 5, '2020-11-19 07:18:18', '2020-11-19 07:18:18');
-INSERT INTO `g_machine_level` VALUES (5, 5, 2, 50, 100000, 25000, 0.0500000000000000, 6, '2020-11-19 07:18:48', '2020-11-19 07:18:48');
+INSERT INTO `g_machine_level` VALUES (1, 1, 2, 10, 500, 100, 0.20000000, 2, '2020-11-19 07:12:38', '2020-11-19 07:12:38');
+INSERT INTO `g_machine_level` VALUES (2, 2, 2, 20, 2000, 500, 0.15000000, 3, '2020-11-19 07:13:07', '2020-11-19 07:13:07');
+INSERT INTO `g_machine_level` VALUES (3, 3, 2, 30, 10000, 2500, 0.10000000, 4, '2020-11-19 07:18:02', '2020-11-19 07:18:02');
+INSERT INTO `g_machine_level` VALUES (4, 4, 2, 40, 50000, 10000, 0.05000000, 5, '2020-11-19 07:18:18', '2020-11-19 07:18:18');
+INSERT INTO `g_machine_level` VALUES (5, 5, 2, 50, 100000, 25000, 0.05000000, 6, '2020-11-19 07:18:48', '2020-11-19 07:18:48');
 
 -- ----------------------------
 -- Table structure for g_machine_log
@@ -784,7 +784,7 @@ CREATE TABLE `g_product`  (
 -- ----------------------------
 -- Records of g_product
 -- ----------------------------
-INSERT INTO `g_product` VALUES ('BITE-USDT', '2020-11-13 09:03:53', '2020-11-18 06:55:28', 'BITE', 'USDT', 0.0001000000000000, 100000.0000000000000000, 4, 2, 0.01, 0.0000000000000000, 0.0000000000000000);
+INSERT INTO `g_product` VALUES ('BITE-USDT', '2020-11-13 09:03:53', '2020-11-18 06:55:28', 'BITE', 'USDT', 0.00010000, 100000.00000000, 4, 2, 0.01, 0.00000000, 0.00000000);
 
 -- ----------------------------
 -- Table structure for g_tick
@@ -886,14 +886,14 @@ INSERT INTO `goadmin_menu` VALUES (4, 1, 1, 4, 'Permission', NULL, 'fa-ban', '',
 INSERT INTO `goadmin_menu` VALUES (5, 1, 1, 5, 'Menu', NULL, 'fa-bars', '', NULL, '/menu', '2019-09-10 00:00:00', '2019-09-10 00:00:00');
 INSERT INTO `goadmin_menu` VALUES (6, 1, 1, 6, 'Operation log', NULL, 'fa-history', '', NULL, '/info/op', '2019-09-10 00:00:00', '2019-09-10 00:00:00');
 INSERT INTO `goadmin_menu` VALUES (7, 0, 1, 1, 'Dashboard', NULL, 'fa-bar-chart', '', NULL, '/', '2019-09-10 00:00:00', '2019-09-10 00:00:00');
-INSERT INTO `goadmin_menu` VALUES (8, 0, 0, 20, '例子', '', 'fa-align-center', '', NULL, '', '2019-12-11 14:15:42', '2019-12-11 14:15:42');
-INSERT INTO `goadmin_menu` VALUES (9, 8, 0, 20, '用户', '', 'fa-user', '', NULL, '/info/example_user', '2019-09-12 07:15:07', '2020-11-13 17:09:30');
-INSERT INTO `goadmin_menu` VALUES (10, 8, 0, 23, '作者', '', 'fa-users', '', NULL, '/info/example_author', '2019-09-12 07:16:04', '2020-11-13 17:10:26');
-INSERT INTO `goadmin_menu` VALUES (11, 8, 0, 24, '文章', '', 'fa-file-powerpoint-o', '', NULL, '/info/example_post', '2019-09-12 07:16:32', '2020-11-13 17:10:39');
-INSERT INTO `goadmin_menu` VALUES (12, 8, 0, 21, '雇员', '', 'fa-sitemap', '', NULL, '/info/example_employee', '2019-09-12 07:15:07', '2020-11-13 17:09:39');
-INSERT INTO `goadmin_menu` VALUES (13, 8, 0, 22, '信息', '', 'fa-info', '', NULL, '/info/example_profile', '2019-09-12 07:15:07', '2020-11-13 17:10:11');
-INSERT INTO `goadmin_menu` VALUES (14, 0, 0, 25, '表单', '组件', 'fa-wpforms', '', NULL, '/form1', '2019-09-12 07:14:18', '2019-09-12 07:14:18');
-INSERT INTO `goadmin_menu` VALUES (15, 0, 0, 26, '表格', '', 'fa-table', '', NULL, '/table', '2019-12-11 14:15:42', '2019-12-11 14:15:42');
+INSERT INTO `goadmin_menu` VALUES (8, 0, 0, 29, '例子', '', 'fa-align-center', '', NULL, '', '2019-12-11 14:15:42', '2019-12-11 14:15:42');
+INSERT INTO `goadmin_menu` VALUES (9, 8, 0, 29, '用户', '', 'fa-user', '', NULL, '/info/example_user', '2019-09-12 07:15:07', '2020-11-13 17:09:30');
+INSERT INTO `goadmin_menu` VALUES (10, 8, 0, 32, '作者', '', 'fa-users', '', NULL, '/info/example_author', '2019-09-12 07:16:04', '2020-11-13 17:10:26');
+INSERT INTO `goadmin_menu` VALUES (11, 8, 0, 33, '文章', '', 'fa-file-powerpoint-o', '', NULL, '/info/example_post', '2019-09-12 07:16:32', '2020-11-13 17:10:39');
+INSERT INTO `goadmin_menu` VALUES (12, 8, 0, 30, '雇员', '', 'fa-sitemap', '', NULL, '/info/example_employee', '2019-09-12 07:15:07', '2020-11-13 17:09:39');
+INSERT INTO `goadmin_menu` VALUES (13, 8, 0, 31, '信息', '', 'fa-info', '', NULL, '/info/example_profile', '2019-09-12 07:15:07', '2020-11-13 17:10:11');
+INSERT INTO `goadmin_menu` VALUES (14, 0, 0, 34, '表单', '组件', 'fa-wpforms', '', NULL, '/form1', '2019-09-12 07:14:18', '2019-09-12 07:14:18');
+INSERT INTO `goadmin_menu` VALUES (15, 0, 0, 35, '表格', '', 'fa-table', '', NULL, '/table', '2019-12-11 14:15:42', '2019-12-11 14:15:42');
 INSERT INTO `goadmin_menu` VALUES (16, 0, 0, 7, '用户管理', '', 'fa-bars', '', NULL, '', '2020-11-13 10:44:08', '2020-11-13 19:19:36');
 INSERT INTO `goadmin_menu` VALUES (17, 16, 0, 8, '钱包地址', '', 'fa-snapchat-ghost', '', NULL, '/info/g_address', '2020-11-13 10:50:42', '2020-11-13 18:53:46');
 INSERT INTO `goadmin_menu` VALUES (18, 16, 0, 9, '资产账户', '', 'fa-bars', '', NULL, '/info/g_account_asset', '2020-11-13 11:15:04', '2020-11-13 11:15:04');
@@ -901,15 +901,25 @@ INSERT INTO `goadmin_menu` VALUES (19, 16, 0, 10, '矿池账户', '', 'fa-bars',
 INSERT INTO `goadmin_menu` VALUES (20, 16, 0, 11, '币币账户', '', 'fa-bars', '', NULL, '/info/g_account', '2020-11-13 11:16:12', '2020-11-13 11:16:12');
 INSERT INTO `goadmin_menu` VALUES (21, 16, 0, 12, '购物账户', '', 'fa-bars', '', NULL, '/info/g_account_shop', '2020-11-13 11:16:30', '2020-11-13 19:17:14');
 INSERT INTO `goadmin_menu` VALUES (22, 16, 0, 7, '配置管理', '', 'fa-bars', '', NULL, '/info/g_config', '2020-11-13 13:49:51', '2020-11-13 13:49:51');
-INSERT INTO `goadmin_menu` VALUES (23, 0, 0, 13, '币币交易', '', 'fa-bars', '', NULL, '', '2020-11-13 13:50:16', '2020-11-13 13:50:16');
-INSERT INTO `goadmin_menu` VALUES (24, 23, 0, 13, '交易对', '', 'fa-bars', '', NULL, '/info/g_product', '2020-11-13 13:50:51', '2020-11-13 13:50:51');
-INSERT INTO `goadmin_menu` VALUES (25, 23, 0, 14, '市场行情', '', 'fa-bars', '', NULL, '/info/g_tick', '2020-11-13 13:51:21', '2020-11-13 13:51:21');
-INSERT INTO `goadmin_menu` VALUES (26, 23, 0, 16, '交易订单', '', 'fa-bars', '', NULL, '/info/g_trade', '2020-11-13 13:52:19', '2020-11-13 13:52:19');
-INSERT INTO `goadmin_menu` VALUES (27, 23, 0, 15, '委托订单', '', 'fa-bars', '', NULL, '/info/g_order', '2020-11-13 13:52:44', '2020-11-13 13:52:44');
-INSERT INTO `goadmin_menu` VALUES (28, 0, 0, 17, '矿机管理', '', 'fa-bars', '', NULL, '', '2020-11-16 03:59:03', '2020-11-16 12:00:57');
-INSERT INTO `goadmin_menu` VALUES (29, 28, 0, 19, '挖矿日志', '', 'fa-bars', '', NULL, '/info/g_machine_log', '2020-11-16 04:00:06', '2020-11-16 04:00:06');
-INSERT INTO `goadmin_menu` VALUES (30, 28, 0, 18, '用户矿机', '', 'fa-bars', '', NULL, '/info/g_machine_address', '2020-11-16 04:00:32', '2020-11-16 04:00:32');
-INSERT INTO `goadmin_menu` VALUES (31, 28, 0, 17, '矿机列表', '', 'fa-bars', '', NULL, '/info/g_machine', '2020-11-16 04:00:56', '2020-11-16 04:00:56');
+INSERT INTO `goadmin_menu` VALUES (23, 0, 0, 19, '币币交易', '', 'fa-bars', '', NULL, '', '2020-11-13 13:50:16', '2020-11-13 13:50:16');
+INSERT INTO `goadmin_menu` VALUES (24, 23, 0, 19, '交易对', '', 'fa-bars', '', NULL, '/info/g_product', '2020-11-13 13:50:51', '2020-11-13 13:50:51');
+INSERT INTO `goadmin_menu` VALUES (25, 23, 0, 20, '市场行情', '', 'fa-bars', '', NULL, '/info/g_tick', '2020-11-13 13:51:21', '2020-11-13 13:51:21');
+INSERT INTO `goadmin_menu` VALUES (26, 23, 0, 22, '交易订单', '', 'fa-bars', '', NULL, '/info/g_trade', '2020-11-13 13:52:19', '2020-11-13 13:52:19');
+INSERT INTO `goadmin_menu` VALUES (27, 23, 0, 21, '委托订单', '', 'fa-bars', '', NULL, '/info/g_order', '2020-11-13 13:52:44', '2020-11-13 13:52:44');
+INSERT INTO `goadmin_menu` VALUES (28, 0, 0, 23, '矿机管理', '', 'fa-bars', '', NULL, '', '2020-11-16 03:59:03', '2020-11-16 12:00:57');
+INSERT INTO `goadmin_menu` VALUES (29, 28, 0, 25, '挖矿日志', '', 'fa-bars', '', NULL, '/info/g_machine_log', '2020-11-16 04:00:06', '2020-11-16 04:00:06');
+INSERT INTO `goadmin_menu` VALUES (30, 28, 0, 24, '用户矿机', '', 'fa-bars', '', NULL, '/info/g_machine_address', '2020-11-16 04:00:32', '2020-11-16 04:00:32');
+INSERT INTO `goadmin_menu` VALUES (31, 28, 0, 23, '矿机列表', '', 'fa-bars', '', NULL, '/info/g_machine', '2020-11-16 04:00:56', '2020-11-16 04:00:56');
+INSERT INTO `goadmin_menu` VALUES (32, 16, 0, 13, '扫一扫', '', 'fa-bars', '', NULL, '/info/g_account_scan', '2020-11-25 03:26:55', '2020-11-25 11:27:54');
+INSERT INTO `goadmin_menu` VALUES (33, 16, 0, 14, '划转管理', '', 'fa-bars', '', NULL, '/info/g_account_transfer', '2020-11-25 03:29:22', '2020-11-25 03:29:22');
+INSERT INTO `goadmin_menu` VALUES (34, 0, 0, 15, '币种管理', '', 'fa-bars', '', NULL, '', '2020-11-25 03:30:53', '2020-11-25 03:30:53');
+INSERT INTO `goadmin_menu` VALUES (35, 34, 0, 15, '币种配置', '', 'fa-bars', '', NULL, '/info/g_address_config', '2020-11-25 03:31:54', '2020-11-25 03:31:54');
+INSERT INTO `goadmin_menu` VALUES (36, 34, 0, 16, '币种归集', '', 'fa-bars', '', NULL, '/info/g_address_collect', '2020-11-25 03:32:13', '2020-11-25 03:32:13');
+INSERT INTO `goadmin_menu` VALUES (37, 34, 0, 17, '充币管理', '', 'fa-bars', '', NULL, '/info/g_address_deposit', '2020-11-25 03:32:42', '2020-11-25 03:32:42');
+INSERT INTO `goadmin_menu` VALUES (38, 34, 0, 18, '提币管理', '', 'fa-bars', '', NULL, '/info/g_address_withdraw', '2020-11-25 03:33:01', '2020-11-25 03:33:01');
+INSERT INTO `goadmin_menu` VALUES (39, 28, 0, 26, '兑换配置', '', 'fa-bars', '', NULL, '/info/g_machine_config', '2020-11-25 04:55:00', '2020-11-25 04:55:00');
+INSERT INTO `goadmin_menu` VALUES (40, 28, 0, 27, '兑换管理', '', 'fa-bars', '', NULL, '/info/g_machine_convert', '2020-11-25 04:55:41', '2020-11-25 04:55:41');
+INSERT INTO `goadmin_menu` VALUES (41, 28, 0, 28, '达人等级', '', 'fa-bars', '', NULL, '/info/g_machine_level', '2020-11-25 04:56:10', '2020-11-25 04:56:10');
 
 -- ----------------------------
 -- Table structure for goadmin_operation_log
@@ -996,6 +1006,16 @@ INSERT INTO `goadmin_role_menu` VALUES (1, 29, '2020-11-16 04:00:06', '2020-11-1
 INSERT INTO `goadmin_role_menu` VALUES (1, 30, '2020-11-16 04:00:32', '2020-11-16 04:00:32');
 INSERT INTO `goadmin_role_menu` VALUES (1, 31, '2020-11-16 04:00:56', '2020-11-16 04:00:56');
 INSERT INTO `goadmin_role_menu` VALUES (1, 28, '2020-11-16 04:01:05', '2020-11-16 04:01:05');
+INSERT INTO `goadmin_role_menu` VALUES (1, 32, '2020-11-25 03:28:01', '2020-11-25 03:28:01');
+INSERT INTO `goadmin_role_menu` VALUES (1, 33, '2020-11-25 03:29:22', '2020-11-25 03:29:22');
+INSERT INTO `goadmin_role_menu` VALUES (1, 34, '2020-11-25 03:30:53', '2020-11-25 03:30:53');
+INSERT INTO `goadmin_role_menu` VALUES (1, 35, '2020-11-25 03:31:54', '2020-11-25 03:31:54');
+INSERT INTO `goadmin_role_menu` VALUES (1, 36, '2020-11-25 03:32:13', '2020-11-25 03:32:13');
+INSERT INTO `goadmin_role_menu` VALUES (1, 37, '2020-11-25 03:32:42', '2020-11-25 03:32:42');
+INSERT INTO `goadmin_role_menu` VALUES (1, 38, '2020-11-25 03:33:01', '2020-11-25 03:33:01');
+INSERT INTO `goadmin_role_menu` VALUES (1, 39, '2020-11-25 04:55:00', '2020-11-25 04:55:00');
+INSERT INTO `goadmin_role_menu` VALUES (1, 40, '2020-11-25 04:55:41', '2020-11-25 04:55:41');
+INSERT INTO `goadmin_role_menu` VALUES (1, 41, '2020-11-25 04:56:10', '2020-11-25 04:56:10');
 
 -- ----------------------------
 -- Table structure for goadmin_role_permissions

@@ -1,11 +1,14 @@
 package tables
 
 import (
+	"errors"
 	"github.com/GoAdminGroup/go-admin/context"
 	"github.com/GoAdminGroup/go-admin/modules/db"
+	form2 "github.com/GoAdminGroup/go-admin/plugins/admin/modules/form"
 	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/table"
 	"github.com/GoAdminGroup/go-admin/template/types"
 	"github.com/GoAdminGroup/go-admin/template/types/form"
+	editType "github.com/GoAdminGroup/go-admin/template/types/table"
 )
 
 func GetGAddressWithdrawTable(ctx *context.Context) (userTable table.Table) {
@@ -51,22 +54,44 @@ func GetGAddressWithdrawTable(ctx *context.Context) (userTable table.Table) {
 		if model.Value == "2" {
 			return "成功"
 		}
-		if model.Value == "3" {
-			return "通过"
-		}
-		if model.Value == "4" {
-			return "不通过"
-		}
-		if model.Value == "5" {
-			return "取消"
-		}
 		return "未知"
+	}).FieldEditAble(editType.Switch).FieldEditOptions(types.FieldOptions{
+		{Value: "1", Text: "审核中"},
+		{Value: "2", Text: "成功"},
+	}).FieldFilterable(types.FilterType{FormType: form.SelectSingle}).FieldFilterOptions(types.FieldOptions{
+		{Value: "1", Text: "审核中"},
+		{Value: "2", Text: "成功"},
 	})
 
 	info.AddField("CreatedAt", "created_at", db.Timestamp).FieldFilterable(types.FilterType{FormType: form.DatetimeRange})
 	info.AddField("UpdatedAt", "updated_at", db.Timestamp)
 
 	info.SetTable("g_address_withdraw").SetTitle("提现管理")
+
+	formList := userTable.GetForm()
+	formList.AddField("ID", "id", db.Bigint, form.Default).FieldDisableWhenCreate()
+	formList.AddField("状态", "status", db.Int, form.Radio).
+		FieldOptions(types.FieldOptions{
+			{Text: "审核中", Value: "1"},
+			{Text: "成功", Value: "2"},
+		})
+	formList.AddField("UpdatedAt", "updated_at", db.Timestamp, form.Default).FieldDisableWhenCreate()
+	formList.AddField("CreatedAt", "created_at", db.Timestamp, form.Default).FieldDisableWhenCreate()
+
+	formList.SetTable("g_address_withdraw").SetTitle("提现修改")
+
+	formList.SetPostValidator(func(values form2.Values) error {
+		statusM, err := db.WithDriver(globalConn).Table("g_address_withdraw").Select("status").
+			Where("id", "=", values.Get("id")).First()
+		if err != nil {
+			return err
+		}
+		if statusM["status"].(int64) == 2 {
+			return errors.New("订单已通过")
+		}
+
+		return nil
+	})
 
 	return
 }
