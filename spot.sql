@@ -457,7 +457,7 @@ CREATE TABLE `g_address_deposit`  (
   `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `idx_tx_id`(`tx_id`) USING BTREE,
-  INDEX `idx_coin` (`coin`) USING BTREE,
+  INDEX `idx_coin`(`coin`) USING BTREE,
   INDEX `idx_created_at`(`created_at`) USING BTREE,
   INDEX `idx_user_id`(`user_id`) USING BTREE,
   INDEX `idx_block_num_status`(`block_num`,`status`) USING BTREE
