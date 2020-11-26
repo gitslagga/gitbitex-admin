@@ -427,6 +427,7 @@ CREATE TABLE `g_address_config`  (
   `status` int(0) UNSIGNED NOT NULL COMMENT '1-off,2-on',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `idx_coin`(`coin`) USING BTREE,
+  UNIQUE INDEX `idx_contract_address`(`contract_address`) USING BTREE,
   INDEX `idx_status`(`status`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '币种配置表' ROW_FORMAT = Dynamic;
 
