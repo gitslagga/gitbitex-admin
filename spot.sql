@@ -472,7 +472,7 @@ CREATE TABLE `g_address_withdraw`  (
   `id` bigint(0) UNSIGNED NOT NULL AUTO_INCREMENT,
   `coin` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `tx_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
-  `block_num` bigint(0) NOT NULL,
+  `block_num` bigint(0) UNSIGNED NOT NULL DEFAULT '0',
   `user_id` bigint(0) UNSIGNED NOT NULL,
   `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `value` decimal(32, 8) NOT NULL,
