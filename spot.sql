@@ -236,7 +236,6 @@ CREATE TABLE `g_account`  (
   `currency` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `hold` decimal(32, 8) UNSIGNED NOT NULL,
   `available` decimal(32, 8) UNSIGNED NOT NULL,
-  `calculate` decimal(32, 8) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `idx_uid_currency`(`user_id`, `currency`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
@@ -257,7 +256,6 @@ CREATE TABLE `g_account_asset`  (
   `currency` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `hold` decimal(32, 8) UNSIGNED NOT NULL,
   `available` decimal(32, 8) UNSIGNED NOT NULL,
-  `calculate` decimal(32, 8) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `idx_uid_currency`(`user_id`, `currency`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
@@ -278,7 +276,6 @@ CREATE TABLE `g_account_pool`  (
   `currency` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `hold` decimal(32, 8) UNSIGNED NOT NULL,
   `available` decimal(32, 8) UNSIGNED NOT NULL,
-  `calculate` decimal(32, 8) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `idx_uid_currency`(`user_id`, `currency`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
@@ -324,7 +321,6 @@ CREATE TABLE `g_account_shop`  (
   `currency` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `hold` decimal(32, 8) UNSIGNED NOT NULL,
   `available` decimal(32, 8) UNSIGNED NOT NULL,
-  `calculate` decimal(32, 8) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `idx_uid_currency`(`user_id`, `currency`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
