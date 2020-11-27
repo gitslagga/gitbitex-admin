@@ -475,13 +475,14 @@ CREATE TABLE `g_address_withdraw`  (
   `block_num` bigint(0) UNSIGNED NOT NULL DEFAULT '0',
   `user_id` bigint(0) UNSIGNED NOT NULL,
   `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `order_sn` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '订单号',
   `value` decimal(32, 8) NOT NULL,
   `actual` decimal(32, 8) UNSIGNED NOT NULL COMMENT '实际到账数量',
   `status` int(0) UNSIGNED NOT NULL DEFAULT 0 COMMENT '1-审核中,2-成功,3-通过,4-不通过,5-取消',
   `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
   `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `idx_tx_id`(`tx_id`) USING BTREE,
+  UNIQUE INDEX `idx_order_sn`(`order_sn`) USING BTREE,
   INDEX `idx_created_at`(`created_at`) USING BTREE,
   INDEX `idx_user_id`(`user_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
