@@ -48,7 +48,7 @@ func GetGAddressWithdrawTable(ctx *context.Context) (userTable table.Table) {
 	info.AddField("币种", "coin", db.Varchar).FieldFilterable(types.FilterType{Operator: types.FilterOperatorLike})
 	info.AddField("交易ID", "tx_id", db.Varchar).FieldWidth(150)
 	info.AddField("区块高度", "block_num", db.Bigint)
-	info.AddColumn("充值地址", func(value types.FieldModel) interface{} {
+	info.AddColumn("转出地址", func(value types.FieldModel) interface{} {
 		first, _ := value.Row["address"].(string)
 		return first
 	}).FieldWidth(150)
@@ -118,6 +118,7 @@ func GetGAddressWithdrawTable(ctx *context.Context) (userTable table.Table) {
 			return err
 		}
 
+		//TODO fix double modify withdraw status
 		return nil
 	})
 
