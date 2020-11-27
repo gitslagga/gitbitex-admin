@@ -11,14 +11,9 @@ import (
 	"github.com/GoAdminGroup/go-admin/template/types"
 	"github.com/GoAdminGroup/go-admin/template/types/form"
 	editType "github.com/GoAdminGroup/go-admin/template/types/table"
+	"github.com/gitslagga/gitbitex-admin/models"
 	"github.com/skip2/go-qrcode"
 )
-
-var globalConn db.Connection
-
-func SetConn(conn db.Connection) {
-	globalConn = conn
-}
 
 func GetGAccountScanTable(ctx *context.Context) (userTable table.Table) {
 
@@ -100,7 +95,7 @@ func GetGAccountScanTable(ctx *context.Context) (userTable table.Table) {
 	formList.SetTable("g_account_scan").SetTitle("扫一扫修改")
 
 	formList.SetPostValidator(func(values form2.Values) error {
-		statusM, err := db.WithDriver(globalConn).Table("g_account_scan").Select("status").
+		statusM, err := db.WithDriver(models.GlobalConn).Table("g_account_scan").Select("status").
 			Where("id", "=", values.Get("id")).First()
 		if err != nil {
 			return err

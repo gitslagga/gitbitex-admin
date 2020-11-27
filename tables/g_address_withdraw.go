@@ -101,7 +101,7 @@ func GetGAddressWithdrawTable(ctx *context.Context) (userTable table.Table) {
 	formList.SetTable("g_address_withdraw").SetTitle("提现修改")
 
 	formList.SetPostValidator(func(values form2.Values) error {
-		statusM, err := db.WithDriver(globalConn).Table("g_address_withdraw").Where("id", "=", values.Get("id")).First()
+		statusM, err := db.WithDriver(models.GlobalConn).Table("g_address_withdraw").Where("id", "=", values.Get("id")).First()
 		if err != nil {
 			return err
 		}
