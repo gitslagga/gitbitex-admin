@@ -105,8 +105,8 @@ func GetGAccountScanTable(ctx *context.Context) (userTable table.Table) {
 		if err != nil {
 			return err
 		}
-		if statusM["status"].(int64) == 2 {
-			return errors.New("订单已支付")
+		if statusM["status"].(int64) != 1 {
+			return errors.New("订单已处理")
 		}
 
 		return nil
