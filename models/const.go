@@ -11,7 +11,12 @@ func SetConn(conn db.Connection) {
 
 //{"respCode":0,"respDesc":"SUCCESS"}
 type CommonResp struct {
-	RespCode int         `json:"respCode"`
-	RespDesc string      `json:"respDesc"`
-	RespData interface{} `json:"respData"`
+	RespCode int    `json:"respCode"`
+	RespDesc string `json:"respDesc"`
+}
+
+type IssueResp struct {
+	RespCode int                      `json:"respCode"`
+	RespDesc string                   `json:"respDesc"`
+	RespData []map[string]interface{} `json:"respData"`
 }

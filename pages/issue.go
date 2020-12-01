@@ -51,11 +51,12 @@ func GetIssueContent(ctx *gin.Context) (types.Panel, error) {
 	body := table.GetContent()
 
 	btn1 := template.HTML(`<div style="float: right;">
-		<button type="button" id="issue_release" class="btn btn-sm btn-primary grid-refresh">开始认购</button>
+		<button type="button" id="issue_release" class="btn btn-sm btn-primary">开始认购</button>
 		<script type="text/javascript">
 			$("#issue_release").click(function(){
                 $.post('` + models.FrontEndApi + `/backend/issue/start', {},
 				function (data) {
+					console.log(data);
 					$.pjax.reload('#pjax-container');
 					toastr.success('认购成功!');
 				});
@@ -100,7 +101,7 @@ func getIssueList() ([]map[string]interface{}, error) {
 		return nil, err
 	}
 
-	var resp models.CommonResp
+	var resp models.IssueResp
 	err = json.Unmarshal(body, &resp)
 	if err != nil {
 		return nil, err
@@ -109,15 +110,5 @@ func getIssueList() ([]map[string]interface{}, error) {
 		return nil, errors.New(resp.RespDesc)
 	}
 
-	issueListB, err := json.Marshal(resp.RespData)
-	if err != nil {
-		return nil, err
-	}
-	issueListM := make([]map[string]interface{}, 0)
-	err = json.Unmarshal(issueListB, &issueListM)
-	if err != nil {
-		return nil, err
-	}
-
-	return issueListM, nil
+	return resp.RespData, nil
 }
