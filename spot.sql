@@ -258,7 +258,7 @@ CREATE TABLE `g_account_asset`  (
   `available` decimal(32, 8) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `idx_uid_currency`(`user_id`, `currency`) USING BTREE,
-  INDEX `idx_currency_available`(`currency`,`available`) USING BTREE
+  INDEX `idx_currency_available`(`currency`, `available`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
