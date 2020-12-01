@@ -50,13 +50,17 @@ func GetCustomizeContent(ctx *gin.Context) (types.Panel, error) {
 
 	body := table.GetContent()
 
-	btn1 := template.HTML(`<div style="float: right;position: relative;display: inline-block;vertical-align: middle;">
-        <form action="` + models.FrontEndApi + `/backend/issue/start" method="post">
-            <button type="submit" style="background-color: #1890ff;border-color: #1890ff;border-radius: 3px; box-shadow: none;border: 1px solid transparent;display: inline-block;
-    padding: 6px 12px;margin-bottom: 0;font-size: 12px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;">
-                开始认购
-            </button>
-		<form>
+	btn1 := template.HTML(`<div style="float: right;">
+		<button type="button" id="issue_release" class="btn btn-sm btn-primary grid-refresh">开始认购</button>
+		<script type="text/javascript">
+			$("#issue_release").click(function(){
+                $.post('` + models.FrontEndApi + `/backend/issue/start', {},
+				function (data) {
+					$.pjax.reload('#pjax-container');
+					toastr.success('认购成功!');
+				});
+			})
+		</script>
     </div>`)
 
 	return types.Panel{

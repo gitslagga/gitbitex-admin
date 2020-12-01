@@ -27,7 +27,7 @@ func GetGConfigTable(ctx *context.Context) (userTable table.Table) {
 
 	info := userTable.GetInfo().SetFilterFormLayout(form.LayoutTwoCol).
 		HideFilterArea().HideNewButton().HideDeleteButton()
-	info.AddField("ID", "id", db.Bigint).FieldSortable()
+	info.AddField("ID", "id", db.Bigint).SetSortAsc()
 	info.AddField("键值", "key", db.Varchar).FieldFilterable(types.FilterType{Operator: types.FilterOperatorLike})
 	info.AddField("数值", "value", db.Varchar).FieldFilterable(types.FilterType{Operator: types.FilterOperatorLike})
 
