@@ -71,6 +71,9 @@ func main() {
 			return pages.GetDashBoard2Content(ctx)
 		}
 	}))
+	r.GET("/admin/issue", ada.Content(pages.GetIssueContent))
+	r.GET("/admin/holding", ada.Content(pages.GetIssueContent))
+	r.GET("/admin/promote", ada.Content(pages.GetIssueContent))
 	r.GET("/admin/echarts", ada.Content(pages.GetDashBoard3Content))
 	r.GET("/admin/table", ada.Content(pages.GetTableContent))
 

@@ -435,7 +435,7 @@ CREATE TABLE `g_address_config`  (
 -- ----------------------------
 -- Records of g_address_config
 -- ----------------------------
-INSERT INTO `g_address_config` VALUES (1, '2020-11-21 03:25:02', '2020-11-25 14:47:41', 'USDT', 6, 1.00000000, 100.00000000, 0.05000000, '0xdac17f958d2ee523a2206206994597c13d831ec7', '0xA266e3226426Af7F30aE133FC0fDCDD761e69aAC', '0xA266e3226426Af7F30aE133FC0fDCDD761e69aAC', 2);
+INSERT INTO `g_address_config` VALUES (1, '2020-11-21 03:25:02', '2020-11-25 14:47:41', 'USDT', 6, 1.00000000, 100.00000000, 0.05000000, '0xdac17f958d2ee523a2206206994597c13d831ec7', '0xA266e3226426Af7F30aE133FC0fDCDD761e69aAC', '0x1C49b8CCee62b15F750C8D96e0258fB09B109F50', 2);
 
 -- ----------------------------
 -- Table structure for g_address_deposit
@@ -458,7 +458,7 @@ CREATE TABLE `g_address_deposit`  (
   INDEX `idx_coin`(`coin`) USING BTREE,
   INDEX `idx_created_at`(`created_at`) USING BTREE,
   INDEX `idx_user_id`(`user_id`) USING BTREE,
-  INDEX `idx_block_num_status`(`block_num`,`status`) USING BTREE
+  INDEX `idx_block_num_status`(`block_num`, `status`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -473,7 +473,7 @@ CREATE TABLE `g_address_withdraw`  (
   `id` bigint(0) UNSIGNED NOT NULL AUTO_INCREMENT,
   `coin` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `tx_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
-  `block_num` bigint(0) UNSIGNED NOT NULL DEFAULT '0',
+  `block_num` bigint(0) UNSIGNED NOT NULL DEFAULT 0,
   `user_id` bigint(0) UNSIGNED NOT NULL,
   `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `order_sn` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '订单号',
@@ -579,6 +579,75 @@ CREATE TABLE `g_fill`  (
 
 -- ----------------------------
 -- Records of g_fill
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for g_issue
+-- ----------------------------
+DROP TABLE IF EXISTS `g_issue`;
+CREATE TABLE `g_issue`  (
+  `id` bigint(0) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+  `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
+  `user_id` bigint(0) UNSIGNED NOT NULL,
+  `coin` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '认购币种',
+  `number` decimal(32, 8) UNSIGNED NOT NULL COMMENT '认购数量',
+  `remain` decimal(32, 8) UNSIGNED NOT NULL COMMENT '剩余释放数量',
+  `count` int(0) UNSIGNED NOT NULL COMMENT '释放次数',
+  `release_one` decimal(32, 8) UNSIGNED NOT NULL COMMENT '前三月每天释放量',
+  `release_two` decimal(32, 8) UNSIGNED NOT NULL COMMENT '中三月每天释放量',
+  `release_three` decimal(32, 8) UNSIGNED NOT NULL COMMENT '再三月每天释放量',
+  `release_four` decimal(32, 8) UNSIGNED NOT NULL COMMENT '后一月每天释放量',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `idx_created_at`(`created_at`) USING BTREE,
+  INDEX `idx_user_id`(`user_id`) USING BTREE,
+  INDEX `idx_remain`(`remain`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of g_issue
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for g_issue_config
+-- ----------------------------
+DROP TABLE IF EXISTS `g_issue_config`;
+CREATE TABLE `g_issue_config`  (
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
+  `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+  `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
+  `key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `value` decimal(32, 8) UNSIGNED NOT NULL COMMENT '每月释放量',
+  `number` decimal(32, 8) UNSIGNED NOT NULL COMMENT '每天释放量',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '通用配置表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of g_issue_config
+-- ----------------------------
+INSERT INTO `g_issue_config` VALUES (1, '2020-11-27 18:19:28', '2020-11-27 19:23:17', '前三月每月释放量', 0.05000000, 0.00166667);
+INSERT INTO `g_issue_config` VALUES (2, '2020-11-27 18:19:44', '2020-11-27 19:23:25', '中三月每月释放量', 0.10000000, 0.00333333);
+INSERT INTO `g_issue_config` VALUES (3, '2020-11-27 18:20:16', '2020-11-27 19:23:34', '再三月每月释放量', 0.15000000, 0.00500000);
+INSERT INTO `g_issue_config` VALUES (4, '2020-11-27 18:20:30', '2020-11-27 19:15:12', '后一月每月释放量', 0.10000000, 0.00333333);
+
+-- ----------------------------
+-- Table structure for g_issue_log
+-- ----------------------------
+DROP TABLE IF EXISTS `g_issue_log`;
+CREATE TABLE `g_issue_log`  (
+  `id` bigint(0) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(0) UNSIGNED NOT NULL COMMENT '用户ID',
+  `issue_id` bigint(0) UNSIGNED NOT NULL COMMENT '认购ID',
+  `number` decimal(32, 8) UNSIGNED NOT NULL COMMENT '释放数量',
+  `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+  `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `idx_user_id`(`user_id`) USING BTREE,
+  INDEX `idx_machine_address_id`(`issue_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '挖矿日志表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of g_issue_log
 -- ----------------------------
 
 -- ----------------------------

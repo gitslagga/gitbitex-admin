@@ -15,7 +15,7 @@ import (
 	"strings"
 )
 
-func GetCustomizeContent(ctx *gin.Context) (types.Panel, error) {
+func GetIssueContent(ctx *gin.Context) (types.Panel, error) {
 	comp := template2.Get(config.GetTheme())
 
 	issueList, err := getIssueList()
@@ -118,8 +118,6 @@ func getIssueList() ([]map[string]interface{}, error) {
 	if err != nil {
 		return nil, err
 	}
-
-	fmt.Println(issueListM)
 
 	return issueListM, nil
 }
