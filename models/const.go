@@ -20,3 +20,14 @@ type IssueResp struct {
 	RespDesc string                   `json:"respDesc"`
 	RespData []map[string]interface{} `json:"respData"`
 }
+
+type HoldingResp struct {
+	RespCode int         `json:"respCode"`
+	RespDesc string      `json:"respDesc"`
+	RespData HoldingData `json:"respData"`
+}
+
+type HoldingData struct {
+	HoldingMap  []map[string]interface{} `json:"holding_map"`
+	BestHolding string                   `json:"best_holding"`
+}
