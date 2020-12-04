@@ -109,6 +109,5 @@ func getPromoteList() ([]map[string]interface{}, error) {
 		return nil, errors.New(resp.RespDesc)
 	}
 
-	fmt.Println(resp)
 	return resp.RespData, nil
 }
