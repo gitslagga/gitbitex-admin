@@ -27,7 +27,6 @@ func GetHoldingContent(ctx *gin.Context) (types.Panel, error) {
 	bestHolding := response.BestHolding
 
 	var infoList = make([]map[string]types.InfoItem, len(holdingList))
-	var profit string
 	for k, v := range holdingList {
 		infoList[k] = make(map[string]types.InfoItem)
 		infoList[k]["id"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["Id"]))}
@@ -35,13 +34,7 @@ func GetHoldingContent(ctx *gin.Context) (types.Panel, error) {
 		infoList[k]["currency"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["Currency"]))}
 		infoList[k]["available"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["Available"]))}
 		infoList[k]["rank"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["Rank"]))}
-
-		profit = fmt.Sprintf("%v", v["Profit"])
-		if strings.Index(profit, ".") > 0 && len(profit[strings.Index(profit, "."):]) > 9 {
-			infoList[k]["profit"] = types.InfoItem{Content: template.HTML(profit[:strings.Index(profit, ".")+9])}
-		} else {
-			infoList[k]["profit"] = types.InfoItem{Content: template.HTML(profit)}
-		}
+		infoList[k]["profit"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["Profit"]))}
 	}
 
 	table := comp.DataTable().

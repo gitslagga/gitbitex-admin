@@ -24,7 +24,6 @@ func GetPromoteContent(ctx *gin.Context) (types.Panel, error) {
 	}
 
 	var infoList = make([]map[string]types.InfoItem, len(promoteList))
-	var profit string
 	for k, v := range promoteList {
 		infoList[k] = make(map[string]types.InfoItem)
 		infoList[k]["parent_id"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["ParentId"]))}
@@ -33,18 +32,12 @@ func GetPromoteContent(ctx *gin.Context) (types.Panel, error) {
 		infoList[k]["power"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["Power"]))}
 		infoList[k]["total_power"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["TotalPower"]))}
 		infoList[k]["count_son"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["CountSon"]))}
-
-		profit = fmt.Sprintf("%v", v["Profit"])
-		if strings.Index(profit, ".") > 0 && len(profit[strings.Index(profit, "."):]) > 9 {
-			infoList[k]["profit"] = types.InfoItem{Content: template.HTML(profit[:strings.Index(profit, ".")+9])}
-		} else {
-			infoList[k]["profit"] = types.InfoItem{Content: template.HTML(profit)}
-		}
+		infoList[k]["profit"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["Profit"]))}
 	}
 
 	table := comp.DataTable().
 		SetInfoList(infoList).
-		SetPrimaryKey("id").
+		SetPrimaryKey("parent_id").
 		SetThead(types.Thead{
 			{Head: "用户ID", Field: "parent_id"},
 			{Head: "币种", Field: "currency"},
@@ -56,7 +49,7 @@ func GetPromoteContent(ctx *gin.Context) (types.Panel, error) {
 
 	body := table.GetContent()
 
-	btn1 := template.HTML(`
+	btn1 := template.HTML(`<div style="float: right;">
 		<button type="button" id="holding_release" class="btn btn-sm btn-primary">收益释放</button>
 		<script type="text/javascript">
 			$("#holding_release").click(function(){
@@ -116,5 +109,6 @@ func getPromoteList() ([]map[string]interface{}, error) {
 		return nil, errors.New(resp.RespDesc)
 	}
 
+	fmt.Println(resp)
 	return resp.RespData, nil
 }
