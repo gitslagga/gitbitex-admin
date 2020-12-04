@@ -30,9 +30,9 @@ func GetIssueContent(ctx *gin.Context) (types.Panel, error) {
 		infoList[k]["user_id"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["UserId"]))}
 		infoList[k]["currency"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["Currency"]))}
 		infoList[k]["available"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["Available"]))}
-		infoList[k]["deduction"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["deduction"]))}
-		infoList[k]["rate"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["rate"]))}
-		infoList[k]["release"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["release"]))}
+		infoList[k]["deduction"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["Deduction"]))}
+		infoList[k]["rate"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["Rate"]))}
+		infoList[k]["release"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["Release"]))}
 	}
 
 	table := comp.DataTable().

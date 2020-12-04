@@ -15,26 +15,24 @@ import (
 	"strings"
 )
 
-func GetHoldingContent(ctx *gin.Context) (types.Panel, error) {
+func GetPromoteContent(ctx *gin.Context) (types.Panel, error) {
 	comp := template2.Get(config.GetTheme())
 
-	response, err := getHoldingList()
+	promoteList, err := getPromoteList()
 	if err != nil {
 		return types.Panel{}, err
 	}
 
-	holdingList := response.HoldingMap
-	bestHolding := response.BestHolding
-
-	var infoList = make([]map[string]types.InfoItem, len(holdingList))
+	var infoList = make([]map[string]types.InfoItem, len(promoteList))
 	var profit string
-	for k, v := range holdingList {
+	for k, v := range promoteList {
 		infoList[k] = make(map[string]types.InfoItem)
-		infoList[k]["id"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["Id"]))}
-		infoList[k]["user_id"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["UserId"]))}
+		infoList[k]["parent_id"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["ParentId"]))}
 		infoList[k]["currency"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["Currency"]))}
-		infoList[k]["available"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["Available"]))}
-		infoList[k]["rank"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["Rank"]))}
+		infoList[k]["profit"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["Profit"]))}
+		infoList[k]["power"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["Power"]))}
+		infoList[k]["total_power"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["TotalPower"]))}
+		infoList[k]["count_son"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["CountSon"]))}
 
 		profit = fmt.Sprintf("%v", v["Profit"])
 		if strings.Index(profit, ".") > 0 && len(profit[strings.Index(profit, "."):]) > 9 {
@@ -48,22 +46,21 @@ func GetHoldingContent(ctx *gin.Context) (types.Panel, error) {
 		SetInfoList(infoList).
 		SetPrimaryKey("id").
 		SetThead(types.Thead{
-			{Head: "ID", Field: "id"},
-			{Head: "用户ID", Field: "user_id"},
+			{Head: "用户ID", Field: "parent_id"},
 			{Head: "币种", Field: "currency"},
-			{Head: "可用数量", Field: "available"},
-			{Head: "持币量排名", Field: "rank"},
 			{Head: "持币收益", Field: "profit"},
+			{Head: "用户算力", Field: "power"},
+			{Head: "总算力", Field: "total_power"},
+			{Head: "下级用户数量", Field: "count_son"},
 		})
 
 	body := table.GetContent()
 
 	btn1 := template.HTML(`
-		<label class="btn btn-sm btn-primary">最佳持币量：` + bestHolding + `</label><div style="float: right;">
 		<button type="button" id="holding_release" class="btn btn-sm btn-primary">收益释放</button>
 		<script type="text/javascript">
 			$("#holding_release").click(function(){
-                $.post('` + models.FrontEndApi + `/backend/holding/start', {},
+                $.post('` + models.FrontEndApi + `/backend/promote/start', {},
 				function (data) {
 					console.log(data);
 					$.pjax.reload('#pjax-container');
@@ -80,13 +77,13 @@ func GetHoldingContent(ctx *gin.Context) (types.Panel, error) {
 			SetHeader(table.GetDataTableHeader() + btn1).
 			WithHeadBorder().
 			GetContent(),
-		Title:       "持币",
-		Description: "持币收益",
+		Title:       "推广",
+		Description: "推广收益",
 	}, nil
 }
 
-func getHoldingList() (*models.HoldingData, error) {
-	url := models.FrontEndApi + "/backend/holding/list"
+func getPromoteList() ([]map[string]interface{}, error) {
+	url := models.FrontEndApi + "/backend/promote/list"
 	method := "GET"
 
 	payload := strings.NewReader(``)
@@ -110,7 +107,7 @@ func getHoldingList() (*models.HoldingData, error) {
 		return nil, err
 	}
 
-	var resp models.HoldingResp
+	var resp models.PromoteResp
 	err = json.Unmarshal(body, &resp)
 	if err != nil {
 		return nil, err
@@ -119,5 +116,5 @@ func getHoldingList() (*models.HoldingData, error) {
 		return nil, errors.New(resp.RespDesc)
 	}
 
-	return &resp.RespData, nil
+	return resp.RespData, nil
 }

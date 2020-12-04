@@ -28,6 +28,12 @@ type HoldingResp struct {
 }
 
 type HoldingData struct {
-	HoldingMap  []map[string]interface{} `json:"holding_map"`
-	BestHolding string                   `json:"best_holding"`
+	HoldingMap  []map[string]interface{} `json:"HoldingMap"`
+	BestHolding string                   `json:"BestHolding"`
+}
+
+type PromoteResp struct {
+	RespCode int                      `json:"respCode"`
+	RespDesc string                   `json:"respDesc"`
+	RespData []map[string]interface{} `json:"respData"`
 }
