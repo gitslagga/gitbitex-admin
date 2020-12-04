@@ -28,7 +28,6 @@ func GetPromoteContent(ctx *gin.Context) (types.Panel, error) {
 		infoList[k] = make(map[string]types.InfoItem)
 		infoList[k]["parent_id"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["ParentId"]))}
 		infoList[k]["currency"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["Currency"]))}
-		infoList[k]["profit"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["Profit"]))}
 		infoList[k]["power"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["Power"]))}
 		infoList[k]["total_power"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["TotalPower"]))}
 		infoList[k]["count_son"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["CountSon"]))}
@@ -41,10 +40,10 @@ func GetPromoteContent(ctx *gin.Context) (types.Panel, error) {
 		SetThead(types.Thead{
 			{Head: "用户ID", Field: "parent_id"},
 			{Head: "币种", Field: "currency"},
-			{Head: "持币收益", Field: "profit"},
 			{Head: "用户算力", Field: "power"},
 			{Head: "总算力", Field: "total_power"},
 			{Head: "下级用户数量", Field: "count_son"},
+			{Head: "持币收益", Field: "profit"},
 		})
 
 	body := table.GetContent()
