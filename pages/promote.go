@@ -23,7 +23,14 @@ func GetPromoteContent(ctx *gin.Context) (types.Panel, error) {
 		return types.Panel{}, err
 	}
 
-	//TODO sort promote list by parent_id
+	// 排序需要时间，不建议开启
+	//for i := 0; i< len(promoteList)-1;i++ {
+	//	for j := i+1; j < len(promoteList);j++ {
+	//		if promoteList[i]["ParentId"].(float64) > promoteList[j]["ParentId"].(float64) {
+	//			promoteList[i], promoteList[j] = promoteList[j], promoteList[i]
+	//		}
+	//	}
+	//}
 
 	var infoList = make([]map[string]types.InfoItem, len(promoteList))
 	for k, v := range promoteList {
