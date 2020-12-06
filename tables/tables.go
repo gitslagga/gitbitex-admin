@@ -48,4 +48,10 @@ var Generators = map[string]table.Generator{
 	"g_machine_config":  GetGMachineConfigTable,
 	"g_machine_convert": GetGMachineConvertTable,
 	"g_machine_level":   GetGMachineLevelTable,
+
+	"g_issue":           GetGIssueTable,
+	"g_issue_config":    GetGIssueConfigTable,
+	"g_issue_log":       GetGIssueLogTable,
+	"g_address_holding": GetGAddressHoldingTable,
+	"g_address_promote": GetGAddressPromoteTable,
 }
