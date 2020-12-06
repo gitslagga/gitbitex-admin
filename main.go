@@ -32,7 +32,6 @@ import (
 
 func main() {
 	//gin.SetMode(gin.ReleaseMode)
-	//r := gin.New()
 	r := gin.Default()
 
 	eng := engine.Default()

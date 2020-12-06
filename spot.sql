@@ -435,7 +435,7 @@ CREATE TABLE `g_address_config`  (
 -- ----------------------------
 -- Records of g_address_config
 -- ----------------------------
-INSERT INTO `g_address_config` VALUES (1, '2020-11-21 03:25:02', '2020-11-25 14:47:41', 'USDT', 6, 1.00000000, 100.00000000, 0.05000000, '0xdac17f958d2ee523a2206206994597c13d831ec7', '0xA266e3226426Af7F30aE133FC0fDCDD761e69aAC', '0x1C49b8CCee62b15F750C8D96e0258fB09B109F50', 2);
+INSERT INTO `g_address_config` VALUES (1, '2020-11-21 03:25:02', '2020-11-25 14:47:41', 'USDT', 6, 1.00000000, 100.00000000, 0.05000000, '0xdac17f958d2ee523a2206206994597c13d831ec7', '0x82d2658D3fF713fbDA59f39aEA584975D7442407', '0x2ee03Fbc52fEe0e2F967EC4e7f69BC1923cd869A', 2);
 
 -- ----------------------------
 -- Table structure for g_address_deposit
