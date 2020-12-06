@@ -23,6 +23,8 @@ func GetPromoteContent(ctx *gin.Context) (types.Panel, error) {
 		return types.Panel{}, err
 	}
 
+	//TODO sort promote list by parent_id
+
 	var infoList = make([]map[string]types.InfoItem, len(promoteList))
 	for k, v := range promoteList {
 		infoList[k] = make(map[string]types.InfoItem)

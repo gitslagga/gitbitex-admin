@@ -466,6 +466,74 @@ CREATE TABLE `g_address_deposit`  (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for g_address_holding
+-- ----------------------------
+DROP TABLE IF EXISTS `g_address_holding`;
+CREATE TABLE `g_address_holding`  (
+  `id` bigint(0) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+  `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
+  `user_id` bigint(0) UNSIGNED NOT NULL COMMENT '用户ID',
+  `coin` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '币种',
+  `total_num` decimal(32, 8) UNSIGNED NOT NULL COMMENT '总收益',
+  `number` decimal(32, 8) UNSIGNED NOT NULL COMMENT '持币收益',
+  `total_rank` int(0) UNSIGNED NOT NULL COMMENT '总排名',
+  `rank` int(0) UNSIGNED NOT NULL COMMENT '持币排名',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `idx_user_id`(`user_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '挖矿日志表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of g_address_holding
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for g_address_list
+-- ----------------------------
+DROP TABLE IF EXISTS `g_address_list`;
+CREATE TABLE `g_address_list`  (
+  `id` bigint(0) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+  `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
+  `user_id` bigint(0) UNSIGNED NOT NULL,
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `public_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `private_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `mnemonic` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `idx_address`(`address`) USING BTREE,
+  INDEX `idx_user_id`(`user_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户地址表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of g_address_list
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for g_address_promote
+-- ----------------------------
+DROP TABLE IF EXISTS `g_address_promote`;
+CREATE TABLE `g_address_promote`  (
+  `id` bigint(0) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+  `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
+  `user_id` bigint(0) UNSIGNED NOT NULL COMMENT '用户ID',
+  `coin` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '币种',
+  `number` decimal(32, 8) UNSIGNED NOT NULL COMMENT '推广收益',
+  `power` decimal(32, 8) UNSIGNED NOT NULL COMMENT '算力',
+  `total_power` decimal(32, 8) UNSIGNED NOT NULL COMMENT '总算力',
+  `count_son` int(0) UNSIGNED NOT NULL COMMENT '下级用户数量',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `idx_user_id`(`user_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '挖矿日志表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of g_address_promote
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for g_address_withdraw
 -- ----------------------------
 DROP TABLE IF EXISTS `g_address_withdraw`;
@@ -547,6 +615,8 @@ INSERT INTO `g_config` VALUES (12, '2020-11-21 03:29:10', '2020-11-21 03:40:08',
 INSERT INTO `g_config` VALUES (13, '2020-11-21 03:29:18', '2020-11-21 03:40:08', '扫一扫最高支付金额', '100');
 INSERT INTO `g_config` VALUES (14, '2020-11-21 03:29:29', '2020-11-21 03:40:06', '扫一扫每日最高限额', '500');
 INSERT INTO `g_config` VALUES (15, '2020-11-21 03:55:10', '2020-11-21 03:55:21', '扫一扫平台收取手续费', '0.05');
+INSERT INTO `g_config` VALUES (16, '2020-12-02 15:16:31', '2020-12-02 15:16:31', '矿池最低持币量', '10');
+INSERT INTO `g_config` VALUES (17, '2020-12-02 15:17:05', '2020-12-02 15:17:05', '矿池最佳持币量', '10000');
 
 -- ----------------------------
 -- Table structure for g_fill
@@ -672,13 +742,13 @@ CREATE TABLE `g_machine`  (
 -- ----------------------------
 -- Records of g_machine
 -- ----------------------------
-INSERT INTO `g_machine` VALUES (1, 'I型', 0.15000000, 50.00000000, 50, 0.00000000, 0, 0, '2020-11-13 09:03:53', '2020-11-18 08:56:40');
-INSERT INTO `g_machine` VALUES (2, 'II型', 0.15000000, 100.00000000, 40, 0.05000000, 10, 4, '2020-11-13 09:03:53', '2020-11-18 09:17:13');
-INSERT INTO `g_machine` VALUES (3, 'III型', 0.20000000, 500.00000000, 40, 0.07000000, 50, 3, '2020-11-13 09:03:53', '2020-11-18 09:17:17');
-INSERT INTO `g_machine` VALUES (4, 'IV型', 0.25000000, 2000.00000000, 40, 0.08000000, 200, 2, '2020-11-13 09:03:53', '2020-11-18 09:17:19');
-INSERT INTO `g_machine` VALUES (5, 'V型', 0.30000000, 5000.00000000, 40, 0.10000000, 500, 1, '2020-11-13 09:03:53', '2020-11-18 09:17:21');
-INSERT INTO `g_machine` VALUES (6, 'VI型', 0.35000000, 10000.00000000, 40, 0.12000000, 1000, 1, '2020-11-13 09:03:53', '2020-11-18 09:17:23');
-INSERT INTO `g_machine` VALUES (7, 'VII型', 0.40000000, 50000.00000000, 40, 0.15000000, 5000, 1, '2020-11-13 09:03:53', '2020-11-18 09:17:25');
+INSERT INTO `g_machine` VALUES (1, 'I', 0.15000000, 50.00000000, 50, 0.00000000, 0, 0, '2020-11-13 09:03:53', '2020-11-18 08:56:40');
+INSERT INTO `g_machine` VALUES (2, 'II', 0.15000000, 100.00000000, 40, 0.05000000, 10, 4, '2020-11-13 09:03:53', '2020-11-18 09:17:13');
+INSERT INTO `g_machine` VALUES (3, 'III', 0.20000000, 500.00000000, 40, 0.07000000, 50, 3, '2020-11-13 09:03:53', '2020-11-18 09:17:17');
+INSERT INTO `g_machine` VALUES (4, 'IV', 0.25000000, 2000.00000000, 40, 0.08000000, 200, 2, '2020-11-13 09:03:53', '2020-11-18 09:17:19');
+INSERT INTO `g_machine` VALUES (5, 'V', 0.30000000, 5000.00000000, 40, 0.10000000, 500, 1, '2020-11-13 09:03:53', '2020-11-18 09:17:21');
+INSERT INTO `g_machine` VALUES (6, 'VI', 0.35000000, 10000.00000000, 40, 0.12000000, 1000, 1, '2020-11-13 09:03:53', '2020-11-18 09:17:23');
+INSERT INTO `g_machine` VALUES (7, 'VII', 0.40000000, 50000.00000000, 40, 0.15000000, 5000, 1, '2020-11-13 09:03:53', '2020-11-18 09:17:25');
 
 -- ----------------------------
 -- Table structure for g_machine_address
@@ -958,45 +1028,49 @@ INSERT INTO `goadmin_menu` VALUES (4, 1, 1, 4, 'Permission', NULL, 'fa-ban', '',
 INSERT INTO `goadmin_menu` VALUES (5, 1, 1, 5, 'Menu', NULL, 'fa-bars', '', NULL, '/menu', '2019-09-10 00:00:00', '2019-09-10 00:00:00');
 INSERT INTO `goadmin_menu` VALUES (6, 1, 1, 6, 'Operation log', NULL, 'fa-history', '', NULL, '/info/op', '2019-09-10 00:00:00', '2019-09-10 00:00:00');
 INSERT INTO `goadmin_menu` VALUES (7, 0, 1, 1, 'Dashboard', NULL, 'fa-bar-chart', '', NULL, '/', '2019-09-10 00:00:00', '2019-09-10 00:00:00');
-INSERT INTO `goadmin_menu` VALUES (8, 0, 0, 33, '例子', '', 'fa-align-center', '', NULL, '', '2019-12-11 14:15:42', '2019-12-11 14:15:42');
-INSERT INTO `goadmin_menu` VALUES (9, 8, 0, 33, '用户', '', 'fa-user', '', NULL, '/info/example_user', '2019-09-12 07:15:07', '2020-11-13 17:09:30');
-INSERT INTO `goadmin_menu` VALUES (10, 8, 0, 36, '作者', '', 'fa-users', '', NULL, '/info/example_author', '2019-09-12 07:16:04', '2020-11-13 17:10:26');
-INSERT INTO `goadmin_menu` VALUES (11, 8, 0, 37, '文章', '', 'fa-file-powerpoint-o', '', NULL, '/info/example_post', '2019-09-12 07:16:32', '2020-11-13 17:10:39');
-INSERT INTO `goadmin_menu` VALUES (12, 8, 0, 34, '雇员', '', 'fa-sitemap', '', NULL, '/info/example_employee', '2019-09-12 07:15:07', '2020-11-13 17:09:39');
-INSERT INTO `goadmin_menu` VALUES (13, 8, 0, 35, '信息', '', 'fa-info', '', NULL, '/info/example_profile', '2019-09-12 07:15:07', '2020-11-13 17:10:11');
-INSERT INTO `goadmin_menu` VALUES (14, 0, 0, 38, '表单', '组件', 'fa-wpforms', '', NULL, '/form1', '2019-09-12 07:14:18', '2019-09-12 07:14:18');
-INSERT INTO `goadmin_menu` VALUES (15, 0, 0, 39, '表格', '', 'fa-table', '', NULL, '/table', '2019-12-11 14:15:42', '2019-12-11 14:15:42');
-INSERT INTO `goadmin_menu` VALUES (16, 0, 0, 11, '用户管理', '', 'fa-bars', '', NULL, '', '2020-11-13 10:44:08', '2020-11-13 19:19:36');
-INSERT INTO `goadmin_menu` VALUES (17, 16, 0, 12, '钱包地址', '', 'fa-snapchat-ghost', '', NULL, '/info/g_address', '2020-11-13 10:50:42', '2020-11-13 18:53:46');
-INSERT INTO `goadmin_menu` VALUES (18, 16, 0, 13, '资产账户', '', 'fa-bars', '', NULL, '/info/g_account_asset', '2020-11-13 11:15:04', '2020-11-13 11:15:04');
-INSERT INTO `goadmin_menu` VALUES (19, 16, 0, 14, '矿池账户', '', 'fa-bars', '', NULL, '/info/g_account_pool', '2020-11-13 11:15:39', '2020-11-13 11:15:39');
-INSERT INTO `goadmin_menu` VALUES (20, 16, 0, 15, '币币账户', '', 'fa-bars', '', NULL, '/info/g_account', '2020-11-13 11:16:12', '2020-11-13 11:16:12');
-INSERT INTO `goadmin_menu` VALUES (21, 16, 0, 16, '购物账户', '', 'fa-bars', '', NULL, '/info/g_account_shop', '2020-11-13 11:16:30', '2020-11-13 19:17:14');
-INSERT INTO `goadmin_menu` VALUES (22, 16, 0, 11, '配置管理', '', 'fa-bars', '', NULL, '/info/g_config', '2020-11-13 13:49:51', '2020-11-13 13:49:51');
-INSERT INTO `goadmin_menu` VALUES (23, 0, 0, 23, '币币交易', '', 'fa-bars', '', NULL, '', '2020-11-13 13:50:16', '2020-11-13 13:50:16');
-INSERT INTO `goadmin_menu` VALUES (24, 23, 0, 23, '交易对', '', 'fa-bars', '', NULL, '/info/g_product', '2020-11-13 13:50:51', '2020-11-13 13:50:51');
-INSERT INTO `goadmin_menu` VALUES (25, 23, 0, 24, '市场行情', '', 'fa-bars', '', NULL, '/info/g_tick', '2020-11-13 13:51:21', '2020-11-13 13:51:21');
-INSERT INTO `goadmin_menu` VALUES (26, 23, 0, 26, '交易订单', '', 'fa-bars', '', NULL, '/info/g_trade', '2020-11-13 13:52:19', '2020-11-13 13:52:19');
-INSERT INTO `goadmin_menu` VALUES (27, 23, 0, 25, '委托订单', '', 'fa-bars', '', NULL, '/info/g_order', '2020-11-13 13:52:44', '2020-11-13 13:52:44');
-INSERT INTO `goadmin_menu` VALUES (28, 0, 0, 27, '矿机管理', '', 'fa-bars', '', NULL, '', '2020-11-16 03:59:03', '2020-11-16 12:00:57');
-INSERT INTO `goadmin_menu` VALUES (29, 28, 0, 29, '挖矿日志', '', 'fa-bars', '', NULL, '/info/g_machine_log', '2020-11-16 04:00:06', '2020-11-16 04:00:06');
-INSERT INTO `goadmin_menu` VALUES (30, 28, 0, 28, '用户矿机', '', 'fa-bars', '', NULL, '/info/g_machine_address', '2020-11-16 04:00:32', '2020-11-16 04:00:32');
-INSERT INTO `goadmin_menu` VALUES (31, 28, 0, 27, '矿机列表', '', 'fa-bars', '', NULL, '/info/g_machine', '2020-11-16 04:00:56', '2020-11-16 04:00:56');
-INSERT INTO `goadmin_menu` VALUES (32, 16, 0, 17, '扫一扫', '', 'fa-bars', '', NULL, '/info/g_account_scan', '2020-11-25 03:26:55', '2020-11-25 11:27:54');
-INSERT INTO `goadmin_menu` VALUES (33, 16, 0, 18, '划转管理', '', 'fa-bars', '', NULL, '/info/g_account_transfer', '2020-11-25 03:29:22', '2020-11-25 03:29:22');
-INSERT INTO `goadmin_menu` VALUES (34, 0, 0, 19, '币种管理', '', 'fa-bars', '', NULL, '', '2020-11-25 03:30:53', '2020-11-25 03:30:53');
-INSERT INTO `goadmin_menu` VALUES (35, 34, 0, 19, '币种配置', '', 'fa-bars', '', NULL, '/info/g_address_config', '2020-11-25 03:31:54', '2020-11-25 03:31:54');
-INSERT INTO `goadmin_menu` VALUES (36, 34, 0, 20, '币种归集', '', 'fa-bars', '', NULL, '/info/g_address_collect', '2020-11-25 03:32:13', '2020-11-25 03:32:13');
-INSERT INTO `goadmin_menu` VALUES (37, 34, 0, 21, '充币管理', '', 'fa-bars', '', NULL, '/info/g_address_deposit', '2020-11-25 03:32:42', '2020-11-25 03:32:42');
-INSERT INTO `goadmin_menu` VALUES (38, 34, 0, 22, '提币管理', '', 'fa-bars', '', NULL, '/info/g_address_withdraw', '2020-11-25 03:33:01', '2020-11-25 03:33:01');
-INSERT INTO `goadmin_menu` VALUES (39, 28, 0, 30, '兑换配置', '', 'fa-bars', '', NULL, '/info/g_machine_config', '2020-11-25 04:55:00', '2020-11-25 04:55:00');
-INSERT INTO `goadmin_menu` VALUES (40, 28, 0, 31, '兑换管理', '', 'fa-bars', '', NULL, '/info/g_machine_convert', '2020-11-25 04:55:41', '2020-11-25 04:55:41');
-INSERT INTO `goadmin_menu` VALUES (41, 28, 0, 32, '达人等级', '', 'fa-bars', '', NULL, '/info/g_machine_level', '2020-11-25 04:56:10', '2020-11-25 04:56:10');
+INSERT INTO `goadmin_menu` VALUES (8, 0, 0, 37, '例子', '', 'fa-align-center', '', NULL, '', '2019-12-11 14:15:42', '2019-12-11 14:15:42');
+INSERT INTO `goadmin_menu` VALUES (9, 8, 0, 37, '用户', '', 'fa-user', '', NULL, '/info/example_user', '2019-09-12 07:15:07', '2020-11-13 17:09:30');
+INSERT INTO `goadmin_menu` VALUES (10, 8, 0, 40, '作者', '', 'fa-users', '', NULL, '/info/example_author', '2019-09-12 07:16:04', '2020-11-13 17:10:26');
+INSERT INTO `goadmin_menu` VALUES (11, 8, 0, 41, '文章', '', 'fa-file-powerpoint-o', '', NULL, '/info/example_post', '2019-09-12 07:16:32', '2020-11-13 17:10:39');
+INSERT INTO `goadmin_menu` VALUES (12, 8, 0, 38, '雇员', '', 'fa-sitemap', '', NULL, '/info/example_employee', '2019-09-12 07:15:07', '2020-11-13 17:09:39');
+INSERT INTO `goadmin_menu` VALUES (13, 8, 0, 39, '信息', '', 'fa-info', '', NULL, '/info/example_profile', '2019-09-12 07:15:07', '2020-11-13 17:10:11');
+INSERT INTO `goadmin_menu` VALUES (14, 0, 0, 42, '表单', '组件', 'fa-wpforms', '', NULL, '/form1', '2019-09-12 07:14:18', '2019-09-12 07:14:18');
+INSERT INTO `goadmin_menu` VALUES (15, 0, 0, 43, '表格', '', 'fa-table', '', NULL, '/table', '2019-12-11 14:15:42', '2019-12-11 14:15:42');
+INSERT INTO `goadmin_menu` VALUES (16, 0, 0, 15, '用户管理', '', 'fa-bars', '', NULL, '', '2020-11-13 10:44:08', '2020-11-13 19:19:36');
+INSERT INTO `goadmin_menu` VALUES (17, 16, 0, 16, '钱包地址', '', 'fa-snapchat-ghost', '', NULL, '/info/g_address', '2020-11-13 10:50:42', '2020-11-13 18:53:46');
+INSERT INTO `goadmin_menu` VALUES (18, 16, 0, 17, '资产账户', '', 'fa-bars', '', NULL, '/info/g_account_asset', '2020-11-13 11:15:04', '2020-11-13 11:15:04');
+INSERT INTO `goadmin_menu` VALUES (19, 16, 0, 18, '矿池账户', '', 'fa-bars', '', NULL, '/info/g_account_pool', '2020-11-13 11:15:39', '2020-11-13 11:15:39');
+INSERT INTO `goadmin_menu` VALUES (20, 16, 0, 19, '币币账户', '', 'fa-bars', '', NULL, '/info/g_account', '2020-11-13 11:16:12', '2020-11-13 11:16:12');
+INSERT INTO `goadmin_menu` VALUES (21, 16, 0, 20, '购物账户', '', 'fa-bars', '', NULL, '/info/g_account_shop', '2020-11-13 11:16:30', '2020-11-13 19:17:14');
+INSERT INTO `goadmin_menu` VALUES (22, 16, 0, 15, '配置管理', '', 'fa-bars', '', NULL, '/info/g_config', '2020-11-13 13:49:51', '2020-11-13 13:49:51');
+INSERT INTO `goadmin_menu` VALUES (23, 0, 0, 27, '币币交易', '', 'fa-bars', '', NULL, '', '2020-11-13 13:50:16', '2020-11-13 13:50:16');
+INSERT INTO `goadmin_menu` VALUES (24, 23, 0, 27, '交易对', '', 'fa-bars', '', NULL, '/info/g_product', '2020-11-13 13:50:51', '2020-11-13 13:50:51');
+INSERT INTO `goadmin_menu` VALUES (25, 23, 0, 28, '市场行情', '', 'fa-bars', '', NULL, '/info/g_tick', '2020-11-13 13:51:21', '2020-11-13 13:51:21');
+INSERT INTO `goadmin_menu` VALUES (26, 23, 0, 30, '交易订单', '', 'fa-bars', '', NULL, '/info/g_trade', '2020-11-13 13:52:19', '2020-11-13 13:52:19');
+INSERT INTO `goadmin_menu` VALUES (27, 23, 0, 29, '委托订单', '', 'fa-bars', '', NULL, '/info/g_order', '2020-11-13 13:52:44', '2020-11-13 13:52:44');
+INSERT INTO `goadmin_menu` VALUES (28, 0, 0, 31, '矿机管理', '', 'fa-bars', '', NULL, '', '2020-11-16 03:59:03', '2020-11-16 12:00:57');
+INSERT INTO `goadmin_menu` VALUES (29, 28, 0, 33, '挖矿日志', '', 'fa-bars', '', NULL, '/info/g_machine_log', '2020-11-16 04:00:06', '2020-11-16 04:00:06');
+INSERT INTO `goadmin_menu` VALUES (30, 28, 0, 32, '用户矿机', '', 'fa-bars', '', NULL, '/info/g_machine_address', '2020-11-16 04:00:32', '2020-11-16 04:00:32');
+INSERT INTO `goadmin_menu` VALUES (31, 28, 0, 31, '矿机列表', '', 'fa-bars', '', NULL, '/info/g_machine', '2020-11-16 04:00:56', '2020-11-16 04:00:56');
+INSERT INTO `goadmin_menu` VALUES (32, 16, 0, 21, '扫一扫', '', 'fa-bars', '', NULL, '/info/g_account_scan', '2020-11-25 03:26:55', '2020-11-25 11:27:54');
+INSERT INTO `goadmin_menu` VALUES (33, 16, 0, 22, '划转管理', '', 'fa-bars', '', NULL, '/info/g_account_transfer', '2020-11-25 03:29:22', '2020-11-25 03:29:22');
+INSERT INTO `goadmin_menu` VALUES (34, 0, 0, 23, '币种管理', '', 'fa-bars', '', NULL, '', '2020-11-25 03:30:53', '2020-11-25 03:30:53');
+INSERT INTO `goadmin_menu` VALUES (35, 34, 0, 23, '币种配置', '', 'fa-bars', '', NULL, '/info/g_address_config', '2020-11-25 03:31:54', '2020-11-25 03:31:54');
+INSERT INTO `goadmin_menu` VALUES (36, 34, 0, 24, '币种归集', '', 'fa-bars', '', NULL, '/info/g_address_collect', '2020-11-25 03:32:13', '2020-11-25 03:32:13');
+INSERT INTO `goadmin_menu` VALUES (37, 34, 0, 25, '充币管理', '', 'fa-bars', '', NULL, '/info/g_address_deposit', '2020-11-25 03:32:42', '2020-11-25 03:32:42');
+INSERT INTO `goadmin_menu` VALUES (38, 34, 0, 26, '提币管理', '', 'fa-bars', '', NULL, '/info/g_address_withdraw', '2020-11-25 03:33:01', '2020-11-25 03:33:01');
+INSERT INTO `goadmin_menu` VALUES (39, 28, 0, 34, '兑换配置', '', 'fa-bars', '', NULL, '/info/g_machine_config', '2020-11-25 04:55:00', '2020-11-25 04:55:00');
+INSERT INTO `goadmin_menu` VALUES (40, 28, 0, 35, '兑换管理', '', 'fa-bars', '', NULL, '/info/g_machine_convert', '2020-11-25 04:55:41', '2020-11-25 04:55:41');
+INSERT INTO `goadmin_menu` VALUES (41, 28, 0, 36, '达人等级', '', 'fa-bars', '', NULL, '/info/g_machine_level', '2020-11-25 04:56:10', '2020-11-25 04:56:10');
 INSERT INTO `goadmin_menu` VALUES (42, 0, 0, 7, 'BITE产出', '', 'fa-bars', '', NULL, '', '2020-12-01 11:41:35', '2020-12-01 11:41:35');
-INSERT INTO `goadmin_menu` VALUES (43, 42, 0, 7, '认购管理', '', 'fa-bars', '', NULL, '/issue', '2020-12-01 11:42:39', '2020-12-01 11:46:48');
+INSERT INTO `goadmin_menu` VALUES (43, 42, 0, 7, '认购收益', '', 'fa-bars', '', NULL, '/issue', '2020-12-01 11:42:39', '2020-12-06 11:15:24');
 INSERT INTO `goadmin_menu` VALUES (44, 42, 0, 8, '持币收益', '', 'fa-bars', '', NULL, '/holding', '2020-12-01 11:44:25', '2020-12-01 11:46:54');
 INSERT INTO `goadmin_menu` VALUES (45, 42, 0, 9, '推广收益', '', 'fa-bars', '', NULL, '/promote', '2020-12-01 11:45:03', '2020-12-01 11:46:59');
-INSERT INTO `goadmin_menu` VALUES (46, 42, 0, 10, '最佳持币量', '', 'fa-bars', '', NULL, '/bestHolding', '2020-12-01 11:46:10', '2020-12-01 11:47:05');
+INSERT INTO `goadmin_menu` VALUES (46, 42, 0, 12, '认购日志', '', 'fa-bars', '', NULL, '/info/g_issue_log', '2020-12-01 11:46:10', '2020-12-06 11:22:13');
+INSERT INTO `goadmin_menu` VALUES (47, 42, 0, 13, '持币日志', '', 'fa-bars', '', NULL, '/info/g_address_holding', '2020-12-06 11:18:06', '2020-12-06 11:22:19');
+INSERT INTO `goadmin_menu` VALUES (48, 42, 0, 14, '推广日志', '', 'fa-bars', '', NULL, '/info/g_address_promote', '2020-12-06 11:18:33', '2020-12-06 11:22:28');
+INSERT INTO `goadmin_menu` VALUES (49, 42, 0, 10, '认购配置', '', 'fa-bars', '', NULL, '/info/g_issue_config', '2020-12-06 11:24:06', '2020-12-06 11:24:06');
+INSERT INTO `goadmin_menu` VALUES (50, 42, 0, 11, '用户认购', '', 'fa-bars', '', NULL, '/info/g_issue', '2020-12-06 11:25:31', '2020-12-06 11:25:31');
 
 -- ----------------------------
 -- Table structure for goadmin_operation_log
@@ -1094,10 +1168,14 @@ INSERT INTO `goadmin_role_menu` VALUES (1, 39, '2020-11-25 04:55:00', '2020-11-2
 INSERT INTO `goadmin_role_menu` VALUES (1, 40, '2020-11-25 04:55:41', '2020-11-25 04:55:41');
 INSERT INTO `goadmin_role_menu` VALUES (1, 41, '2020-11-25 04:56:10', '2020-11-25 04:56:10');
 INSERT INTO `goadmin_role_menu` VALUES (1, 42, '2020-12-01 11:41:35', '2020-12-01 11:41:35');
-INSERT INTO `goadmin_role_menu` VALUES (1, 43, '2020-12-01 11:46:53', '2020-12-01 11:46:53');
 INSERT INTO `goadmin_role_menu` VALUES (1, 44, '2020-12-01 11:46:58', '2020-12-01 11:46:58');
 INSERT INTO `goadmin_role_menu` VALUES (1, 45, '2020-12-01 11:47:04', '2020-12-01 11:47:04');
-INSERT INTO `goadmin_role_menu` VALUES (1, 46, '2020-12-01 11:47:09', '2020-12-01 11:47:09');
+INSERT INTO `goadmin_role_menu` VALUES (1, 43, '2020-12-06 11:15:51', '2020-12-06 11:15:51');
+INSERT INTO `goadmin_role_menu` VALUES (1, 46, '2020-12-06 11:22:39', '2020-12-06 11:22:39');
+INSERT INTO `goadmin_role_menu` VALUES (1, 47, '2020-12-06 11:22:46', '2020-12-06 11:22:46');
+INSERT INTO `goadmin_role_menu` VALUES (1, 48, '2020-12-06 11:22:55', '2020-12-06 11:22:55');
+INSERT INTO `goadmin_role_menu` VALUES (1, 49, '2020-12-06 11:24:06', '2020-12-06 11:24:06');
+INSERT INTO `goadmin_role_menu` VALUES (1, 50, '2020-12-06 11:25:31', '2020-12-06 11:25:31');
 
 -- ----------------------------
 -- Table structure for goadmin_role_permissions
