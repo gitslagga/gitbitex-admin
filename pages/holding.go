@@ -35,6 +35,7 @@ func GetHoldingContent(ctx *gin.Context) (types.Panel, error) {
 		infoList[k]["available"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["Available"]))}
 		infoList[k]["rank"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["Rank"]))}
 		infoList[k]["profit"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["Profit"]))}
+		infoList[k]["goal"] = types.InfoItem{Content: template.HTML(fmt.Sprintf("%v", v["Goal"]))}
 	}
 
 	table := comp.DataTable().
@@ -47,6 +48,7 @@ func GetHoldingContent(ctx *gin.Context) (types.Panel, error) {
 			{Head: "可用数量", Field: "available"},
 			{Head: "持币量排名", Field: "rank"},
 			{Head: "持币收益", Field: "profit"},
+			{Head: "拼团成功", Field: "goal"},
 		})
 
 	body := table.GetContent()
