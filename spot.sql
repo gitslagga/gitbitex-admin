@@ -233,7 +233,7 @@ CREATE TABLE `g_address_release`  (
   `user_id` bigint(0) UNSIGNED NOT NULL COMMENT '用户ID',
   `coin` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '币种',
   `number` decimal(32, 8) UNSIGNED NOT NULL COMMENT '释放数量',
-  `type` int(0) UNSIGNED NOT NULL COMMENT '1-兑换资金池,2-扫一扫资金池,3-拼团资金池',
+  `type` int(0) UNSIGNED NOT NULL COMMENT '1-兑换手续费资金池,2-扫一扫手续费资金池,3-拼团节点资金池',
   `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
   `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
