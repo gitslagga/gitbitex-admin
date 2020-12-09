@@ -225,10 +225,10 @@ INSERT INTO `filemanager_setting` VALUES (7, 'allowMove', '1', '2020-08-01 16:17
 INSERT INTO `filemanager_setting` VALUES (8, 'allowDownload', '1', '2020-08-01 16:17:12', '2020-08-01 16:17:12');
 
 -- ----------------------------
--- Table structure for g_acccount_release
+-- Table structure for g_address_release
 -- ----------------------------
-DROP TABLE IF EXISTS `g_acccount_release`;
-CREATE TABLE `g_acccount_release`  (
+DROP TABLE IF EXISTS `g_address_release`;
+CREATE TABLE `g_address_release`  (
   `id` bigint(0) UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` bigint(0) UNSIGNED NOT NULL COMMENT '用户ID',
   `coin` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '币种',
@@ -242,7 +242,7 @@ CREATE TABLE `g_acccount_release`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '挖矿日志表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of g_acccount_release
+-- Records of g_address_release
 -- ----------------------------
 
 -- ----------------------------
