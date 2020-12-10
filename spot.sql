@@ -493,32 +493,6 @@ CREATE TABLE `g_address_deposit`  (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for g_address_group
--- ----------------------------
-DROP TABLE IF EXISTS `g_address_group`;
-CREATE TABLE `g_address_group`  (
-  `id` bigint(0) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
-  `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
-  `user_id` bigint(0) UNSIGNED NOT NULL,
-  `coin` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '拼团币种',
-  `order_sn` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '订单编号',
-  `number` decimal(32, 8) UNSIGNED NOT NULL COMMENT '拼团数量',
-  `count` int(0) UNSIGNED NOT NULL COMMENT '拼团人数',
-  `status` int(0) UNSIGNED NOT NULL DEFAULT 0 COMMENT '1-已中奖',
-  PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `idx_user_id_order_sn`(`user_id`, `order_sn`) USING BTREE,
-  INDEX `idx_user_id`(`user_id`) USING BTREE,
-  INDEX `idx_coin`(`coin`) USING BTREE,
-  INDEX `idx_order_sn`(`order_sn`) USING BTREE,
-  INDEX `idx_created_at_coin`(`created_at`, `coin`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of g_address_group
--- ----------------------------
-
--- ----------------------------
 -- Table structure for g_address_holding
 -- ----------------------------
 DROP TABLE IF EXISTS `g_address_holding`;
@@ -584,6 +558,26 @@ CREATE TABLE `g_address_promote`  (
 
 -- ----------------------------
 -- Records of g_address_promote
+
+-- ----------------------------
+-- Table structure for g_address_release
+-- ----------------------------
+DROP TABLE IF EXISTS `g_address_release`;
+CREATE TABLE `g_address_release`  (
+  `id` bigint(0) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(0) UNSIGNED NOT NULL COMMENT '用户ID',
+  `coin` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '币种',
+  `number` decimal(32, 8) UNSIGNED NOT NULL COMMENT '释放数量',
+  `type` int(0) UNSIGNED NOT NULL COMMENT '1-兑换手续费资金池,2-扫一扫手续费资金池,3-拼团节点资金池',
+  `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+  `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `idx_user_id`(`user_id`) USING BTREE,
+  INDEX `idx_type`(`type`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '挖矿日志表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of g_address_release
 -- ----------------------------
 
 -- ----------------------------
@@ -702,6 +696,59 @@ CREATE TABLE `g_fill`  (
 
 -- ----------------------------
 -- Records of g_fill
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for g_group
+-- ----------------------------
+DROP TABLE IF EXISTS `g_group`;
+CREATE TABLE `g_group`  (
+  `id` bigint(0) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+  `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
+  `user_id` bigint(0) UNSIGNED NOT NULL COMMENT '用户ID',
+  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户地址',
+  `coin` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '拼团币种',
+  `fee` decimal(32, 8) UNSIGNED NOT NULL COMMENT '手续费',
+  `number` decimal(32, 8) UNSIGNED NOT NULL COMMENT '拼团数量',
+  `refund` decimal(32, 8) UNSIGNED NOT NULL COMMENT '返还数量',
+  `join_count` int(0) UNSIGNED NOT NULL DEFAULT 1 COMMENT '参与拼团人数',
+  `count` int(0) UNSIGNED NOT NULL COMMENT '拼团人数',
+  `status` int(0) UNSIGNED NOT NULL COMMENT '1-进行中,2-已结束',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `idx_user_id`(`user_id`) USING BTREE,
+  INDEX `idx_coin`(`coin`) USING BTREE,
+  INDEX `idx_user_id_coin_status`(`user_id`, `coin`, `status`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of g_group
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for g_group_log
+-- ----------------------------
+DROP TABLE IF EXISTS `g_group_log`;
+CREATE TABLE `g_group_log`  (
+  `id` bigint(0) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+  `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
+  `group_id` bigint(0) UNSIGNED NOT NULL COMMENT '拼团ID',
+  `user_id` bigint(0) UNSIGNED NOT NULL COMMENT '用户ID',
+  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户地址',
+  `coin` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '拼团币种',
+  `number` decimal(32, 8) UNSIGNED NOT NULL COMMENT '拼团数量',
+  `status` int(0) UNSIGNED NOT NULL DEFAULT 0 COMMENT '1-进行中,2-拼团成功,3-拼团失败',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `idx_user_id`(`user_id`) USING BTREE,
+  INDEX `idx_coin`(`coin`) USING BTREE,
+  INDEX `idx_group_id`(`group_id`) USING BTREE,
+  INDEX `idx_status`(`status`) USING BTREE,
+  UNIQUE INDEX `idx_user_id_group_id`(`user_id`, `group_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of g_group_log
 -- ----------------------------
 
 -- ----------------------------

@@ -54,7 +54,7 @@ func GetGAddressWithdrawTable(ctx *context.Context) (userTable table.Table) {
 	}).FieldWidth(150)
 	info.AddField("订单号", "order_sn", db.Varchar).FieldWidth(120)
 	info.AddField("数量", "value", db.Decimal)
-	info.AddField("实际到账", "actual", db.Decimal)
+	info.AddField("实际扣除", "actual", db.Decimal)
 	info.AddField("状态", "status", db.Int).FieldDisplay(func(model types.FieldModel) interface{} {
 		switch model.Value {
 		case "1":
