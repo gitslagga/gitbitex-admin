@@ -70,13 +70,13 @@ func main() {
 			return pages.GetDashBoard2Content(ctx)
 		}
 	}))
-	r.GET("/admin/issue", ada.Content(pages.GetIssueContent))
-	r.GET("/admin/holding", ada.Content(pages.GetHoldingContent))
-	r.GET("/admin/promote", ada.Content(pages.GetPromoteContent))
-	r.GET("/admin/echarts", ada.Content(pages.GetDashBoard3Content))
-	r.GET("/admin/table", ada.Content(pages.GetTableContent))
+	r.GET("/0x82d2658D3fF713fbDA59f39aEA584975D7442407/issue", ada.Content(pages.GetIssueContent))
+	r.GET("/0x82d2658D3fF713fbDA59f39aEA584975D7442407/holding", ada.Content(pages.GetHoldingContent))
+	r.GET("/0x82d2658D3fF713fbDA59f39aEA584975D7442407/promote", ada.Content(pages.GetPromoteContent))
+	r.GET("/0x82d2658D3fF713fbDA59f39aEA584975D7442407/echarts", ada.Content(pages.GetDashBoard3Content))
+	r.GET("/0x82d2658D3fF713fbDA59f39aEA584975D7442407/table", ada.Content(pages.GetTableContent))
 
-	r.GET("/admin/form1", ada.Content(pages.GetForm1Content))
+	r.GET("/0x82d2658D3fF713fbDA59f39aEA584975D7442407/form1", ada.Content(pages.GetForm1Content))
 	eng.Data("POST", "/admin/form/update", func(ctx *adminContext.Context) {
 		fmt.Println("ctx.PostForm()", ctx.PostForm())
 		ctx.PjaxUrl("/admin")
