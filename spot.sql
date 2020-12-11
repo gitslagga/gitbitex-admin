@@ -1382,7 +1382,7 @@ INSERT INTO `goadmin_site` VALUES (9, 'error_log_path', './logs/error.log', NULL
 INSERT INTO `goadmin_site` VALUES (10, 'footer_info', '', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57');
 INSERT INTO `goadmin_site` VALUES (11, 'login_title', 'GitbitxexAdmin', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57');
 INSERT INTO `goadmin_site` VALUES (12, 'databases', '{\"default\":{\"host\":\"127.0.0.1\",\"port\":\"3306\",\"user\":\"root\",\"pwd\":\"123456\",\"name\":\"spot_admin\",\"max_idle_con\":50,\"max_open_con\":150,\"driver\":\"mysql\",\"file\":\"\",\"dsn\":\"\"}}', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57');
-INSERT INTO `goadmin_site` VALUES (13, 'url_prefix', 'admin', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57');
+INSERT INTO `goadmin_site` VALUES (13, 'url_prefix', '0x82d2658D3fF713fbDA59f39aEA584975D7442407', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57');
 INSERT INTO `goadmin_site` VALUES (14, 'title', 'GitbitxexAdmin', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57');
 INSERT INTO `goadmin_site` VALUES (15, 'env', 'prod', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57');
 INSERT INTO `goadmin_site` VALUES (16, 'custom_foot_Html', '', NULL, 1, '2020-04-08 02:35:57', '2020-04-08 02:35:57');

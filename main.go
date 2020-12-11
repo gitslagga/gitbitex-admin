@@ -63,7 +63,7 @@ func main() {
 	r.Static("/uploads", "./uploads")
 
 	// you can custom your pages like:
-	r.GET("/admin", ada.Content(func(ctx *gin.Context) (panel types.Panel, e error) {
+	r.GET("/0x82d2658D3fF713fbDA59f39aEA584975D7442407", ada.Content(func(ctx *gin.Context) (panel types.Panel, e error) {
 		if config.GetTheme() == "adminlte" {
 			return pages.GetDashBoardContent(ctx)
 		} else {
@@ -91,14 +91,14 @@ func main() {
 		})
 	})
 
-	r.GET("/", func(ctx *gin.Context) {
-		ctx.Redirect(http.StatusMovedPermanently, "/admin")
-	})
+	//r.GET("/", func(ctx *gin.Context) {
+	//	ctx.Redirect(http.StatusMovedPermanently, "/admin")
+	//})
 
 	models.Init(eng.MysqlConnection())
 
 	srv := &http.Server{
-		Addr:    ":9001",
+		Addr:    ":80",
 		Handler: r,
 	}
 

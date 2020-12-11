@@ -15,7 +15,7 @@
       }
     }
   },
-  "prefix": "admin",
+  "prefix": "0x82d2658D3fF713fbDA59f39aEA584975D7442407",
   "store": {
     "path": "./uploads",
     "prefix": "uploads"
