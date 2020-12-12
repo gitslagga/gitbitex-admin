@@ -424,6 +424,7 @@ CREATE TABLE `g_address`  (
   `address_bite` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'BITE地址',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `idx_address`(`address`) USING BTREE,
+  UNIQUE INDEX `idx_username`(`username`) USING BTREE,
   INDEX `idx_parent_id`(`parent_id`) USING BTREE,
   INDEX `idx_active_num`(`active_num`) USING BTREE,
   INDEX `idx_machine_level_id`(`machine_level_id`) USING BTREE,
@@ -557,6 +558,7 @@ CREATE TABLE `g_address_list`  (
   `mnemonic` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `idx_address`(`address`) USING BTREE,
+  UNIQUE INDEX `idx_username`(`username`) USING BTREE,
   INDEX `idx_user_id`(`user_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '地址列表表' ROW_FORMAT = Dynamic;
 
